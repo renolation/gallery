@@ -14,12 +14,12 @@ datasource db {
 }
 
 model User {
-  id       String @id @default(uuid())
-  username String @unique
-  email    String @unique
-  password String
-  role     Role   @default(USER)
-
+  id        String    @id @default(uuid())
+  username  String    @unique
+  email     String    @unique
+  password  String
+  roleId    String    @default("3bdb07a9-753e-4ac5-8238-f320aec857dc") // Replace with the actual ID of the member role
+  role      Role      @relation(fields: [roleId], references: [id])
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   sessions  Session[]
@@ -29,13 +29,23 @@ model Session {
   id        String   @id
   userId    String
   expiresAt DateTime
-
-  user User @relation(references: [id], fields: [userId], onDelete: Cascade)
+  user      User     @relation(references: [id], fields: [userId], onDelete: Cascade)
 }
 
-enum Role {
-  USER
-  ADMIN
+model Role {
+  id          String       @id @default(uuid())
+  name        String       @unique
+  permissions Permission[] @relation("RolePermission")
+  users       User[]
+  parentId    String? // Self-referencing field for hierarchy
+  parent      Role?        @relation("RoleHierarchy", fields: [parentId], references: [id])
+  children    Role[]       @relation("RoleHierarchy")
+}
+
+model Permission {
+  id    String @id @default(uuid())
+  name  String @unique
+  roles Role[] @relation("RolePermission")
 }
 
 enum PostStatus {
