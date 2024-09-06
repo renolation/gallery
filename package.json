@@ -10,15 +10,19 @@
     "seed": "ts-node prisma/seed.ts"
   },
   "dependencies": {
+    "@auth0/nextjs-auth0": "^3.5.0",
     "@lucia-auth/adapter-prisma": "^4.0.1",
     "@prisma/client": "5.16.1",
     "cloudinary": "^2.4.0",
+    "jsonwebtoken": "^9.0.2",
     "lucia": "^3.2.0",
     "next": "14.2.8",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@types/jsonwebtoken": "^9.0.6",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

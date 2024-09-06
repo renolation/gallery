@@ -1,33 +1,5 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-}
-
-
-#auth-form {
+.auth-form {
   width: 90%;
   max-width: 40rem;
   border-radius: 6px;
@@ -37,7 +9,7 @@ body {
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
 }
 
-#auth-form img {
+.auth-form img {
   display: block;
   width: 6rem;
   height: 6rem;
@@ -46,14 +18,14 @@ body {
   filter: drop-shadow(0 0 6px rgba(30, 30, 32, 0.3));
 }
 
-#auth-form label {
+.auth-form label {
   display: block;
   margin-bottom: 0.15rem;
   font-weight: bold;
   color: #46454a;
 }
 
-#auth-form input {
+.auth-form input {
   font: inherit;
   width: 100%;
   padding: 0.5rem;
@@ -63,7 +35,7 @@ body {
   color: #46454a;
 }
 
-#auth-form button {
+.auth-form button {
   width: 100%;
   font: inherit;
   cursor: pointer;
@@ -74,12 +46,12 @@ body {
   border-radius: 3px;
 }
 
-#auth-form button:hover,
-#auth-form button:active {
+.auth-form button:hover,
+.auth-form button:active {
   background-color: #432aa3;
 }
 
-#auth-form a {
+.auth-form a {
   color: #564f6e;
   text-decoration: none;
   display: block;
@@ -87,18 +59,18 @@ body {
   text-align: center;
 }
 
-#auth-form a:hover {
+.auth-form a:hover {
   color: #4b34a9;
 }
 
-#form-errors {
+.form-errors {
   list-style: none;
   margin: 0;
   padding: 0;
   color: #a21d4c;
 }
 
-#auth-header {
+.auth-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -106,11 +78,11 @@ body {
   margin: 2rem auto;
 }
 
-#auth-header p {
+.auth-header p {
   font-size: 1.25rem;
 }
 
-#auth-header button {
+.auth-header button {
   font: inherit;
   cursor: pointer;
   padding: 0.5rem 1.5rem;
@@ -120,7 +92,7 @@ body {
   border-radius: 3px;
 }
 
-#auth-header button:hover,
-#auth-header button:active {
+.auth-header button:hover,
+.auth-header button:active {
   background-color: #5f2a8a;
 }
