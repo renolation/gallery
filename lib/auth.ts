@@ -82,3 +82,23 @@ export async function destroySession() {
         sessionCookie.attributes
     );
 }
+
+export async function getUserIdFromSession() {
+    const sessionCookie = cookies().get(lucia.sessionCookieName);
+    if (!sessionCookie) {
+        return null;
+    }
+
+    const sessionId = sessionCookie.value;
+    if (!sessionId) {
+        return null;
+    }
+
+    try {
+        const { session } = await lucia.validateSession(sessionId);
+        return session?.userId || null;
+    } catch (e) {
+        // Handle error
+        return null;
+    }
+}

@@ -21,6 +21,9 @@ export default function MainHeader() {
                     <li>
                         <NavLink href={'/auth?mode=login'}>Login</NavLink>
                     </li>
+                    <li>
+                        <NavLink href={'/post/create'}>Create</NavLink>
+                    </li>
                     {/*<li>*/}
                     {/*    <a href="/api/auth/login">Login Auth0</a>*/}
                     {/*</li>*/}
