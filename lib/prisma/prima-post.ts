@@ -21,3 +21,11 @@ export async function updatePostWithImage(postId: string, imageId: string) {
         },
     });
 }
+export async function getPostById(postId: string) {
+    return prisma.post.findUnique({
+        where: { id: postId },
+        include: {
+            images: true,
+        },
+    });
+}

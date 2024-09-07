@@ -1,11 +1,11 @@
 "use client";
-import classes from "./select-image-form.module.css";
+import classes from "./create-new-post-form.module.css";
 import React from 'react';
 import {useDropzone} from "react-dropzone";
 
 import {createPostAction} from "@/action/post-action";
 
-export function SelectImageForm() {
+export function CreateNewPostForm() {
 
     const onDrop = (acceptedFiles: File[]) => {
 

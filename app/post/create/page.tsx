@@ -1,8 +1,8 @@
-import {SelectImageForm} from "@/components/post/create/select-image-form";
+import {CreateNewPostForm} from "@/components/post/create/create-new-post-form";
 
 
 export default function PostCreate() {
     return (
-        <SelectImageForm />
+        <CreateNewPostForm />
     );
 }

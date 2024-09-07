@@ -1,0 +1,11 @@
+.dropzone {
+    border: 2px dashed #ddd;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.image {
+    height: 300px;
+    width: auto;
+}
