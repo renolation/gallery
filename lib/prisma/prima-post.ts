@@ -1,4 +1,5 @@
 import prisma from "@/lib/prisma/prisma";
+import exp from "node:constants";
 
 
 export async function createPost(userId: string) {
@@ -21,6 +22,17 @@ export async function updatePostWithImage(postId: string, imageId: string) {
         },
     });
 }
+
+export async function updatePostDesc(postId: string, description: string) {
+    await prisma.post.update({
+        where: { id: postId },
+        data: {
+            description: description,
+        },
+    });
+}
+
+
 export async function getPostById(postId: string) {
     return prisma.post.findUnique({
         where: { id: postId },
