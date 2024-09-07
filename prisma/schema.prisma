@@ -14,14 +14,73 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(uuid())
-  username  String   @unique
-  email     String   @unique
+  id        String    @id @default(uuid())
+  username  String    @unique
+  email     String    @unique
   password  String
-  roleId    String   @default("3bdb07a9-753e-4ac5-8238-f320aec857dc") // Replace with the actual ID of the member role
-  role      Role     @relation(fields: [roleId], references: [id])
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  roleId    String    @default("3bdb07a9-753e-4ac5-8238-f320aec857dc") // Replace with the actual ID of the member role
+  role      Role      @relation(fields: [roleId], references: [id])
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  sessions  Session[]
+  images    Image[]   @relation("UserImages")
+  posts     Post[]    @relation("UserPosts")
+}
+
+model Post {
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], name: "UserPosts")
+  images      Image[]  @relation("PostImages")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Image {
+  id          String         @id @default(uuid())
+  title       String
+  description String?
+  imageUrl    String
+  status      Status         @default(PENDING)
+  uploadedBy  User           @relation(fields: [userId], references: [id], name: "UserImages")
+  userId      String
+  post        Post?          @relation(fields: [postId], references: [id], name: "PostImages")
+  postId      String?
+  tags        ImagesOnTags[]
+  tagId       String?
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+}
+
+model Tag {
+  id          String         @id @default(uuid())
+  name        String         @unique
+  description String?
+  images      ImagesOnTags[]
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+}
+
+model ImagesOnTags {
+  image      Image    @relation(fields: [imageId], references: [id])
+  imageId    String
+  tag        Tag      @relation(fields: [tagId], references: [id])
+  tagId      String
+  assignedAt DateTime @default(now())
+  assignedBy String
+
+  @@id([imageId, tagId])
+}
+
+//region Role based access control
+model Session {
+  id        String   @id
+  userId    String
+  expiresAt DateTime
+
+  user User @relation(references: [id], fields: [userId], onDelete: Cascade)
 }
 
 model Role {
@@ -40,11 +99,12 @@ model Permission {
   roles Role[] @relation("RolePermission")
 }
 
-enum PostStatus {
+//endregion
+
+enum Status {
   PENDING
   APPROVED
   REJECTED
-  PUBLISHED
 }
 
 enum Action {

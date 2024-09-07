@@ -21,12 +21,12 @@ export default function MainHeader() {
                     <li>
                         <NavLink href={'/auth?mode=login'}>Login</NavLink>
                     </li>
-                    <li>
-                        <a href="/api/auth/login">Login Auth0</a>
-                    </li>
-                    <li>
-                        <a href="/api/auth/logout">Logout</a>
-                    </li>
+                    {/*<li>*/}
+                    {/*    <a href="/api/auth/login">Login Auth0</a>*/}
+                    {/*</li>*/}
+                    {/*<li>*/}
+                    {/*    <a href="/api/auth/logout">Logout</a>*/}
+                    {/*</li>*/}
                 </ul>
             </nav>
         </header>
