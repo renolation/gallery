@@ -1,13 +1,14 @@
-
-import { configureStore } from '@reduxjs/toolkit'
+import {configureStore} from '@reduxjs/toolkit'
 import CounterSlice from "@/lib/features/CounteState/CounterSlice";
+import ButtonEditPostSlice from "@/lib/features/edit-post/button-edit-post-slice";
 
 export const makeStore = () => {
-  return configureStore({
-    reducer: {
-       counter: CounterSlice,
-    }
-  })
+    return configureStore({
+        reducer: {
+            counter: CounterSlice,
+            buttonEditPost: ButtonEditPostSlice,
+        }
+    })
 }
 
 // Infer the type of makeStore

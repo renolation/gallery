@@ -23,7 +23,6 @@ export default function EditPostForm() {
     };
 
     useEffect(() => {
-        // Revoke the data URI when the component unmounts
         return () => {
             if (imageUrl) {
                 URL.revokeObjectURL(imageUrl);

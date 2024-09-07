@@ -6,8 +6,12 @@ import StarterKit from '@tiptap/starter-kit';
 import Highlight from '@tiptap/extension-highlight'
 import Placeholder from '@tiptap/extension-placeholder';
 import {useDebounce} from "use-debounce";
-import {updatePostDesc} from "@/lib/prisma/prima-post";
 import {updatePostDescAction} from "@/action/post-action";
+import {useDispatch, useSelector} from "react-redux";
+import {RootState} from "@/lib/store";
+import {decrement} from "@/lib/features/CounteState/CounterSlice";
+import {buttonSaving, buttonSaved} from "@/lib/features/edit-post/button-edit-post-slice";
+
 
 const MenuBar = ({editor}: { editor: Editor | null }) => {
     if (!editor) {
@@ -72,7 +76,10 @@ const MenuBar = ({editor}: { editor: Editor | null }) => {
 
 const Tiptap = ({content, postId}: { content: string, postId: string }) => {
 
-      const [editorContent, setEditorContent] = useState(content);
+    const [editorContent, setEditorContent] = useState(content);
+    const saveEditState = useSelector((state: RootState) => state.buttonEditPost.value);
+
+    const dispatch = useDispatch();
 
     const editor = useEditor({
         extensions: [
@@ -81,10 +88,8 @@ const Tiptap = ({content, postId}: { content: string, postId: string }) => {
                 types: ['heading', 'paragraph'],
             }),
             Highlight,
-            Placeholder.configure({
-                placeholder: 'Start typing here...',
-            }),
         ],
+        immediatelyRender: false,
         content: content,
         onUpdate({editor}) {
             setEditorContent(editor.getHTML());
@@ -93,10 +98,24 @@ const Tiptap = ({content, postId}: { content: string, postId: string }) => {
     const [debouncedEditor] = useDebounce(editor?.state.doc.content, 2000);
 
     useEffect(() => {
-        if (debouncedEditor) {
-            console.log(editorContent);
-            updatePostDescAction(postId, editorContent);
+        console.log("content", content);
+        console.log("editorContent", editorContent);
+        if (content !== editorContent) {
+
+
+            dispatch(buttonSaving()); // Set to "Saving: false"
+
+            console.log("new content", editorContent);
+            updatePostDescAction(postId, editorContent).then(r => {
+                console.log("saveEditState", saveEditState);
+
+                dispatch(buttonSaved()); // Set to "Saved": true
+
+            });
+
         }
+
+
     }, [debouncedEditor]);
     return (
         <div>

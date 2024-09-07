@@ -29,5 +29,7 @@ export async function createPostAction(formData: FormData) {
 }
 
 export async function updatePostDescAction(postId: string, description: string) {
-    updatePostDesc(postId, description);
+    await new Promise(resolve => setTimeout(resolve, 2000)); // 2-second delay
+    console.log("aaa");
+    return updatePostDesc(postId, description);
 }

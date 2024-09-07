@@ -5,18 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="10db5a38-fe23-4040-8b05-cf058a27b569" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/StoreProvider.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/post/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/post/counter.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/post/reset-button.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/post/result.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/features/CounteState/CounterSlice.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/hooks.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/store.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/post/edit/save-edit-button.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/features/edit-post/button-edit-post-slice.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/action/post-action.ts" beforeDir="false" afterPath="$PROJECT_DIR$/action/post-action.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/post/[postId]/edit/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/post/[postId]/edit/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/editor/tiptap.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/editor/tiptap.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/post/edit/edit-post-form.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/post/edit/edit-post-form.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/CounteState/CounterSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/CounteState/CounterSlice.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/store.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,8 +24,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
-        <option value="TypeScript File" />
         <option value="TypeScript JSX File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -55,28 +52,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "E:/Projects/gallery",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "npm.dev.executor": "Run",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "ts.external.directory.path": "E:\\Projects\\gallery\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/Projects/gallery&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;E:\\Projects\\gallery\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="ReactDesignerToolWindowState">
     <option name="myId2Visible">
       <map>
         <entry key="com.intellij.reactbuddy.reactComponents" value="false" />
         <entry key="com.intellij.reactbuddy.reactInspector" value="false" />
+        <entry key="com.intellij.reactbuddy.storybook" value="false" />
       </map>
     </option>
   </component>
@@ -126,7 +124,8 @@
       <option name="presentableId" value="Default" />
       <updated>1725624700426</updated>
       <workItem from="1725624701470" duration="46810000" />
-      <workItem from="1725719659160" duration="1588000" />
+      <workItem from="1725719659160" duration="1895000" />
+      <workItem from="1725722694816" duration="4628000" />
     </task>
     <servers />
   </component>
