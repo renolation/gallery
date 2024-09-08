@@ -44,6 +44,8 @@ model Image {
   title       String?
   description String?
   imageUrl    String
+  width       Int            @default(0)
+  height      Int            @default(0)
   status      Status         @default(PENDING)
   uploadedBy  User           @relation(fields: [userId], references: [id], name: "UserImages")
   userId      String
