@@ -1,6 +1,15 @@
 import prisma from "@/lib/prisma/prisma";
 import exp from "node:constants";
 
+export async function getPosts() {
+    return prisma.post.findMany({
+        include: {
+            images: true,
+            user: true,
+        },
+    });
+}
+
 
 export async function createPost(userId: string) {
     const newPost = await prisma.post.create({
@@ -38,6 +47,7 @@ export async function getPostById(postId: string) {
         where: { id: postId },
         include: {
             images: true,
+            user: true,
         },
     });
 }

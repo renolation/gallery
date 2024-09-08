@@ -16,13 +16,15 @@ export default function MainHeader() {
                         <NavLink href={'/posts'}>Posts</NavLink>
                     </li>
                     <li>
-                        <NavLink href={'/gallery'}>Gallery</NavLink>
+                        <NavLink href={'/images'}>Images</NavLink>
                     </li>
                     <li>
                         <NavLink href={'/auth?mode=login'}>Login</NavLink>
                     </li>
                     <li>
-                        <NavLink href={'/post/create'}>Create</NavLink>
+                        <NavLink href={'/posts/create'}>Create</NavLink>
+                    </li> <li>
+                        <NavLink href={'/posts/2518483c-54de-4d3b-a3c0-c2f1f00e2e4b'}>Detail</NavLink>
                     </li>
                     {/*<li>*/}
                     {/*    <a href="/api/auth/login">Login Auth0</a>*/}

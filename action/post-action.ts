@@ -18,12 +18,12 @@ export async function createPostAction(formData: FormData) {
     const imageUrl = await uploadImage(image);
 
 
-    // Create the post first
+    // Create the posts first
     const postId = await createPost(userId);
 
-    // Create the image with the postId
+    // Create the images with the postId
     const imageRecord = await createImage(userId, imageUrl, postId);
-    // Update the post to connect the image
+    // Update the posts to connect the images
     await updatePostWithImage(postId, imageRecord.id);
     redirect(`/post/${postId}/edit`);
 }
