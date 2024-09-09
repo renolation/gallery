@@ -44,7 +44,9 @@ const RealWorld = () => (
     >
         {images.map(obj => (
 
-                <ImageCard key={obj.label} imageUrl={obj.src}/>
+            <div key={obj.label}>
+                <ImageCard imageUrl={obj.src}/>
+            </div>
 
         ))}
     </StackGrid>
