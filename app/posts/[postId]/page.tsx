@@ -44,7 +44,7 @@ export default async function PostDetailPage({params}: { params: { postId: strin
 
             <br/>
             {post.images.map((image) => (
-                <div key={image.id}>
+                <div key={image.id} className="pb-6">
                     <ImageCard imageUrl={image.imageUrl}/>
                 </div>
             ))}
