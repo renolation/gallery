@@ -4,7 +4,8 @@ import "./globals.css";
 import MainHeader from "@/components/header/main-header";
 import {UserProvider} from "@auth0/nextjs-auth0/client";
 import StoreProvider from "./StoreProvider";
-
+import { ColorSchemeScript, MantineProvider } from '@mantine/core';
+import '@mantine/core/styles.css';
 const geistSans = localFont({
     src: "./fonts/GeistVF.woff",
     variable: "--font-geist-sans",
@@ -29,11 +30,14 @@ export default function RootLayout({
     return (
         <html lang="en">
         <StoreProvider>
+            <head>
+                <ColorSchemeScript/>
+            </head>
             <body
                 className={`${geistSans.variable} ${geistMono.variable} antialiased`}
             >
             <MainHeader/>
-            {children}
+             <MantineProvider defaultColorScheme="dark">{children}</MantineProvider>
             </body>
         </StoreProvider>
         </html>

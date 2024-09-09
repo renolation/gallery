@@ -1,5 +1,6 @@
 import {getPostById} from "@/lib/prisma/prima-post";
 import ImageList from "@/components/post/edit/image-list";
+import {ImageCard} from "@/components/image/image-card";
 
 
 export default async function PostDetailPage({ params }: { params: { postId: string } }){
@@ -19,7 +20,7 @@ export default async function PostDetailPage({ params }: { params: { postId: str
                 <h2 className="text-xl">{post.title ?? "Title"}</h2>
                 <h2 className="text-lg">{post.user.username ?? "User"}</h2>
                 <br/>
-                <ImageList images={post.images}/>
+
                 <div className="mt-4" dangerouslySetInnerHTML={{__html: post.description}}></div>
             </div>
         );

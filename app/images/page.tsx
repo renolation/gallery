@@ -3,8 +3,9 @@
 "use client";
 import React from 'react';
 import StackGrid, {transitions, easings} from 'react-stack-grid';
-
+import Image from 'next/image';
 const transition = transitions.scaleDown;
+import {ImageCard} from "@/components/image/image-card";
 
 const images = [
     {src: 'https://res.cloudinary.com/dlqx1qpfr/image/upload/v1690219876/cld-sample-3.jpg', label: 'Sample image 1'},
@@ -42,13 +43,9 @@ const RealWorld = () => (
         leaved={transition.leaved}
     >
         {images.map(obj => (
-            <figure
-                key={obj.label}
-                className="image"
-            >
-                <img src={obj.src} alt={obj.label}/>
-                <figcaption>{obj.label}</figcaption>
-            </figure>
+
+                <ImageCard key={obj.label} imageUrl={obj.src}/>
+
         ))}
     </StackGrid>
 );
