@@ -17,7 +17,7 @@ export function ImageCard({imageUrl}: {imageUrl: string}) {
           target="_blank"
       >
           <img src={imageUrl} alt="Image" className={classes.image}/>
-          {/*<div className={classes.overlay}/>*/}
+          <div className={classes.overlay}/>
 
           <div className={classes.content}>
               <div>
