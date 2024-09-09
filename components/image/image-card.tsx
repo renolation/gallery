@@ -53,7 +53,7 @@ export function ImageCard({imageUrl}: { imageUrl: string }) {
             </div>
             <div className={classes.info}>
                 <ActionIcon variant="subtle" color="white" size="xl" radius="xl" aria-label="Settings">
-                    <IconInfoCircle style={{width: '90%', height: '90%'}} stroke={1.5}/>
+                    <IconInfoCircle style={{width: '60%', height: '60%'}} stroke={1.5}/>
                 </ActionIcon>
             </div>
 
