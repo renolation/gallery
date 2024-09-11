@@ -24,11 +24,8 @@ export function ImageCard({imageUrl}: { imageUrl: string }) {
             p={0}
             shadow="lg"
             className={classes.card}
-            radius="md"
-            component="a"
         >
             <img src={imageUrl} alt="Image" className={classes.image}/>
-            <div className={classes.overlay}/>
 
             <div className={classes.reaction}>
                 <div className="flex flex-row">
