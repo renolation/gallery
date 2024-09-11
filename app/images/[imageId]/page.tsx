@@ -11,7 +11,7 @@ export default function ImageDetail({params}: { params: { imageId: string } }) {
 
 
     return (
-        <div style={{ display: 'flex', height: '80vh' }}>
+        <div style={{ display: 'flex', height: '100vh' }}>
             <div style={{ flex: 1, padding: '20px' }}>
                 <h1>Image Detail</h1>
                 <Button onClick={togglePanel}>

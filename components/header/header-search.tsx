@@ -7,28 +7,38 @@ import classes from './header-search.module.css';
 import NavLink from "@/components/header/nav-link";
 import React from "react";
 import Link from "next/link";
+import {usePathname} from 'next/navigation';
 
 const links = [
     {link: '/posts', label: 'Posts'},
     {link: '/images', label: 'Images'},
     {link: '/posts/create', label: 'Create'},
     {link: '/posts/2518483c-54de-4d3b-a3c0-c2f1f00e2e4b', label: 'Detail'},
+    {link: '/images/d23e1531-8a3c-4ffa-9634-e96b3f4addab', label: 'Detail iamge'},
+
 ];
 
 export function HeaderSearch() {
+
+    const pathname = usePathname();
     const [opened, {toggle}] = useDisclosure(false);
+
+    const isImageDetailRoute = pathname.startsWith('/images/');
+    const isPostDetailRoute = pathname.startsWith('/posts/');
+    if (isImageDetailRoute || isPostDetailRoute) {
+        return null;
+    }
+
 
     const items = links.map((link) => (
 
         <NavLink key={link.label}
-                 href={link.link}
-
-        >{link.label}</NavLink>
+                 href={link.link}>{link.label}</NavLink>
 
     ));
 
     return (
-        <header className="bg-green-800 dark:bg-blue-900 top-0 w-full z-50">
+        <header className="bg-green-800 dark:bg-blue-900 sticky top-0 w-full z-50">
 
             <div className={classes.inner}>
                 <Group>

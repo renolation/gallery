@@ -41,8 +41,8 @@ export default function RootLayout({
             >
 
             <MantineProvider defaultColorScheme="dark">
-                 <MainHeader />
-                {children}
+                <HeaderSearch/>
+                <main>{children}</main>
             </MantineProvider>
             </body>
         </StoreProvider>

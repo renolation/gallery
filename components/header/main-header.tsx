@@ -1,12 +1,23 @@
-
+"use client";
 
 import classes from "./main-header.module.css";
 
 import Link from "next/link";
 import NavLink from "./nav-link";
+import { usePathname } from 'next/navigation';
+
 
 
 export default function MainHeader() {
+
+    const pathname = usePathname();
+
+    const isImageDetailRoute = pathname.startsWith('/images/');
+    const isPostDetailRoute = pathname.startsWith('/posts/');
+    if (isImageDetailRoute || isPostDetailRoute) {
+        return null;
+    }
+
     return (
         <header className={classes.header}>
             <Link href={'/'}><h1>Next Meals</h1></Link>
