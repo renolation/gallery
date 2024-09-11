@@ -10,3 +10,11 @@ export async function createImage(userId: string, imageUrl: string, postId: stri
         },
     });
 }
+
+export async function getImageById(imageId: string) {
+    return prisma.image.findUnique({
+        where: {
+            id: imageId,
+        },
+    });
+}

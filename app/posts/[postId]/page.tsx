@@ -13,6 +13,8 @@ export default async function PostDetailPage({params}: { params: { postId: strin
         return <div>Post not found</div>;
     }
 
+    console.log(post.images![0].id);
+
     post.description = post.description!.replace(/\n/g, '<br/>');
     return (
         <div className="flex flex-col items-center xs:w-9/10 sm:w-4/5 md:w-3/5 lg:w-1/2 mx-auto m-4">
