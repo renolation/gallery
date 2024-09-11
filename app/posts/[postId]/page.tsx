@@ -1,10 +1,12 @@
 import {getPostById} from "@/lib/prisma/prima-post";
 import {Text, Title, Flex, Button, CloseButton, Avatar, Badge} from '@mantine/core';
 import {ImageCard} from "@/components/image/image-card";
+import TopDetail from "@/components/post/detail/top-detail";
+import {IconShare3, IconShare2} from "@tabler/icons-react";
+import TopShare from "@/components/post/detail/top-share";
 
 
 export default async function PostDetailPage({params}: { params: { postId: string } }) {
-
     const post = await getPostById(params.postId);
 
     if (!post) {
@@ -15,15 +17,11 @@ export default async function PostDetailPage({params}: { params: { postId: strin
     return (
         <div className="flex flex-col items-center xs:w-9/10 sm:w-4/5 md:w-3/5 lg:w-1/2 mx-auto m-4">
             {/*name*/}
-            <Flex mih={50}
-                  w="100%"
-                  justify="space-between"
-                  align="center"
-                  direction="row"
-                  wrap="nowrap">
-                <Title order={1}>{post.title}</Title>
-                <CloseButton size="lg"/>
-            </Flex>
+            <TopDetail title={post.title ?? ""}/>
+
+            <TopShare />
+
+
             <Flex
                 mih={50}
                 w="100%"

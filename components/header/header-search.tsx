@@ -6,6 +6,7 @@ import {MantineLogo} from '@mantinex/mantine-logo';
 import classes from './header-search.module.css';
 import NavLink from "@/components/header/nav-link";
 import React from "react";
+import Link from "next/link";
 
 const links = [
     {link: '/posts', label: 'Posts'},
@@ -27,12 +28,12 @@ export function HeaderSearch() {
     ));
 
     return (
-        <header className="bg-green-800 dark:bg-blue-900 sticky top-0 w-full z-50">
+        <header className="bg-green-800 dark:bg-blue-900 top-0 w-full z-50">
 
             <div className={classes.inner}>
                 <Group>
                     <Burger opened={opened} onClick={toggle} size="sm" hiddenFrom="sm"/>
-                    <MantineLogo size={28}/>
+                    <Link href={'/'}><MantineLogo size={28}/></Link>
                 </Group>
 
                 <Group>
