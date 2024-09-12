@@ -1,4 +1,3 @@
-import {getPostById} from "@/lib/prisma/prima-post";
 import type { Image as dbImage } from "@prisma/client";
 import Image from "next/image";
 import classes from './image-list.module.css';

@@ -2,7 +2,6 @@
 import {useDropzone} from "react-dropzone";
 import classes from './edit-post-form.module.css'
 
-import {useRouter} from "next/router";
 import {useEffect, useState} from "react";
 
 export default function EditPostForm() {

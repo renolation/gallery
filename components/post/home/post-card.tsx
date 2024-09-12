@@ -1,18 +1,15 @@
 "use client";
 import {
     Card,
-    useMantineTheme,
-    Button,
-    Flex, Group, Text, rem
+
+    Flex, Group, Text
 } from '@mantine/core';
 
 import classes from './post-card.module.css';
-import ShareImage from "@/components/image/share-image";
 import Link from 'next/link';
-import {IconFlag, IconHeart, IconPhoto} from "@tabler/icons-react";
+import {IconHeart, IconPhoto} from "@tabler/icons-react";
 
 export function PostCard({imageUrl}: { imageUrl: string }) {
-    const theme = useMantineTheme();
 
     return (
         <Link href="/posts/2518483c-54de-4d3b-a3c0-c2f1f00e2e4b" className={classes.link}>

@@ -1,5 +1,4 @@
 import prisma from "@/lib/prisma/prisma";
-import exp from "node:constants";
 
 export async function getPosts() {
     return prisma.post.findMany({

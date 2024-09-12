@@ -1,19 +1,14 @@
 "use client";
 
-import {Button, Menu, Group, Text, ActionIcon, rem, useMantineTheme, Flex} from '@mantine/core';
+import {Button, Menu,  ActionIcon, rem, useMantineTheme, Flex} from '@mantine/core';
 import {
-    IconTrash,
-    IconBookmark,
-    IconCalendar,
-    IconChevronDown,
-    IconSearch,
+
     IconShare3,
-    IconDotsVertical, IconFlag, IconSettings, IconArrowsLeftRight, IconMessageCircle, IconPhoto,
+    IconDotsVertical, IconFlag,
     IconCopy, IconBrandFacebookFilled, IconBrandReddit,
     IconBrandXFilled,
     IconInbox
 } from '@tabler/icons-react';
-import classes from './top-share.module.css';
 
 export default function TopShare() {
     const theme = useMantineTheme();

@@ -23,8 +23,6 @@ export function CreateNewPostForm() {
         getRootProps,
         getInputProps,
         fileRejections,
-        acceptedFiles,
-        isDragActive,
     } = useDropzone({
         onDrop,
         accept: {
