@@ -5,11 +5,9 @@ import ImageDetailTop from '@/components/image/detail/image-detail-top';
 import ImageRightPanel from "@/components/image/detail/image-right-panel";
 import {Image as ImageDB} from "@prisma/client";
 
-import {useDispatch} from "react-redux";
 import {useSelector} from "react-redux";
 import {RootState} from '@/lib/store';
 import Image from "next/image";
-import {IconShare3} from "@tabler/icons-react";
 
 export default function ImageDetail({image}: { image: ImageDB }) {
 
