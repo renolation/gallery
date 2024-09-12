@@ -14,9 +14,9 @@ export default function MainHeader() {
 
     const isImageDetailRoute = pathname.startsWith('/images/');
     const isPostDetailRoute = pathname.startsWith('/posts/');
-    if (isImageDetailRoute || isPostDetailRoute) {
-        return null;
-    }
+    // if (isImageDetailRoute || isPostDetailRoute) {
+    //     return null;
+    // }
 
     return (
         <header className={classes.header}>

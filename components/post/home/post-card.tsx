@@ -6,10 +6,10 @@ import {
     Flex,
 } from '@mantine/core';
 
-import classes from './image-card.module.css';
+import classes from './post-card.module.css';
 import ShareImage from "@/components/image/share-image";
 
-export function ImageCard({imageUrl}: { imageUrl: string }) {
+export function PostCard({imageUrl}: { imageUrl: string }) {
     const theme = useMantineTheme();
 
     return (
