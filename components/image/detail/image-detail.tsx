@@ -1,0 +1,59 @@
+"use client";
+import React, {useState} from 'react';
+import {Button, Flex, Group, Paper} from '@mantine/core';
+import ImageDetailTop from '@/components/image/detail/image-detail-top';
+import ImageRightPanel from "@/components/image/detail/image-right-panel";
+import {Image as ImageDB} from "@prisma/client";
+
+import {useDispatch} from "react-redux";
+import {useSelector} from "react-redux";
+import {RootState} from '@/lib/store';
+import Image from "next/image";
+import {IconShare3} from "@tabler/icons-react";
+
+export default function ImageDetail({image}: { image: ImageDB }) {
+
+    const toggleRightPanelState = useSelector((state: RootState) => state.toggleRightPanel.value);
+
+    return (
+        <div style={{display: 'flex', height: '100vh'}} className="px-2">
+            <div style={{flex: 1, height: '100vh', display: "flex", flexDirection: "column"}}>
+
+                <ImageDetailTop id={image.id}/>
+
+                {/*//image*/}
+                <div style={{display: 'flex', flexDirection: 'column', flex: "1"}}>
+                    <div style={{flex: 1, position: 'relative'}} className="m-2">
+                        <Image
+                            src={image.imageUrl}
+                            alt="Image description"
+                            layout="fill"
+                            objectFit="contain"
+                        />
+                    </div>
+                    <Flex
+                        className={"mb-4"}
+                        gap={3}
+                        justify="center" align="center" style={{width: '100%'}}>
+                        {Array.from({length: 4}).map((_, index) => (
+                            <Button key={index} leftSection="😢"
+                                    justify = "space-around"
+                                    variant="light"
+                                    size="compact-lg"
+                                    radius="xl">
+                                22
+                            </Button>
+                        ))}
+                    </Flex>
+                </div>
+
+
+            </div>
+
+
+            {toggleRightPanelState && (
+                <ImageRightPanel/>
+            )}
+        </div>
+    );
+}
