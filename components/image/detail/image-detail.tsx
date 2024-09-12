@@ -26,7 +26,7 @@ export default function ImageDetail({image}: { image: ImageDB }) {
                     <div style={{flex: 1, position: 'relative'}} className="m-2">
                         <Image
                             src={image.imageUrl}
-                            alt="Image description"
+                            alt={image.imageUrl}
                             layout="fill"
                             objectFit="contain"
                         />

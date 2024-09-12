@@ -10,11 +10,11 @@ import classes from './image-card.module.css';
 import ShareImage from "@/components/image/share-image";
 import Link from 'next/link';
 
-export function ImageCard({imageUrl}: { imageUrl: string }) {
+export function ImageCard({imageId, imageUrl}: { imageId: string, imageUrl: string }) {
     const theme = useMantineTheme();
 
     return (
-        <Link href="/images/d23e1531-8a3c-4ffa-9634-e96b3f4addab" className={classes.link}>
+        <Link href={`/images/${imageId}`} className={classes.link}>
         <Card
             p={0}
             shadow="lg"

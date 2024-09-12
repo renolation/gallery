@@ -35,8 +35,13 @@ const images = [
     {src: 'https://res.cloudinary.com/dlqx1qpfr/image/upload/v1690219876/cld-sample-3.jpg', label: 'Sample image 16'},
 ];
 
+const getRandomImageId = () => {
+    const ids = ['d23e1531-8a3c-4ffa-9634-e96b3f4addab', '323e6489-0e4f-41ee-9420-6f197326dc9f'];
+    return ids[Math.floor(Math.random() * ids.length)];
+};
 
 const RealWorld = () => (
+    
     <div className="p-6">
         <Masonry
             breakpointCols={{default: 4, 1400: 3, 900: 2, 600: 1}}
@@ -44,7 +49,9 @@ const RealWorld = () => (
             className="my-masonry-grid"
             columnClassName="my-masonry-grid_column">
             {images.map(obj => (
-                <ImageCard key={obj.label} imageUrl={obj.src}/>
+                <ImageCard key={obj.label} imageUrl={obj.src}
+                    imageId={getRandomImageId()}
+                />
             ))}
         </Masonry>
     </div>
