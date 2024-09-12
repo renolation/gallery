@@ -3,55 +3,57 @@ import {
     Card,
     useMantineTheme,
     Button,
-    Flex,
+    Flex, Group, Text, rem
 } from '@mantine/core';
 
 import classes from './post-card.module.css';
 import ShareImage from "@/components/image/share-image";
+import Link from 'next/link';
+import {IconFlag, IconHeart, IconPhoto} from "@tabler/icons-react";
 
 export function PostCard({imageUrl}: { imageUrl: string }) {
     const theme = useMantineTheme();
 
     return (
-        <Card
-            p={0}
-            shadow="lg"
-            className={classes.card}
-        >
-            <img src={imageUrl} alt="Image" className={classes.image}/>
+        <Link href="/posts/2518483c-54de-4d3b-a3c0-c2f1f00e2e4b" className={classes.link}>
 
-            <div className={classes.reaction}>
-                <Flex
-                    mih={50}
-                    w="100%"
-                    gap="xs"
-                    justify="flex-start"
-                    align="flex-end"
-                    direction="row"
-                    wrap="wrap"
-                >
-                    {Array.from({length: 4}).map((_, index) => (
-                        <Button
-                            key={index}
-                            leftSection="😢"
-                            variant="filled"
-                            size="xs"
-                            styles={{
-                                root: {
-                                    backgroundColor: 'rgba(128, 128, 128, 0.5)', // Gray color with 50% opacity
-                                    border: 'none', // Remove outline
-                                },
-                            }}
-                        >
-                            22
-                        </Button>
-                    ))}
-                </Flex>
-            </div>
-            <div className={classes.share}>
-                <ShareImage />
-            </div>
+            <Card
+                p={0}
+                shadow="lg"
+                className={classes.card}
 
-        </Card>
+            >
+                <img src={imageUrl} alt="Image" className={classes.image}/>
+
+
+                <div className={classes.reaction}>
+                    <Flex
+                        mih={50}
+                        w="100%"
+                        gap="xs"
+                        justify="flex-start"
+                        align="flex-end"
+                        direction="row"
+                        wrap="wrap"
+                    >
+                        <Group gap={6} justify="space-between" mt="xl" className="bg-gray-700/30 rounded p-1.5 px-2.5">
+                            <Group gap={3}>
+                                <IconPhoto
+                                    size={18}
+                                    stroke={1.5}/>
+                                <Text>12</Text>
+                            </Group>
+                            <Group gap={3}>
+                                <IconHeart
+                                    size={18}
+                                    stroke={1.5}/>
+                                <Text>222</Text>
+                            </Group>
+                        </Group>
+                    </Flex>
+                </div>
+            </Card>
+
+        </Link>
     );
 }

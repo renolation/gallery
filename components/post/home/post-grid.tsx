@@ -1,10 +1,7 @@
-/* eslint-disable react/prop-types */
-
 "use client";
 import Masonry from 'react-masonry-css'
 import React from 'react';
-
-import {ImageCard} from "@/components/image/image-card";
+import {PostCard} from "@/components/post/home/post-card";
 
 
 const images = [
@@ -36,18 +33,20 @@ const images = [
 ];
 
 
-const RealWorld = () => (
-    <div className="p-6">
-        <Masonry
-            breakpointCols={{default: 4, 1400: 3, 900: 2, 600: 1}}
-            elementResponsive={true}
-            className="my-masonry-grid"
-            columnClassName="my-masonry-grid_column">
-            {images.map(obj => (
-                <ImageCard key={obj.label} imageUrl={obj.src}/>
-            ))}
-        </Masonry>
-    </div>
-);
+export default function PostGrid() {
+    return (
+        <div className="p-6">
+            <Masonry
+                breakpointCols={{default: 4, 1400: 3, 900: 2, 600: 1}}
+                elementResponsive={true}
+                className="my-masonry-grid"
+                columnClassName="my-masonry-grid_column">
+                {images.map(obj => (
+                    // <img src={obj.src} key={obj.label} alt="Image" className="w-full"/>
+                    <PostCard key={obj.label} imageUrl={obj.src}/>
+                ))}
+            </Masonry>
+        </div>
+    );
+}
 
-export default RealWorld;

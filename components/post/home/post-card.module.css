@@ -9,6 +9,11 @@
     }
 }
 
+.link {
+    padding-bottom: 20px;
+    display: block;
+}
+
 .image {
     width: 100%;
     height: auto;
