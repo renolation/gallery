@@ -53,8 +53,28 @@ model Image {
   postId      String
   tags        ImagesOnTags[]
   tagId       String?
-  createdAt   DateTime       @default(now())
-  updatedAt   DateTime       @updatedAt
+
+  tool   Tool?   @relation(fields: [toolId], references: [id])
+  toolId String? @unique
+
+  prompt        String?
+  nevPrompt     String?
+  guidanceScale Int?
+  steps         Int?
+  sampler       String?
+  seed          Int?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Tool {
+  id          String   @id @default(uuid())
+  name        String
+  description String?
+  image       Image?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 
 model Tag {
