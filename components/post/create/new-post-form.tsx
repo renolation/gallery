@@ -60,7 +60,7 @@ export default function NewPostForm() {
         <DropZoneButton onDrop={handleDrop}/>
         <div>
             {images.map((image, index) => (
-                <div className="py-4">
+                <div className="py-4" key={index}>
                     <EditImageCard key={index} imageString={image} imageIndex={index} saveChanges={saveChanges}/>
                 </div>
             ))}
