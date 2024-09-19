@@ -5,6 +5,7 @@ import '@mantine/dropzone/styles.css';
 import StoreProvider from "./StoreProvider";
 import {ColorSchemeScript, MantineProvider} from '@mantine/core';
 import '@mantine/core/styles.css';
+import '@mantine/tiptap/styles.css';
 import {HeaderSearch} from "@/components/header/header-search";
 
 const geistSans = localFont({

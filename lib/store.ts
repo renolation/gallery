@@ -3,6 +3,7 @@ import CounterSlice from "@/lib/features/CounteState/CounterSlice";
 import ButtonEditPostSlice from "@/lib/features/edit-post/button-edit-post-slice";
 import ToggleRightPanelSlice from "@/lib/features/image-detail/toggle-right-panel";
 import EditPostImageSlice from "@/lib/features/edit-post/edit-post-image-slice";
+import EditorCreateSlice from "@/lib/features/edit-post/editor-create-slice";
 
 export const makeStore = () => {
     return configureStore({
@@ -11,6 +12,7 @@ export const makeStore = () => {
             buttonEditPost: ButtonEditPostSlice,
             toggleRightPanel: ToggleRightPanelSlice,
             editPostImage: EditPostImageSlice,
+            updateEditor: EditorCreateSlice,
         }
     })
 }

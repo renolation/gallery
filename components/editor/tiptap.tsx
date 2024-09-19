@@ -102,7 +102,6 @@ const Tiptap = ({content, postId}: { content: string, postId: string }) => {
         console.log("editorContent", editorContent);
         if (content !== editorContent) {
 
-
             dispatch(buttonSaving()); // Set to "Saving: false"
 
             console.log("new content", editorContent);
