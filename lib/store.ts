@@ -4,6 +4,7 @@ import ButtonEditPostSlice from "@/lib/features/edit-post/button-edit-post-slice
 import ToggleRightPanelSlice from "@/lib/features/image-detail/toggle-right-panel";
 import EditPostImageSlice from "@/lib/features/edit-post/edit-post-image-slice";
 import EditorCreateSlice from "@/lib/features/edit-post/editor-create-slice";
+import TagPostSlice from "@/lib/features/edit-post/tag-post-slice";
 
 export const makeStore = () => {
     return configureStore({
@@ -13,6 +14,7 @@ export const makeStore = () => {
             toggleRightPanel: ToggleRightPanelSlice,
             editPostImage: EditPostImageSlice,
             updateEditor: EditorCreateSlice,
+            tagPost: TagPostSlice
         }
     })
 }

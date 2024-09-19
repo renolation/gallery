@@ -48,13 +48,15 @@ export default function DropzoneButton({ onDrop }: DropzoneButtonProps) {
           </Group>
 
           <Text ta="center" fw={700} fz="lg" mt="xl">
-            <Dropzone.Accept>Drop files here</Dropzone.Accept>
-            <Dropzone.Reject>Pdf file less than 30mb</Dropzone.Reject>
-            <Dropzone.Idle>Upload resume</Dropzone.Idle>
+            <Dropzone.Accept>Attach up to 20 files</Dropzone.Accept>
+            <Dropzone.Reject>File are not supported</Dropzone.Reject>
+            <Dropzone.Idle>Drag images here or click to select files</Dropzone.Idle>
           </Text>
           <Text ta="center" fz="sm" mt="xs" c="dimmed">
-            Drag&apos;n&apos;drop files here to upload. We can accept only <i>.pdf</i> files that
-            are less than 30mb in size.
+           Videos cannot exceed 750 MB, 4k resolution, or 245 seconds in duration.
+          </Text>
+          <Text ta="center" fz="sm" mt="xs" c="blue">
+            Accepted file types: .png, .jpeg, .jpg, .webp, .mp4, .webm
           </Text>
         </div>
       </Dropzone>

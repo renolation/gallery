@@ -12,7 +12,19 @@ import {RootState} from "@/lib/store";
 export default function NewPostForm() {
     const dispatch = useDispatch();
 
-  const editPostImageState = useSelector((state: RootState) => state.editPostImage.images);
+    const defaultImage: Omit<ImageLocal, 'imageUrl'> = {
+        tools: [],
+        techniques: [],
+        prompt: '',
+        nevPrompt: '',
+        guidanceScale: undefined,
+        steps: undefined,
+        sampler: '',
+        seed: undefined,
+    };
+
+
+    const editPostImageState = useSelector((state: RootState) => state.editPostImage.images);
 
     const [images, setImages] = useState<string[]>([]);
     const handleDrop = async (files: File[]) => {
@@ -27,18 +39,11 @@ export default function NewPostForm() {
             if (imageUrl) {
                 console.log(imageUrl);
                 newImages.push(imageUrl);
-                const defaultImage: ImageLocal = {
+                const imageWithUrl: ImageLocal = {
+                    ...defaultImage,
                     imageUrl: imageUrl,
-                    tools: [],
-                    techniques: [],
-                    prompt: '',
-                    nevPrompt: '',
-                    guidanceScale: undefined,
-                    steps: undefined,
-                    sampler: '',
-                    seed: undefined,
                 };
-                dispatch(addImage(defaultImage))
+                dispatch(addImage(imageWithUrl))
             }
         }
         setImages(prevImages => [...prevImages, ...newImages]);
@@ -55,8 +60,9 @@ export default function NewPostForm() {
         <DropZoneButton onDrop={handleDrop}/>
         <div>
             {images.map((image, index) => (
-                // <img key={index} width={400} src={image} alt={`Dropped file ${index + 1}`}/>
-                <EditImageCard key={index} imageString={image} imageIndex={index} saveChanges={saveChanges}/>
+                <div className="py-4">
+                    <EditImageCard key={index} imageString={image} imageIndex={index} saveChanges={saveChanges}/>
+                </div>
             ))}
         </div>
     </>
