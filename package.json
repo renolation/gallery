@@ -13,6 +13,7 @@
   "dependencies": {
     "@auth0/nextjs-auth0": "^3.5.0",
     "@gfazioli/mantine-split-pane": "^0.2.6",
+    "@hello-pangea/dnd": "^17.0.0",
     "@lucia-auth/adapter-prisma": "^4.0.1",
     "@mantine/carousel": "^7.12.2",
     "@mantine/charts": "^7.12.2",
@@ -49,6 +50,7 @@
     "lucia": "^3.2.0",
     "next": "14.2.8",
     "react": "^18",
+    "react-beautiful-dnd": "^13.1.1",
     "react-dom": "^18",
     "react-dropzone": "^14.2.3",
     "react-masonry-css": "github:donoskaro/react-masonry-css#feature/element-responsiveness",
@@ -61,6 +63,7 @@
     "@types/jsonwebtoken": "^9.0.6",
     "@types/node": "^20",
     "@types/react": "^18",
+    "@types/react-beautiful-dnd": "^13.1.8",
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.2.8",

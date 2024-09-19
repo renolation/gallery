@@ -5,6 +5,7 @@ import EditorCreate from "@/components/post/create/editor-create";
 import PostTags from "@/components/post/create/post-tags";
 import NameInputPost from "@/components/post/create/name-input-post";
 import CreateNewPostRightPanel from "@/components/post/create/create-new-post-right-panel";
+import CreatePostMain from "@/components/post/create/create-post-main";
 
 
 export default function PostCreate() {
@@ -18,8 +19,7 @@ export default function PostCreate() {
                     <NameInputPost/>
                     <PostTags/>
                     <EditorCreate/>
-                    <NewPostForm/>
-
+                    <CreatePostMain />
 
                 </div>
                 <div className="flex flex-col gap-3 sm:w-72">
