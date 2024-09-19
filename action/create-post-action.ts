@@ -14,3 +14,5 @@ export async function dropImageAction(formData: FormData) {
 
     return await uploadImage(image);
 }
+
+//todo: add save order images in post action
