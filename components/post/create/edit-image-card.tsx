@@ -4,7 +4,7 @@ import {IconPlus} from "@tabler/icons-react";
 import {useDisclosure} from '@mantine/hooks';
 import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {updateTechnique, updateTool} from "@/lib/features/edit-post/edit-post-image-slice";
+import {updateImage, updateTechnique, updateTool} from "@/lib/features/edit-post/edit-post-image-slice";
 import {index} from "d3-array";
 import {RootState} from "@/lib/store";
 
@@ -88,7 +88,7 @@ export default function EditImageCard({imageString, imageIndex, saveChanges}: {
     }
     const handleRemoveTechniques = (technique: string) => {
         setSelectedTechniques((prev) => prev.filter((t) => t !== technique));
-                dispatch(updateTechnique({index: imageIndex, techniques: tempSelectedTechniques}));
+        dispatch(updateTechnique({index: imageIndex, techniques: tempSelectedTechniques}));
 
     }
 
@@ -99,6 +99,7 @@ export default function EditImageCard({imageString, imageIndex, saveChanges}: {
     const handleSubmit = () => {
         setFormData(tempFormData);
         console.log('Form Data:', tempFormData);
+        dispatch(updateImage({index: imageIndex, formData: tempFormData}));
         close();
     };
 
@@ -315,13 +316,16 @@ export default function EditImageCard({imageString, imageIndex, saveChanges}: {
                     <div className="flex w-full flex-col gap-3 sm:w-4/12">
                         <img src={imageString} alt={`Dropped file ${imageIndex + 1}`}/>
                         {formData.prompt && <p>Prompt: {formData.prompt}</p>}
+                        {editPostImageState[imageIndex].prompt && <p>Prompt: {editPostImageState[imageIndex].prompt}</p>}
+
+
+
                         {formData.negativePrompt && <p>Negative Prompt: {formData.negativePrompt}</p>}
                         {formData.guidanceScale !== undefined && formData.guidanceScale !== 0 &&
                             <p>Guidance Scale: {formData.guidanceScale}</p>}
                         {formData.steps !== undefined && formData.steps !== 0 && <p>Steps: {formData.steps}</p>}
                         {formData.seed !== undefined && formData.seed !== 0 && <p>Seed: {formData.seed}</p>}
                         {formData.sampler && <p>Sampler: {formData.sampler}</p>}
-
                     </div>
                 </div>
             </div>

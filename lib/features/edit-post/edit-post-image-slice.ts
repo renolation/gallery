@@ -28,12 +28,16 @@ export const EditPostImageSlice = createSlice({
         addImage: (state, action: PayloadAction<ImageLocal>) => {
             state.images.push(action.payload);
         },
-        updateImage: (state, action: PayloadAction<{ index: number; image: Partial<ImageLocal> }>) => {
-            const {index, image} = action.payload;
-            state.images[index] = {...state.images[index], ...image};
-        },
+
         removeImage: (state, action: PayloadAction<number>) => {
             state.images.splice(action.payload, 1);
+        },
+
+
+        updateImage: (state, action: PayloadAction<{ index: number; formData: Partial<ImageLocal> }>) => {
+            const {index, formData} = action.payload;
+
+            state.images[index] = {...state.images[index], ...formData};
         },
 
         updateTool: (state, action: PayloadAction<{ index: number; tools: string[] }>) => {
@@ -41,7 +45,7 @@ export const EditPostImageSlice = createSlice({
             console.log(index, tools);
             state.images[index].tools = tools;
         },
-         updateTechnique: (state, action: PayloadAction<{ index: number; techniques: string[] }>) => {
+        updateTechnique: (state, action: PayloadAction<{ index: number; techniques: string[] }>) => {
             const {index, techniques} = action.payload;
             console.log(index, techniques);
             state.images[index].techniques = techniques;
