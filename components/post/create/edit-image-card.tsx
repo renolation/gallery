@@ -1,9 +1,20 @@
+"use client";
 import {Button, Flex, Modal, TextInput, NumberInput, Select, Popover, Text, MultiSelect} from "@mantine/core";
 import {IconPlus} from "@tabler/icons-react";
 import {useDisclosure} from '@mantine/hooks';
 import React, {useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {updateTechnique, updateTool} from "@/lib/features/edit-post/edit-post-image-slice";
+import {index} from "d3-array";
+import {RootState} from "@/lib/store";
 
-export default function EditImageCard({imageString, imageIndex}: { imageString: string, imageIndex: number }) {
+
+export default function EditImageCard({imageString, imageIndex, saveChanges}: {
+    imageString: string,
+    imageIndex: number,
+    saveChanges: () => void
+}) {
+    const dispatch = useDispatch();
 
     const [opened, {open, close}] = useDisclosure(false);
     const [formData, setFormData] = useState({
@@ -23,6 +34,7 @@ export default function EditImageCard({imageString, imageIndex}: { imageString: 
         sampler: '',
         seed: undefined,
     });
+    const editPostImageState = useSelector((state: RootState) => state.editPostImage.images);
 
     const [popoverOpened, setPopoverOpened] = useState(false);
     const [popoverTechniquesOpened, setPopoverTechniquesOpened] = useState(false);
@@ -55,24 +67,34 @@ export default function EditImageCard({imageString, imageIndex}: { imageString: 
 
     const handleSave = () => {
         setSelectedTools(tempSelectedTools);
+        console.log(imageIndex, tempSelectedTools);
+        dispatch(updateTool({index: imageIndex, tools: tempSelectedTools}));
+        saveChanges();
         setPopoverOpened(false);
     }
+
+
     const handleTechniquesSave = () => {
-        setSelectedTechniques(tempSelectedTools);
+        setSelectedTechniques(tempSelectedTechniques);
+        dispatch(updateTechnique({index: imageIndex, techniques: tempSelectedTechniques}));
+
         setPopoverTechniquesOpened(false);
     }
 
     const handleRemoveTool = (tool: string) => {
         setSelectedTools((prev) => prev.filter((t) => t !== tool));
+        dispatch(updateTool({index: imageIndex, tools: tempSelectedTools}));
+        saveChanges();
     }
-    const handleRemoveTechniques = (tool: string) => {
-        setSelectedTools((prev) => prev.filter((t) => t !== tool));
+    const handleRemoveTechniques = (technique: string) => {
+        setSelectedTechniques((prev) => prev.filter((t) => t !== technique));
+                dispatch(updateTechnique({index: imageIndex, techniques: tempSelectedTechniques}));
+
     }
 
     const handleChange = (field: string, value: any) => {
         setTempFormData((prev) => ({...prev, [field]: value}));
     };
-
 
     const handleSubmit = () => {
         setFormData(tempFormData);
@@ -84,6 +106,13 @@ export default function EditImageCard({imageString, imageIndex}: { imageString: 
         setTempFormData(formData);
         open();
     };
+
+
+    const handleSaveChanges = () => {
+        saveChanges()
+    }
+
+
     return (
         <>
 
@@ -214,6 +243,7 @@ export default function EditImageCard({imageString, imageIndex}: { imageString: 
                                             onClick={() => handleRemoveTool(tool)}>Remove</Button>
                                 </Flex>
                             ))}
+
                         </div>
 
                         <div
