@@ -2,7 +2,7 @@
 import {TextInput} from '@mantine/core';
 import {useState} from "react";
 import {useDispatch} from "react-redux";
-import {updateInputPostName} from "@/lib/features/edit-post/input-post-name";
+import {updateInputPostName} from "@/lib/features/post/shared/input-post-name";
 
 export default function NameInputPost() {
         const dispatch = useDispatch();

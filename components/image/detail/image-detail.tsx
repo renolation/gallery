@@ -2,7 +2,7 @@
 import React, {useState} from 'react';
 import {Button, Flex, Group, Paper} from '@mantine/core';
 import ImageDetailTop from '@/components/image/detail/image-detail-top';
-import ImageRightPanel from "@/components/image/detail/image-right-panel";
+import ImageDetailPanel from "@/components/image/detail/image-detail-panel";
 import {Image as ImageDB} from "@prisma/client";
 
 import {useSelector} from "react-redux";
@@ -50,7 +50,7 @@ export default function ImageDetail({image}: { image: ImageDB }) {
 
 
             {toggleRightPanelState && (
-                <ImageRightPanel/>
+                <ImageDetailPanel/>
             )}
         </div>
     );

@@ -1,11 +1,11 @@
 "use client";
 
-import DropZoneButton from "@/components/post/create/drop-zone-button";
+import DropZoneButton from "@/components/post/create/drop-zone";
 import {useState} from 'react';
 import EditImageCard from "@/components/post/create/edit-image-card";
 import {dropImageAction} from "@/action/create-post-action";
 import {useDispatch, useSelector} from "react-redux";
-import {addImage, ImageLocal} from "@/lib/features/edit-post/edit-post-image-slice";
+import {addImage, ImageLocal} from "@/lib/features/post/edit/edit-post-image-slice";
 import {Image as ImageDB} from "@prisma/client";
 import {RootState} from "@/lib/store";
 

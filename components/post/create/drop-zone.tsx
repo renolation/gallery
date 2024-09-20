@@ -5,14 +5,14 @@ import { useRef } from 'react';
 import { Text, Group, Button, rem, useMantineTheme } from '@mantine/core';
 import {Dropzone, IMAGE_MIME_TYPE, MIME_TYPES} from '@mantine/dropzone';
 import { IconCloudUpload, IconX, IconDownload } from '@tabler/icons-react';
-import classes from './drop-zone-button.module.css';
+import classes from './drop-zone.module.css';
 
 interface DropzoneButtonProps {
   onDrop: (files: File[]) => void;
 }
 
 
-export default function DropzoneButton({ onDrop }: DropzoneButtonProps) {
+export default function DropZone({ onDrop }: DropzoneButtonProps) {
   const theme = useMantineTheme();
   const openRef = useRef<() => void>(null);
 

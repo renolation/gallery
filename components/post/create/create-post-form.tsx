@@ -1,11 +1,11 @@
 "use client";
-import classes from "./create-new-post-form.module.css";
+import classes from "./create-post-form.module.css";
 import React from 'react';
 import {useDropzone} from "react-dropzone";
 
 import {createPostAction} from "@/action/post-action";
 
-export function CreateNewPostForm() {
+export function CreatePostForm() {
 
     const onDrop = (acceptedFiles: File[]) => {
 

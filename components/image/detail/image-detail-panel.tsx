@@ -3,7 +3,7 @@
 import { Paper } from "@mantine/core";
 import React from "react";
 
-export default function ImageRightPanel() {
+export default function ImageDetailPanel() {
     return (
         <div style={{ width: '30%', overflowY: 'auto'}}>
             <Paper withBorder>

@@ -2,10 +2,10 @@
 
 import {useDispatch, useSelector} from "react-redux";
 import { Button } from '@mantine/core';
-import {toggleRearrangingButton} from "@/lib/features/edit-post/button-is-rearranging-slice";
+import {toggleRearrangingButton} from "@/lib/features/post/shared/button-is-rearranging-slice";
 import {RootState} from "@/lib/store";
 
-export default function CreateNewPostRightPanel() {
+export default function CreatePostPanel() {
 
 
     const dispatch = useDispatch();
