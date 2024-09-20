@@ -13,6 +13,7 @@ export default function NewPostForm() {
     const dispatch = useDispatch();
 
     const defaultImage: Omit<ImageLocal, 'imageUrl'> = {
+        id: '',
         tools: [],
         techniques: [],
         prompt: '',
@@ -41,6 +42,7 @@ export default function NewPostForm() {
                 newImages.push(imageUrl);
                 const imageWithUrl: ImageLocal = {
                     ...defaultImage,
+                    id: editPostImageState.length.toString(),
                     imageUrl: imageUrl,
                 };
                 dispatch(addImage(imageWithUrl))
@@ -59,9 +61,9 @@ export default function NewPostForm() {
     return <>
         <DropZoneButton onDrop={handleDrop}/>
         <div>
-            {images.map((image, index) => (
+            {editPostImageState.map((image, index) => (
                 <div className="py-4" key={index}>
-                    <EditImageCard key={index} imageString={image} imageIndex={index} saveChanges={saveChanges}/>
+                    <EditImageCard key={index} imageString={image.imageUrl} imageIndex={index} saveChanges={saveChanges}/>
                 </div>
             ))}
         </div>
