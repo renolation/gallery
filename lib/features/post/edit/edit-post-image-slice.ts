@@ -1,4 +1,5 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {Image as ImageDB} from "@prisma/client";
 
 export interface ImageLocal {
     id: string;
@@ -15,7 +16,7 @@ export interface ImageLocal {
 
 
 interface EditPostImageState {
-    images: ImageLocal[];
+    images: ImageDB[];
 }
 
 const initialState: EditPostImageState = {
@@ -26,7 +27,7 @@ export const EditPostImageSlice = createSlice({
     name: 'editPostImage',
     initialState,
     reducers: {
-        addImage: (state, action: PayloadAction<ImageLocal>) => {
+        addImage: (state, action: PayloadAction<ImageDB>) => {
             state.images.push(action.payload);
         },
 

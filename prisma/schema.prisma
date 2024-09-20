@@ -18,7 +18,7 @@ model User {
   username  String    @unique
   email     String    @unique
   password  String
-  roleId    String    @default("3bdb07a9-753e-4ac5-8238-f320aec857dc") // Replace with the actual ID of the member role
+  roleId    String
   role      Role      @relation(fields: [roleId], references: [id])
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
@@ -49,8 +49,8 @@ model Image {
   status      Status         @default(PENDING)
   uploadedBy  User           @relation(fields: [userId], references: [id], name: "UserImages")
   userId      String
-  post        Post           @relation(fields: [postId], references: [id], name: "PostImages")
-  postId      String
+  post        Post?          @relation(fields: [postId], references: [id], name: "PostImages")
+  postId      String?
   tags        ImagesOnTags[]
   tagId       String?
 

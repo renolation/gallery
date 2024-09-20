@@ -4,11 +4,11 @@ import React from 'react';
 import {useDropzone} from "react-dropzone";
 
 import {createPostAction} from "@/action/post-action";
+import {dropImageAction} from "@/action/create-post-action";
 
 export function CreatePostForm() {
 
     const onDrop = (acceptedFiles: File[]) => {
-
         handleSubmit(acceptedFiles[0]);
     };
 
