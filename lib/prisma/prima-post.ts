@@ -10,10 +10,12 @@ export async function getPosts() {
 }
 
 
-export async function createPost(userId: string) {
+export async function createPost(userId: string, title: string, description: string) {
     const newPost = await prisma.post.create({
         data: {
             userId: userId,
+            title: title,
+            description: description,
         },
     });
     return newPost.id;
@@ -26,6 +28,17 @@ export async function updatePostWithImage(postId: string, imageId: string) {
         data: {
             images: {
                 connect: { id: imageId }
+            }
+        },
+    });
+}
+
+export async function updatePostWithImages(postId: string, imageIds: string[]) {
+    await prisma.post.update({
+        where: { id: postId },
+        data: {
+            images: {
+                connect: imageIds.map(id => ({ id }))
             }
         },
     });

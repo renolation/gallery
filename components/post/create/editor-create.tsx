@@ -44,7 +44,6 @@ export default function EditorCreate() {
 
     useEffect(() => {
         if (debouncedEditor) {
-            console.log(editor?.getHTML());
             dispatch(updateEditorPost(editor?.getHTML()));
         }
     }, [debouncedEditor]);

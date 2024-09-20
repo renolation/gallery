@@ -1,11 +1,12 @@
 "use client";
 
 import {useDispatch, useSelector} from "react-redux";
-import { Button } from '@mantine/core';
+import {Button} from '@mantine/core';
 import {toggleRearrangingButton} from "@/lib/features/post/shared/button-is-rearranging-slice";
 import {RootState} from "@/lib/store";
 import {IconArrowsSort} from "@tabler/icons-react";
 import {Image as ImageDB} from "@prisma/client";
+import {createPostAction} from "@/action/create-post-action";
 
 export default function CreatePostPanel() {
 
@@ -19,19 +20,31 @@ export default function CreatePostPanel() {
         dispatch(toggleRearrangingButton());
     }
 
-    function createPost(title: string, desc: string, images: ImageDB[]){
-        console.log(title, desc, images);
+    const  createPost = async () => {
+        console.log(inputPostName);
+        console.log(editorCreate);
+        console.log(editPostImage);
+            const imageIds = editPostImage.map((image: ImageDB) => image.id);
+
+        await createPostAction(imageIds, inputPostName, editorCreate);
     }
 
     return (
         <div>
-            <h1>CreateNewPostRightPanel</h1>
-            <p>Upload</p>
+            <h1>Create Post Panel</h1>
+            <br/>
             <Button variant="filled"
-            onClick={toggleRearranging}
-                    leftSection={<IconArrowsSort size={14} />}
+                    onClick={toggleRearranging}
+                    leftSection={<IconArrowsSort size={14}/>}
             >Rearrange</Button>
-            <p>{inputPostName}</p>
+            <br/>
+            <br/>
+            <Button variant="filled"
+
+                    onClick={createPost}
+            >
+                Upload
+            </Button>
         </div>
     );
 }

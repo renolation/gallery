@@ -15,7 +15,6 @@ export const EditorPostSlice = createSlice({
     initialState,
     reducers: {
         updateEditorPost: (state, action) => {
-            console.log(action.payload);
             state.value = action.payload;
         },
     },

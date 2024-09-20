@@ -2,7 +2,9 @@
 
 import {getUserIdFromSession} from "@/lib/auth";
 import {uploadImage} from "@/lib/cloudirary";
+import {createPost, updatePostWithImages} from "@/lib/prisma/prima-post";
 import {createImageWithoutPostId} from "@/lib/prisma/prisma-image";
+import {redirect} from "next/navigation";
 
 export async function dropImageAction(formData: FormData) {
     console.log("dropImageAction called");
@@ -20,6 +22,21 @@ export async function dropImageAction(formData: FormData) {
     const imageUrl = await uploadImage(image);
     console.log(imageUrl);
     return await createImageWithoutPostId(userId, imageUrl);
+}
+
+
+export async function createPostAction(imagesId: string[], title: string, description: string) {
+    const userId = await getUserIdFromSession();
+    if (!userId) {
+        return;
+    }
+
+    const postId = await createPost(userId, title, description);
+
+    await updatePostWithImages(postId, imagesId);
+
+    redirect(`/post/${postId}`);
+
 }
 
 //todo: add save order images in post action

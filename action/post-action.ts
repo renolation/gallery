@@ -6,7 +6,7 @@ import {createPost, updatePostDesc, updatePostWithImage} from "@/lib/prisma/prim
 import {uploadImage} from "@/lib/cloudirary";
 import {createImage} from "@/lib/prisma/prisma-image";
 
-export async function createPostAction(formData: FormData) {
+export async function createPostActionOld(formData: FormData) {
     const image = formData.get('image') as File;
     if (!image) return;
 
@@ -19,13 +19,13 @@ export async function createPostAction(formData: FormData) {
 
 
     // Create the posts first
-    const postId = await createPost(userId);
+    // const postId = await createPost(userId);
 
     // Create the images with the postId
-    const imageRecord = await createImage(userId, imageUrl, postId);
+    // const imageRecord = await createImage(userId, imageUrl, postId);
     // Update the posts to connect the images
-    await updatePostWithImage(postId, imageRecord.id);
-    redirect(`/post/${postId}/edit`);
+    // await updatePostWithImage(postId, imageRecord.id);
+    // redirect(`/post/${postId}/edit`);
 }
 
 export async function updatePostDescAction(postId: string, description: string) {
