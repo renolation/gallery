@@ -1,6 +1,3 @@
-import {CreateNewPostForm} from "@/components/post/create/create-new-post-form";
-import NewPostForm from "@/components/post/create/new-post-form";
-import EditImageCard from "@/components/post/create/edit-image-card";
 import EditorCreate from "@/components/post/create/editor-create";
 import PostTags from "@/components/post/create/post-tags";
 import NameInputPost from "@/components/post/create/name-input-post";

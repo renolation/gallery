@@ -6,6 +6,7 @@ import EditPostImageSlice from "@/lib/features/edit-post/edit-post-image-slice";
 import EditorCreateSlice from "@/lib/features/edit-post/editor-create-slice";
 import TagPostSlice from "@/lib/features/edit-post/tag-post-slice";
 import ButtonIsRearrangingSlice from "@/lib/features/edit-post/button-is-rearranging-slice";
+import InputPostNameSlice from '@/lib/features/edit-post/input-post-name';
 
 export const makeStore = () => {
     return configureStore({
@@ -17,6 +18,7 @@ export const makeStore = () => {
             updateEditor: EditorCreateSlice,
             tagPost: TagPostSlice,
             buttonIsRearranging: ButtonIsRearrangingSlice,
+            inputPostName: InputPostNameSlice,
         }
     })
 }
