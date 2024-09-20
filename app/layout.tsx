@@ -7,6 +7,8 @@ import {ColorSchemeScript, MantineProvider} from '@mantine/core';
 import '@mantine/core/styles.css';
 import '@mantine/tiptap/styles.css';
 import {HeaderSearch} from "@/components/header/header-search";
+import {Headroom} from "@/components/app-shell";
+import React from "react";
 
 const geistSans = localFont({
     src: "./fonts/GeistVF.woff",
@@ -35,13 +37,13 @@ export default function RootLayout({
             <head>
                 <ColorSchemeScript/>
             </head>
-            <body
-                className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-            >
-
+            <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
             <MantineProvider defaultColorScheme="dark">
-                <HeaderSearch/>
-                {children}
+                {/*<HeaderSearch/>*/}
+                <Headroom>
+                     {children}
+                </Headroom>
+
             </MantineProvider>
             </body>
         </StoreProvider>

@@ -13,7 +13,7 @@ const links = [
     {link: '/posts', label: 'Posts'},
     {link: '/images', label: 'Images'},
     {link: '/posts/create', label: 'Create'},
-    {link: '/posts/2518483c-54de-4d3b-a3c0-c2f1f00e2e4b', label: 'Detail'},
+    {link: '/posts/14c1b7d2-3ddd-4d49-9886-a98030cd0db0', label: 'Detail'},
     {link: '/images/d23e1531-8a3c-4ffa-9634-e96b3f4addab', label: 'Detail iamge'},
 
 ];
@@ -25,9 +25,9 @@ export function HeaderSearch() {
 
     const isImageDetailRoute = pathname.startsWith('/images/');
     const isPostDetailRoute = pathname.startsWith('/posts/');
-    if (isImageDetailRoute || isPostDetailRoute) {
-        return null;
-    }
+    // if (isImageDetailRoute || isPostDetailRoute) {
+    //     return null;
+    // }
 
 
     const items = links.map((link) => (

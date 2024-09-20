@@ -35,7 +35,7 @@ export async function createPostAction(imagesId: string[], title: string, descri
 
     await updatePostWithImages(postId, imagesId);
 
-    redirect(`/post/${postId}`);
+    redirect(`/posts/${postId}`);
 
 }
 
