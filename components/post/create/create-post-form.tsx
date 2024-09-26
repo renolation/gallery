@@ -3,9 +3,6 @@ import classes from "./create-post-form.module.css";
 import React from 'react';
 import {useDropzone} from "react-dropzone";
 
-import {createPostActionOld} from "@/action/post-action";
-import {dropImageAction} from "@/action/create-post-action";
-
 export function CreatePostForm() {
 
     const onDrop = (acceptedFiles: File[]) => {

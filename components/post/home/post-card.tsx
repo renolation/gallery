@@ -12,7 +12,7 @@ import {IconHeart, IconPhoto} from "@tabler/icons-react";
 export function PostCard({imageUrl}: { imageUrl: string }) {
 
     return (
-        <Link href="/posts/2518483c-54de-4d3b-a3c0-c2f1f00e2e4b" className={classes.link}>
+        <Link href="/posts/14c1b7d2-3ddd-4d49-9886-a98030cd0db0" className={classes.link}>
 
             <Card
                 p={0}

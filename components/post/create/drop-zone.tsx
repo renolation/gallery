@@ -4,7 +4,6 @@
 import React, {useRef, useState} from 'react';
 import classes from './drop-zone.module.css';
 import {dropImageAction} from "@/action/create-post-action";
-import {createPostAction} from "@/action/post-action";
 import {useDispatch} from "react-redux";
 import {addImage} from "@/lib/features/post/edit/edit-post-image-slice";
 import {Loader, useMantineTheme} from "@mantine/core";

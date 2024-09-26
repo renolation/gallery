@@ -50,7 +50,7 @@ const RealWorld = () => (
             columnClassName="my-masonry-grid_column">
             {images.map(obj => (
                 <ImageCard key={obj.label} imageUrl={obj.src}
-                    imageId={getRandomImageId()}
+                    imageId="9ede2121-dd82-4f59-8011-d4be6874b829"
                 />
             ))}
         </Masonry>
