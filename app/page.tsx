@@ -1,5 +1,5 @@
 import Image from "next/image";
-import {ImageCard} from "@/components/image/image-card";
+import {ImageCard} from "@/components/image/shared/image-card";
 
 export default function Home() {
   return (

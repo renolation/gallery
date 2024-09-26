@@ -7,18 +7,30 @@ import {
 } from '@mantine/core';
 
 import classes from './image-card.module.css';
-import ShareImage from "@/components/image/share-image";
+import ShareImage from "@/components/image/shared/share-image";
 import Link from 'next/link';
+import {useRouter} from 'next/navigation';
 
 export function ImageCard({imageId, imageUrl}: { imageId: string, imageUrl: string }) {
-    const theme = useMantineTheme();
+    const router = useRouter();
+
+
+    const handleImageClick = () => {
+        console.log('Image clicked');
+        router.push(`/images/${imageId}`);
+    }
+
+    const handleClick = (event: React.MouseEvent) => {
+        event.stopPropagation();
+    };
 
     return (
-        <Link href={`/images/${imageId}`} className={classes.link}>
+
         <Card
             p={0}
             shadow="lg"
             className={classes.card}
+            onClick={handleImageClick}
         >
             <img src={imageUrl} alt="Image" className={classes.image}/>
 
@@ -35,7 +47,7 @@ export function ImageCard({imageId, imageUrl}: { imageId: string, imageUrl: stri
                     {Array.from({length: 4}).map((_, index) => (
                         <Button
                             key={index}
-                            leftSection="😢"
+                            leftSection="❤️"
                             variant="filled"
                             size="xs"
                             styles={{
@@ -50,11 +62,11 @@ export function ImageCard({imageId, imageUrl}: { imageId: string, imageUrl: stri
                     ))}
                 </Flex>
             </div>
-            <div className={classes.share}>
-                <ShareImage />
+            <div className={classes.share} onClick={handleClick}>
+                <ShareImage/>
             </div>
 
         </Card>
-        </Link>
+
     );
 }

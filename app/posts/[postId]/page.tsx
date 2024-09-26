@@ -1,6 +1,6 @@
 import {getPostById} from "@/lib/prisma/prima-post";
 import {Text, Title, Flex, Button, CloseButton, Avatar, Badge} from '@mantine/core';
-import {ImageCard} from "@/components/image/image-card";
+import {ImageCard} from "@/components/image/shared/image-card";
 import TopDetail from "@/components/post/detail/top-detail";
 import TopShare from "@/components/post/detail/top-share";
 

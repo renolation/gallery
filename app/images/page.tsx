@@ -4,7 +4,7 @@
 import Masonry from 'react-masonry-css'
 import React from 'react';
 
-import {ImageCard} from "@/components/image/image-card";
+import {ImageCard} from "@/components/image/shared/image-card";
 
 
 const images = [
