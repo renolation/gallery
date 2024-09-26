@@ -3,6 +3,7 @@ import {AppShell, Burger, Group, rem, Text, UnstyledButton} from '@mantine/core'
 import {useHeadroom, useDisclosure} from '@mantine/hooks';
 import {MantineLogo} from '@mantinex/mantine-logo';
 import classes from './app-shell.module.css'
+import NavLink from "@/components/header/nav-link";
 const lorem =
     'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos ullam, ex cum repellat alias ea nemo. Ducimus ex nesciunt hic ad saepe molestiae nobis necessitatibus laboriosam officia, reprehenderit, earum fugiat?';
 
@@ -17,10 +18,12 @@ export function Headroom({children}: { children: React.ReactNode }) {
           <Group justify="space-between" style={{ flex: 1 }}>
             <MantineLogo size={30} />
             <Group ml="xl" gap={0} visibleFrom="xs">
-              <UnstyledButton className={classes.control}>Home</UnstyledButton>
-              <UnstyledButton className={classes.control}>Blog</UnstyledButton>
-              <UnstyledButton className={classes.control}>Contacts</UnstyledButton>
-              <UnstyledButton className={classes.control}>Support</UnstyledButton>
+              <UnstyledButton className={classes.control}><NavLink href={'/posts'}>Posts</NavLink></UnstyledButton>
+              <UnstyledButton className={classes.control}><NavLink href={'/images'}>Images</NavLink></UnstyledButton>
+              <UnstyledButton className={classes.control}><NavLink href={'/auth?mode=login'}>Login</NavLink></UnstyledButton>
+              <UnstyledButton className={classes.control}><NavLink href={'/posts/create'}>Create</NavLink></UnstyledButton>
+              <UnstyledButton className={classes.control}><NavLink href={'/posts/14c1b7d2-3ddd-4d49-9886-a98030cd0db0'}>Detail</NavLink></UnstyledButton>
+              <UnstyledButton className={classes.control}><NavLink href={'/images/5496a65a-c744-4c55-b1c5-4f2cccd5a048'}>Image Detail</NavLink></UnstyledButton>
             </Group>
           </Group>
         </Group>
