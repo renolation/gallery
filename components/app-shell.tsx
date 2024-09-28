@@ -11,7 +11,7 @@ export function Headroom({children}: { children: React.ReactNode }) {
     const pinned = useHeadroom({fixedAt: 120});
     const [opened, {toggle}] = useDisclosure();
     return (
-        <AppShell header={{height: 60, collapsed: !pinned, offset: false}}
+        <AppShell header={{height: '60', collapsed: !pinned, offset: false}}
                   padding="md">
               <AppShell.Header>
         <Group h="100%" px="md">

@@ -14,8 +14,8 @@ export default function ImageDetail({image}: { image: ImageDB }) {
     const toggleRightPanelState = useSelector((state: RootState) => state.toggleRightPanel.value);
 
     return (
-        <div style={{display: 'flex', height: '100vh'}} className="px-2">
-            <div style={{flex: 1, height: '100vh', display: "flex", flexDirection: "column"}}>
+        <div style={{display: 'flex', height: '88vh'}}>
+            <div style={{flex: 1, height: '90vh', display: "flex", flexDirection: "column"}}>
 
                 <ImageDetailTop id={image.id}/>
 
