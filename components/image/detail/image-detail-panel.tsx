@@ -4,19 +4,20 @@ import {Paper, Flex, Badge, Text, Divider, Group, ActionIcon} from "@mantine/cor
 import React from "react";
 import {IconCopy, IconShare3} from "@tabler/icons-react";
 import PromptText from "@/components/image/detail/prompt-text";
-import { useClipboard } from '@mantine/hooks';
+import {useClipboard} from '@mantine/hooks';
+
 export default function ImageDetailPanel() {
 
-     const clipboard = useClipboard({ timeout: 500 });
-     const copyPrompt = () => {
-         clipboard.copy('copyPrompt');
-     }
-          const copyNevPrompt = () => {
-         clipboard.copy('copyNevPrompt');
-     }
+    const clipboard = useClipboard({timeout: 500});
+    const copyPrompt = () => {
+        clipboard.copy('copyPrompt');
+    }
+    const copyNevPrompt = () => {
+        clipboard.copy('copyNevPrompt');
+    }
 
     return (
-        <div style={{width: '30%', overflowY: 'auto'}}>
+        <div style={{width: '27%', maxWidth: '450px', overflowY: 'auto'}}>
             <Paper withBorder>
                 <Paper className={"p-4"}>
                     <Text size={"xl"}>Generation data</Text>
@@ -63,7 +64,7 @@ export default function ImageDetailPanel() {
                         <Badge variant="light" color="lime" size="xs" radius="sm">TXCT2IMG</Badge>
                         <div style={{flexGrow: 1}}></div>
                         <ActionIcon variant="transparent" color="gray" aria-label="Copy" onClick={copyPrompt}>
-                        <IconCopy stroke={1.5}/>
+                            <IconCopy stroke={1.5}/>
                         </ActionIcon>
                     </Flex>
 
@@ -84,9 +85,9 @@ export default function ImageDetailPanel() {
                         <Text size={"lg"}>Negative Prompt</Text>
 
                         <div style={{flexGrow: 1}}></div>
-                         <ActionIcon variant="transparent" color="gray" aria-label="Copy" onClick={copyNevPrompt}>
-                        <IconCopy stroke={1.5}/>
-                         </ActionIcon>
+                        <ActionIcon variant="transparent" color="gray" aria-label="Copy" onClick={copyNevPrompt}>
+                            <IconCopy stroke={1.5}/>
+                        </ActionIcon>
                     </Flex>
 
                     <PromptText
