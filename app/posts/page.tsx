@@ -8,9 +8,10 @@ import PostGrid from "@/components/post/home/post-grid";
 export default async function PostsPage() {
 
     const posts = await getPosts();
+
     return (
         <>
-           <PostGrid />
+           <PostGrid  posts={posts}/>
         </>
     );
 }
