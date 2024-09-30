@@ -35,10 +35,12 @@ export const EditPostImageSlice = createSlice({
             state.images.splice(action.payload, 1);
         },
 
+        clearImage(state) {
+          state.images = [];
+        },
 
         updateImage: (state, action: PayloadAction<{ index: number; formData: Partial<ImageLocal> }>) => {
             const {index, formData} = action.payload;
-
             state.images[index] = {...state.images[index], ...formData};
         },
 
@@ -58,6 +60,7 @@ export const EditPostImageSlice = createSlice({
 export const {
     addImage,
     updateImage,
+    clearImage,
     removeImage,
     updateTechnique,
     updateTool

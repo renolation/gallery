@@ -10,14 +10,21 @@ import {Loader, useMantineTheme} from "@mantine/core";
 import {Dropzone, IMAGE_MIME_TYPE, MIME_TYPES} from '@mantine/dropzone';
 import {Text, Group, Button, rem} from '@mantine/core';
 import {IconCloudUpload, IconDownload, IconX} from "@tabler/icons-react";
+import {usePathname} from "next/navigation";
+import { editPostAction } from '@/action/edit-post-action';
 
 export default function DropZone() {
 
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(false);
-
+    const pathname = usePathname();
     const theme = useMantineTheme();
     const openRef = useRef<() => void>(null);
+    const isPostEditRoute = /^\/posts\/[0-9a-fA-F-]{36}\/edit$/.test(pathname);
+    const postEditRouteMatch = pathname.match(/^\/posts\/([0-9a-fA-F-]{36})\/edit$/);
+
+
+
 
     const onDrop = async (files: File[]) => {
         setLoading(true);
@@ -29,6 +36,9 @@ export default function DropZone() {
                     const imageObj = await dropImageAction(formData);
                     if (imageObj) {
                         dispatch(addImage(imageObj));
+                        if (isPostEditRoute && postEditRouteMatch) {
+                            await editPostAction(postEditRouteMatch[1], imageObj.id);
+                        }
                     }
                 }
             }
@@ -44,7 +54,7 @@ export default function DropZone() {
                 openRef={openRef}
                 onDrop={onDrop}
                 className={classes.dropzone}
-                loading = {loading}
+                loading={loading}
                 radius="md"
                 accept={IMAGE_MIME_TYPE}
                 maxSize={30 * 1024 ** 2}
@@ -88,7 +98,7 @@ export default function DropZone() {
                     </Text>
                 </div>
             </Dropzone>
-            
+
         </div>
     );
 

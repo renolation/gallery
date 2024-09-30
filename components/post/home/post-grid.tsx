@@ -50,6 +50,7 @@ export default function PostGrid({posts}: { posts: PostWithImages[] }) {
                     // <img src={obj.src} key={obj.label} alt="Image" className="w-full"/>
                     <PostCard
                         key={post.id}
+                        postId = {post.id}
                         imageUrl={post.images.length > 0 ? post.images[0].imageUrl : 'https://res.cloudinary.com/dlqx1qpfr/image/upload/v1690219876/cld-sample-3.jpg'}
                     />
                 ))}

@@ -2,7 +2,7 @@
 
 import {getUserIdFromSession} from "@/lib/auth";
 import {uploadImage} from "@/lib/cloudirary";
-import {createPost, updatePostWithImages} from "@/lib/prisma/prima-post";
+import {createPost, getPostById, updatePostWithImages} from "@/lib/prisma/prima-post";
 import {createImageWithoutPostId} from "@/lib/prisma/prisma-image";
 import {redirect} from "next/navigation";
 
@@ -38,5 +38,8 @@ export async function createPostAction(imagesId: string[], title: string, descri
     redirect(`/posts/${postId}`);
 
 }
+
+
+
 
 //todo: add save order images in post action

@@ -10,12 +10,12 @@ import Link from 'next/link';
 import {IconHeart, IconPhoto} from "@tabler/icons-react";
 import {useRouter} from 'next/navigation';
 
-export function PostCard({imageUrl}: { imageUrl: string }) {
+export function PostCard({imageUrl, postId}: { imageUrl: string, postId:string }) {
     const router = useRouter();
 
     const handleImageClick = () => {
         console.log('Image clicked');
-        router.push(`/posts/14c1b7d2-3ddd-4d49-9886-a98030cd0db0`);
+        router.push(`/posts/${postId}`);
     }
     return (
 

@@ -36,7 +36,6 @@ export default function EditorCreate() {
         content: editorCreate,
         onUpdate({editor}) {
 
-
         }
     });
 

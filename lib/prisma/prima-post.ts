@@ -44,6 +44,16 @@ export async function updatePostWithImages(postId: string, imageIds: string[]) {
     });
 }
 
+export async function updatePostDetail(postId: string,title: string, description: string) {
+    await prisma.post.update({
+        where: { id: postId },
+        data: {
+            title: title,
+            description: description,
+        },
+    });
+}
+
 export async function updatePostDesc(postId: string, description: string) {
     await prisma.post.update({
         where: { id: postId },

@@ -1,25 +1,33 @@
 "use client"
 
-import {Text, Title, Flex, CloseButton, Avatar, Badge} from '@mantine/core';
+import {getUserIdFromSession} from '@/lib/auth';
+import {Text, Title, Flex, CloseButton, Avatar, Badge, ActionIcon} from '@mantine/core';
 import {useRouter} from "next/navigation";
+import {useEffect, useState} from 'react';
+import {IconPencil} from "@tabler/icons-react";
 
 
-export default function TopDetail({title}: { title: string }) {
+export default function TopDetail({title, userId, postId}: { title: string, userId: string | null, postId: string }) {
 
-        const router = useRouter();
+    const router = useRouter();
 
+    const handleEdit = () => {
+        router.push(`/posts/${postId}/edit`);
+    }
 
     return (
-      <>
-      <Flex mih={50}
+        <>
+            <Flex mih={50}
                   w="100%"
                   justify="space-between"
                   align="center"
                   direction="row"
                   wrap="nowrap">
                 <Title order={1}>{title}</Title>
-                <CloseButton size="lg" onClick={() => router.back()}/>
-      </Flex>
-      </>
-  );
+                {userId && <ActionIcon variant="light" color="grape" aria-label="Edit" onClick={handleEdit}>
+                    <IconPencil style={{width: '70%', height: '70%'}}  radius="xs" stroke={1.5}/>
+                </ActionIcon>}
+            </Flex>
+        </>
+    );
 }
