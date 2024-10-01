@@ -1,11 +1,12 @@
 import {configureStore} from '@reduxjs/toolkit'
 import CounterSlice from "@/lib/features/CounteState/CounterSlice";
-import ButtonEditPostSlice from "@/lib/features/edit-post/button-edit-post-slice";
-import ToggleRightPanelSlice from "@/lib/features/image-detail/toggle-right-panel";
-import EditPostImageSlice from "@/lib/features/edit-post/edit-post-image-slice";
-import EditorCreateSlice from "@/lib/features/edit-post/editor-create-slice";
-import TagPostSlice from "@/lib/features/edit-post/tag-post-slice";
-import ButtonIsRearrangingSlice from "@/lib/features/edit-post/button-is-rearranging-slice";
+import ButtonEditPostSlice from "@/lib/features/post/edit/button-edit-post-slice";
+import ToggleRightPanelSlice from "@/lib/features/image/detail/toggle-right-panel";
+import EditPostImageSlice from "@/lib/features/post/edit/edit-post-image-slice";
+import EditorPostSlice from "@/lib/features/post/shared/editor-post-slice";
+import TagPostSlice from "@/lib/features/post/shared/tag-post-slice";
+import ButtonIsRearrangingSlice from "@/lib/features/post/shared/button-is-rearranging-slice";
+import InputPostNameSlice from '@/lib/features/post/shared/input-post-name';
 
 export const makeStore = () => {
     return configureStore({
@@ -14,9 +15,10 @@ export const makeStore = () => {
             buttonEditPost: ButtonEditPostSlice,
             toggleRightPanel: ToggleRightPanelSlice,
             editPostImage: EditPostImageSlice,
-            updateEditor: EditorCreateSlice,
+            updateEditorPost: EditorPostSlice,
             tagPost: TagPostSlice,
             buttonIsRearranging: ButtonIsRearrangingSlice,
+            inputPostName: InputPostNameSlice,
         }
     })
 }

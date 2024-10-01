@@ -2,7 +2,7 @@
 import React, {useState} from 'react';
 import {Button, Flex, Group, Paper} from '@mantine/core';
 import ImageDetailTop from '@/components/image/detail/image-detail-top';
-import ImageRightPanel from "@/components/image/detail/image-right-panel";
+import ImageDetailPanel from "@/components/image/detail/image-detail-panel";
 import {Image as ImageDB} from "@prisma/client";
 
 import {useSelector} from "react-redux";
@@ -14,8 +14,8 @@ export default function ImageDetail({image}: { image: ImageDB }) {
     const toggleRightPanelState = useSelector((state: RootState) => state.toggleRightPanel.value);
 
     return (
-        <div style={{display: 'flex', height: '100vh'}} className="px-2">
-            <div style={{flex: 1, height: '100vh', display: "flex", flexDirection: "column"}}>
+        <div style={{display: 'flex', height: '88vh'}}>
+            <div style={{flex: 1, height: '90vh', display: "flex", flexDirection: "column"}}>
 
                 <ImageDetailTop id={image.id}/>
 
@@ -50,7 +50,7 @@ export default function ImageDetail({image}: { image: ImageDB }) {
 
 
             {toggleRightPanelState && (
-                <ImageRightPanel/>
+                <ImageDetailPanel/>
             )}
         </div>
     );

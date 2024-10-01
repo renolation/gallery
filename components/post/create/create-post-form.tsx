@@ -1,14 +1,11 @@
 "use client";
-import classes from "./create-new-post-form.module.css";
+import classes from "./create-post-form.module.css";
 import React from 'react';
 import {useDropzone} from "react-dropzone";
 
-import {createPostAction} from "@/action/post-action";
-
-export function CreateNewPostForm() {
+export function CreatePostForm() {
 
     const onDrop = (acceptedFiles: File[]) => {
-
         handleSubmit(acceptedFiles[0]);
     };
 
@@ -16,7 +13,7 @@ export function CreateNewPostForm() {
         if (image) {
             const formData = new FormData();
             formData.append('image', image);
-            await createPostAction(formData);
+            // await createPostAction(formData);
         }
     };
     const {

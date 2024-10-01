@@ -6,14 +6,19 @@ export async function getPosts() {
             images: true,
             user: true,
         },
+        orderBy: {
+            createdAt: 'asc'
+        }
     });
 }
 
 
-export async function createPost(userId: string) {
+export async function createPost(userId: string, title: string, description: string) {
     const newPost = await prisma.post.create({
         data: {
             userId: userId,
+            title: title,
+            description: description,
         },
     });
     return newPost.id;
@@ -27,6 +32,27 @@ export async function updatePostWithImage(postId: string, imageId: string) {
             images: {
                 connect: { id: imageId }
             }
+        },
+    });
+}
+
+export async function updatePostWithImages(postId: string, imageIds: string[]) {
+    await prisma.post.update({
+        where: { id: postId },
+        data: {
+            images: {
+                connect: imageIds.map(id => ({ id }))
+            }
+        },
+    });
+}
+
+export async function updatePostDetail(postId: string,title: string, description: string) {
+    await prisma.post.update({
+        where: { id: postId },
+        data: {
+            title: title,
+            description: description,
         },
     });
 }

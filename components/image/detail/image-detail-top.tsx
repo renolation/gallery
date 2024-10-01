@@ -4,7 +4,7 @@ import {Text, Title, Flex, CloseButton, Avatar, Badge, Group, Button, ActionIcon
 import {useRouter} from "next/navigation";
 import {IconAdjustments, IconDotsVertical, IconDownload, IconShare3, IconX} from "@tabler/icons-react";
 import {useDispatch} from "react-redux";
-import {toggleRightPanel} from "@/lib/features/image-detail/toggle-right-panel";
+import {toggleRightPanel} from "@/lib/features/image/detail/toggle-right-panel";
 
 
 export default function ImageDetailTop({id}: { id: string }) {

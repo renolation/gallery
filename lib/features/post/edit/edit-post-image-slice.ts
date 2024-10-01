@@ -1,6 +1,8 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {Image as ImageDB} from "@prisma/client";
 
 export interface ImageLocal {
+    id: string;
     prompt: string;
     nevPrompt: string;
     guidanceScale?: number;
@@ -14,7 +16,7 @@ export interface ImageLocal {
 
 
 interface EditPostImageState {
-    images: ImageLocal[];
+    images: ImageDB[];
 }
 
 const initialState: EditPostImageState = {
@@ -25,7 +27,7 @@ export const EditPostImageSlice = createSlice({
     name: 'editPostImage',
     initialState,
     reducers: {
-        addImage: (state, action: PayloadAction<ImageLocal>) => {
+        addImage: (state, action: PayloadAction<ImageDB>) => {
             state.images.push(action.payload);
         },
 
@@ -33,10 +35,12 @@ export const EditPostImageSlice = createSlice({
             state.images.splice(action.payload, 1);
         },
 
+        clearImage(state) {
+          state.images = [];
+        },
 
         updateImage: (state, action: PayloadAction<{ index: number; formData: Partial<ImageLocal> }>) => {
             const {index, formData} = action.payload;
-
             state.images[index] = {...state.images[index], ...formData};
         },
 
@@ -56,6 +60,7 @@ export const EditPostImageSlice = createSlice({
 export const {
     addImage,
     updateImage,
+    clearImage,
     removeImage,
     updateTechnique,
     updateTool

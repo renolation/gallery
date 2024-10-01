@@ -10,7 +10,7 @@ import {updatePostDescAction} from "@/action/post-action";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "@/lib/store";
 import {decrement} from "@/lib/features/CounteState/CounterSlice";
-import {buttonSaving, buttonSaved} from "@/lib/features/edit-post/button-edit-post-slice";
+import {buttonEditPostSaving, buttonEditPostSaved} from "@/lib/features/post/edit/button-edit-post-slice";
 
 
 const MenuBar = ({editor}: { editor: Editor | null }) => {
@@ -102,13 +102,13 @@ const Tiptap = ({content, postId}: { content: string, postId: string }) => {
         console.log("editorContent", editorContent);
         if (content !== editorContent) {
 
-            dispatch(buttonSaving()); // Set to "Saving: false"
+            dispatch(buttonEditPostSaving()); // Set to "Saving: false"
 
             console.log("new content", editorContent);
             updatePostDescAction(postId, editorContent).then(r => {
                 console.log("saveEditState", saveEditState);
 
-                dispatch(buttonSaved()); // Set to "Saved": true
+                dispatch(buttonEditPostSaved()); // Set to "Saved": true
 
             });
 

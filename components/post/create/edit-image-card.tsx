@@ -4,7 +4,7 @@ import {IconPlus} from "@tabler/icons-react";
 import {useDisclosure} from '@mantine/hooks';
 import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {updateImage, updateTechnique, updateTool} from "@/lib/features/edit-post/edit-post-image-slice";
+import {updateImage, updateTechnique, updateTool} from "@/lib/features/post/edit/edit-post-image-slice";
 import {index} from "d3-array";
 import {RootState} from "@/lib/store";
 

@@ -9,7 +9,7 @@ import Superscript from '@tiptap/extension-superscript';
 import SubScript from '@tiptap/extension-subscript';
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "@/lib/store";
-import {updateEditor} from "@/lib/features/edit-post/editor-create-slice";
+import {updateEditorPost} from "@/lib/features/post/shared/editor-post-slice";
 import {useDebounce} from 'use-debounce';
 import {useEffect} from "react";
 
@@ -20,7 +20,7 @@ const content =
 export default function EditorCreate() {
     const dispatch = useDispatch();
 
-    const editorCreate = useSelector((state: RootState) => state.updateEditor.value);
+    const editorCreate = useSelector((state: RootState) => state.updateEditorPost.value);
 
     const editor = useEditor({
         extensions: [
@@ -36,7 +36,6 @@ export default function EditorCreate() {
         content: editorCreate,
         onUpdate({editor}) {
 
-
         }
     });
 
@@ -44,8 +43,7 @@ export default function EditorCreate() {
 
     useEffect(() => {
         if (debouncedEditor) {
-            console.log(editor?.getHTML());
-            dispatch(updateEditor(editor?.getHTML()));
+            dispatch(updateEditorPost(editor?.getHTML()));
         }
     }, [debouncedEditor]);
     return (

@@ -1,67 +1,60 @@
 "use client";
 
-import DropZoneButton from "@/components/post/create/drop-zone-button";
-import {useState} from 'react';
+import DropZoneButton from "@/components/post/create/drop-zone";
 import EditImageCard from "@/components/post/create/edit-image-card";
-import {dropImageAction} from "@/action/create-post-action";
 import {useDispatch, useSelector} from "react-redux";
-import {addImage, ImageLocal} from "@/lib/features/edit-post/edit-post-image-slice";
-import {Image as ImageDB} from "@prisma/client";
 import {RootState} from "@/lib/store";
+import {CreatePostForm} from "@/components/post/create/create-post-form";
+import {Image as ImageDB} from "@prisma/client";
+import {useEffect} from "react";
+import {addImage, clearImage} from "@/lib/features/post/edit/edit-post-image-slice";
+import {useIsFirstRender} from "@mantine/hooks";
+import {usePathname} from "next/navigation";
 
-export default function NewPostForm() {
+export default function NewPostForm({images}: { images: ImageDB[] }) {
     const dispatch = useDispatch();
+    console.log(images.length);
+    const firstRender = useIsFirstRender();
 
-    const defaultImage: Omit<ImageLocal, 'imageUrl'> = {
-        tools: [],
-        techniques: [],
-        prompt: '',
-        nevPrompt: '',
-        guidanceScale: undefined,
-        steps: undefined,
-        sampler: '',
-        seed: undefined,
-    };
+    const pathname = usePathname();
 
+    useEffect(() => {
+        if (pathname.match('/posts/create')) {
+            dispatch(clearImage());
+        }
+    }, [pathname, dispatch]);
+
+
+
+    useEffect(() => {
+        console.log('useEffect triggered');
+        console.log('images:', images);
+
+        if (images.length > 0) {
+            console.log('Clearing images');
+            dispatch(clearImage());
+            for (const image of images) {
+                console.log('Adding image:', image);
+                dispatch(addImage(image));
+            }
+        }
+    }, [images, dispatch]);
 
     const editPostImageState = useSelector((state: RootState) => state.editPostImage.images);
 
-    const [images, setImages] = useState<string[]>([]);
-    const handleDrop = async (files: File[]) => {
-        const newImages: string[] = [];
-        console.log(files);
-        for (const file of files) {
-            const formData = new FormData();
-            formData.append('image', file);
-            console.log(formData);
-            // const imageUrl = await dropImageAction(formData);
-            const imageUrl = "https://res.cloudinary.com/dlqx1qpfr/image/upload/v1726741193/gallery/knpxnpctlcbysjva6kff.png";
-            if (imageUrl) {
-                console.log(imageUrl);
-                newImages.push(imageUrl);
-                const imageWithUrl: ImageLocal = {
-                    ...defaultImage,
-                    imageUrl: imageUrl,
-                };
-                dispatch(addImage(imageWithUrl))
-            }
-        }
-        setImages(prevImages => [...prevImages, ...newImages]);
-    };
 
     const saveChanges = () => {
         console.log('Save changes');
         console.log(editPostImageState);
-
     }
 
-
     return <>
-        <DropZoneButton onDrop={handleDrop}/>
+        <DropZoneButton/>
         <div>
-            {images.map((image, index) => (
+            {editPostImageState.map((image, index) => (
                 <div className="py-4" key={index}>
-                    <EditImageCard key={index} imageString={image} imageIndex={index} saveChanges={saveChanges}/>
+                    <EditImageCard key={index} imageString={image.imageUrl} imageIndex={index}
+                                   saveChanges={saveChanges}/>
                 </div>
             ))}
         </div>
