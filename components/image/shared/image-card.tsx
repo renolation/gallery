@@ -25,7 +25,6 @@ export function ImageCard({imageId, imageUrl}: { imageId: string, imageUrl: stri
     };
 
     return (
-
         <Card
             p={0}
             shadow="lg"
