@@ -6,6 +6,9 @@ export async function getPosts() {
             images: true,
             user: true,
         },
+        orderBy: {
+            createdAt: 'asc'
+        }
     });
 }
 

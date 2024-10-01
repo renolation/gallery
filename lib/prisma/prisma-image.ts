@@ -30,5 +30,9 @@ export async function getImageById(imageId: string) {
 }
 
 export async function getImages(){
-    return prisma.image.findMany();
+    return prisma.image.findMany({
+        orderBy: {
+            createdAt: 'asc'
+        }
+    });
 }
