@@ -5,7 +5,7 @@ import {Alert, Group, TextInput} from "@mantine/core";
 import {IconInfoCircle} from "@tabler/icons-react";
 import AutoSizeTextInput from "@/components/utils/AutoSizeTextInput";
 import {useRef} from "react";
-import {addTagToPost, createTagAction} from "@/action/post-action";
+import {createTagAction} from "@/action/post-action";
 import {addTag} from "@/lib/features/post/shared/tag-post-slice";
 
 export default function PostTags() {

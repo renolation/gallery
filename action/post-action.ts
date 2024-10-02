@@ -4,7 +4,7 @@ import {getUserIdFromSession} from "@/lib/auth";
 import {createPost, updatePostDesc, updatePostWithImage} from "@/lib/prisma/prima-post";
 import {uploadImage} from "@/lib/cloudirary";
 import {createImage} from "@/lib/prisma/prisma-image";
-import {createOrUpdateTagForPost, createTag} from "@/lib/prisma/prisma-tag";
+import {addTagsToPost, createOrUpdateTagForPost, createTag} from "@/lib/prisma/prisma-tag";
 
 export async function createPostActionOld(formData: FormData) {
     const image = formData.get('image') as File;
@@ -34,9 +34,9 @@ export async function updatePostDescAction(postId: string, description: string) 
     return updatePostDesc(postId, description);
 }
 
-export async function addTagToPost(postId: string, tag: string){
+export async function addTagsToPostAction(postId: string, tags: string[]){
     console.log("add tag to post");
-    // await createOrUpdateTagForPost(postId, tag);
+    await addTagsToPost(postId, tags);
 }
 
 export async function createTagAction(tag: string){
