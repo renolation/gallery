@@ -22,8 +22,6 @@ export function Headroom({children}: { children: React.ReactNode }) {
               <UnstyledButton className={classes.control}><NavLink href={'/images'}>Images</NavLink></UnstyledButton>
               <UnstyledButton className={classes.control}><NavLink href={'/auth?mode=login'}>Login</NavLink></UnstyledButton>
               <UnstyledButton className={classes.control}><NavLink href={'/posts/create'}>Create</NavLink></UnstyledButton>
-              <UnstyledButton className={classes.control}><NavLink href={'/posts/14c1b7d2-3ddd-4d49-9886-a98030cd0db0'}>Detail</NavLink></UnstyledButton>
-              <UnstyledButton className={classes.control}><NavLink href={'/images/5496a65a-c744-4c55-b1c5-4f2cccd5a048'}>Image Detail</NavLink></UnstyledButton>
             </Group>
           </Group>
         </Group>

@@ -9,7 +9,7 @@ export interface TagPostState {
 
 // true: saved, false: saving
 const initialState: TagPostState = {
-    value: ["anime", "airplane", "car", "cat", "dog", "flower", "food", "wildlife"],
+    value: [],
 };
 
 export const TagPostSlice = createSlice({
