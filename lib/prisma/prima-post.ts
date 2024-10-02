@@ -73,6 +73,11 @@ export async function getPostById(postId: string) {
         include: {
             images: true,
             user: true,
+            tags: {
+                include: {
+                    tag: true,
+                },
+            },
         },
     });
 }

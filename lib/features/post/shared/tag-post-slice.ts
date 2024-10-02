@@ -1,4 +1,3 @@
-
 "use client";
 
 import {createSlice} from "@reduxjs/toolkit";
@@ -24,10 +23,14 @@ export const TagPostSlice = createSlice({
         },
         removeTag: (state, action) => {
             state.value = state.value.filter(tag => tag !== action.payload);
+        },
+        resetTag: (state) => {
+            state.value = [];
         }
+
     },
 });
 
 // Action creators are generated for each case reducer function
-export const {addAllTags, addTag,removeTag } = TagPostSlice.actions;
+export const {addAllTags, addTag, removeTag, resetTag} = TagPostSlice.actions;
 export default TagPostSlice.reducer;

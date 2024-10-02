@@ -6,7 +6,7 @@ import {IconInfoCircle} from "@tabler/icons-react";
 import AutoSizeTextInput from "@/components/utils/AutoSizeTextInput";
 import {useRef} from "react";
 import {createTagAction} from "@/action/post-action";
-import {addTag} from "@/lib/features/post/shared/tag-post-slice";
+import {addTag, removeTag, resetTag} from "@/lib/features/post/shared/tag-post-slice";
 
 export default function PostTags() {
 
@@ -29,6 +29,10 @@ export default function PostTags() {
 
     }
 
+    const handleRemoveTag = (tag: string) => {
+        dispatch(removeTag(tag));
+    }
+
     return (
         <>
             <Group>
@@ -41,6 +45,7 @@ export default function PostTags() {
                                    onClose={() => {
                                        // Custom close button action
                                        console.log(`Closed alert for tag: ${tag}`);
+                                       handleRemoveTag(tag);
                                    }}
                                    styles={{root: {padding: "6px", height: "35px"}}}
 
