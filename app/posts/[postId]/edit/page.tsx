@@ -4,7 +4,7 @@ import PostTags from "@/components/post/create/post-tags";
 import CreatePostMain from "@/components/post/create/create-post-main";
 import CreatePostPanel from "@/components/post/create/create-post-panel";
 import {Status} from "@prisma/client";
-
+import {Image as ImageDB} from "@prisma/client";
 
 type Tag = {
     id: string;
@@ -19,12 +19,13 @@ type Post = {
     status: Status;
     createdAt: Date;
     updatedAt: Date;
+    images: ImageDB[],
     tags: { tag: Tag }[];
 };
 
-
 export default async function EditPostPage({params}: { params: { postId: string } }) {
-    const post = await getPostById(params.postId);
+        const post: Post | null = await getPostById(params.postId);
+
 
 
 
