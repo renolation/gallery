@@ -83,16 +83,16 @@ export async function addTagsToPost(postId: string, tagNames: string[]) {
         });
 
         if (existingTag) {
-            // If the tag is already associated, remove it
-            await prisma.postsOnTags.delete({
-                where: {
-                    postId_tagId: {
-                        postId: postId,
-                        tagId: tag.id,
-                    },
-                },
-            });
-            console.log(`Tag ${tagName} removed from post ${postId}`);
+            // // If the tag is already associated, remove it
+            // await prisma.postsOnTags.delete({
+            //     where: {
+            //         postId_tagId: {
+            //             postId: postId,
+            //             tagId: tag.id,
+            //         },
+            //     },
+            // });
+            // console.log(`Tag ${tagName} removed from post ${postId}`);
         } else {
             // If the tag is not associated, add it
             await prisma.postsOnTags.create({

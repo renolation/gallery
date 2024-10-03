@@ -41,7 +41,7 @@ export default function CreatePostPanel() {
     }
 
     const updatePost = async () => {
-
+        console.log(tagsPost);
         if (postEditRouteMatch && isPostEditRoute) {
             await addTagsToPostAction(postEditRouteMatch[1], tagsPost);
             await updatePostAction(postEditRouteMatch[1], inputPostName, editorCreate);

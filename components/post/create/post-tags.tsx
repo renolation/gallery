@@ -2,16 +2,18 @@
 import {RootState} from "@/lib/store";
 import {useDispatch, useSelector} from "react-redux";
 import {Alert, Group, TextInput} from "@mantine/core";
-import {IconInfoCircle} from "@tabler/icons-react";
-import AutoSizeTextInput from "@/components/utils/AutoSizeTextInput";
-import {useRef} from "react";
+import {useEffect, useRef} from "react";
 import {createTagAction} from "@/action/post-action";
-import {addTag, removeTag, resetTag} from "@/lib/features/post/shared/tag-post-slice";
+import {addAllTags, addTag, removeTag, resetTag} from "@/lib/features/post/shared/tag-post-slice";
 
-export default function PostTags() {
+export default function PostTags({tags}: { tags: string[] }) {
 
     const dispatch = useDispatch();
 
+
+    useEffect(() => {
+        dispatch(addAllTags(tags));
+    }, [tags, dispatch]);
 
     const tagsPost = useSelector((state: RootState) => state.tagPost.value);
     const inputRef = useRef<HTMLInputElement>(null);

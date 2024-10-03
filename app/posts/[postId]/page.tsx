@@ -20,14 +20,14 @@ export default async function PostDetailPage({params}: { params: { postId: strin
     console.log(post.tags);
 
     return (
-        <div className="flex flex-col items-center xs:w-9/10 sm:w-4/5 md:w-3/5 lg:w-1/2 mx-auto m-4">
+        <div className="flex flex-col xs:w-9/10 sm:w-4/5 md:w-3/5 lg:w-1/2 mx-auto m-4">
             {/*name*/}
             <TopDetail title={post.title ?? ""} userId={userId} postId={post.id}/>
 
             <TopShare/>
 
 
-            <PostTagsDetail tags={post.tags.map(tag => ({id: tag.tagId, name: tag.tag.name}))}/>
+
             <Flex
                 mih={50}
                 w="100%"
@@ -53,6 +53,11 @@ export default async function PostDetailPage({params}: { params: { postId: strin
                     <ImageCard imageId={image.id} imageUrl={image.imageUrl}/>
                 </div>
             ))}
+
+            <PostTagsDetail tags={post.tags.map(tag => ({id: tag.tagId, name: tag.tag.name}))}/>
+
+
+
             <div className="mt-4 mb-24" dangerouslySetInnerHTML={{__html: post.description}}></div>
 
         </div>

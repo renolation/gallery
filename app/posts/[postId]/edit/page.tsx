@@ -8,6 +8,9 @@ import CreatePostPanel from "@/components/post/create/create-post-panel";
 export default async function EditPostPage({params}: { params: { postId: string } }) {
     const post = await getPostById(params.postId);
 
+
+
+
     if (!post) {
         return <div>Post not found</div>;
     }
@@ -20,7 +23,7 @@ export default async function EditPostPage({params}: { params: { postId: string 
                 <div className="flex min-w-0 flex-1 flex-col gap-6">
 
                     <NameInputPost initialName={post.title || ''}/>
-                    <PostTags/>
+                    <PostTags tags={post.tags.map((tag) => tag.tag.name)}/>
                     {/*<EditorCreate/>*/}
                     <CreatePostMain images={post.images}/>
 
