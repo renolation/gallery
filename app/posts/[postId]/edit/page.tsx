@@ -3,6 +3,24 @@ import NameInputPost from "@/components/post/create/name-input-post";
 import PostTags from "@/components/post/create/post-tags";
 import CreatePostMain from "@/components/post/create/create-post-main";
 import CreatePostPanel from "@/components/post/create/create-post-panel";
+import {Status} from "@prisma/client";
+
+
+type Tag = {
+    id: string;
+    name: string;
+};
+
+type Post = {
+    id: string;
+    title: string | null;
+    description: string | null;
+    userId: string;
+    status: Status;
+    createdAt: Date;
+    updatedAt: Date;
+    tags: { tag: Tag }[];
+};
 
 
 export default async function EditPostPage({params}: { params: { postId: string } }) {
