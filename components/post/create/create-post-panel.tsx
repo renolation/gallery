@@ -9,6 +9,8 @@ import {Image as ImageDB} from "@prisma/client";
 import {createPostAction} from "@/action/create-post-action";
 import {updatePostAction} from "@/action/edit-post-action";
 import {usePathname} from "next/navigation";
+import {addTagsToPostAction} from "@/action/post-action";
+import {resetTag} from "@/lib/features/post/shared/tag-post-slice";
 
 export default function CreatePostPanel() {
 
@@ -17,11 +19,12 @@ export default function CreatePostPanel() {
     const inputPostName = useSelector((state: RootState) => state.inputPostName.value);
     const editPostImage = useSelector((state: RootState) => state.editPostImage.images);
     const editorCreate = useSelector((state: RootState) => state.updateEditorPost.value);
+    const tagsPost = useSelector((state: RootState) => state.tagPost.value);
+
     const pathname = usePathname();
 
     const postEditRouteMatch = pathname.match(/^\/posts\/([0-9a-fA-F-]{36})\/edit$/);
     const isPostEditRoute = /^\/posts\/[0-9a-fA-F-]{36}\/edit$/.test(pathname);
-
 
 
     function toggleRearranging() {
@@ -33,13 +36,16 @@ export default function CreatePostPanel() {
         console.log(editorCreate);
         console.log(editPostImage);
         const imageIds = editPostImage.map((image: ImageDB) => image.id);
-        await createPostAction(imageIds, inputPostName, editorCreate);
+        await createPostAction(imageIds, inputPostName, editorCreate, tagsPost);
+        dispatch(resetTag());
     }
 
     const updatePost = async () => {
-
-        if(postEditRouteMatch && isPostEditRoute) {
-        await updatePostAction(postEditRouteMatch[1], inputPostName, editorCreate);
+        console.log(tagsPost);
+        if (postEditRouteMatch && isPostEditRoute) {
+            await addTagsToPostAction(postEditRouteMatch[1], tagsPost);
+            await updatePostAction(postEditRouteMatch[1], inputPostName, editorCreate);
+            dispatch(resetTag());
         }
 
     }

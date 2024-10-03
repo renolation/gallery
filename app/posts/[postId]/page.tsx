@@ -4,6 +4,7 @@ import {ImageCard} from "@/components/image/shared/image-card";
 import TopDetail from "@/components/post/detail/top-detail";
 import TopShare from "@/components/post/detail/top-share";
 import {getUserIdFromSession} from "@/lib/auth";
+import PostTagsDetail from "@/components/post/detail/post-tags-detail";
 
 
 export default async function PostDetailPage({params}: { params: { postId: string } }) {
@@ -13,17 +14,18 @@ export default async function PostDetailPage({params}: { params: { postId: strin
         return <div>Post not found</div>;
     }
 
-    console.log(post.images![0].id);
-
     post.description = post.description!.replace(/\n/g, '<br/>');
     const userId = await getUserIdFromSession();
 
+    console.log(post.tags);
+
     return (
-        <div className="flex flex-col items-center xs:w-9/10 sm:w-4/5 md:w-3/5 lg:w-1/2 mx-auto m-4">
+        <div className="flex flex-col xs:w-9/10 sm:w-4/5 md:w-3/5 lg:w-1/2 mx-auto m-4">
             {/*name*/}
             <TopDetail title={post.title ?? ""} userId={userId} postId={post.id}/>
 
             <TopShare/>
+
 
 
             <Flex
@@ -35,6 +37,7 @@ export default async function PostDetailPage({params}: { params: { postId: strin
                 direction="row"
                 wrap="wrap"
             >
+
                 <Avatar radius="xl"/>
                 <Text>Renolation</Text>
                 {/* Spacer */}
@@ -50,6 +53,11 @@ export default async function PostDetailPage({params}: { params: { postId: strin
                     <ImageCard imageId={image.id} imageUrl={image.imageUrl}/>
                 </div>
             ))}
+
+            <PostTagsDetail tags={post.tags.map(tag => ({id: tag.tagId, name: tag.tag.name}))}/>
+
+
+
             <div className="mt-4 mb-24" dangerouslySetInnerHTML={{__html: post.description}}></div>
 
         </div>

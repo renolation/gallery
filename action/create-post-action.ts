@@ -5,6 +5,7 @@ import {uploadImage} from "@/lib/cloudirary";
 import {createPost, getPostById, updatePostWithImages} from "@/lib/prisma/prima-post";
 import {createImageWithoutPostId} from "@/lib/prisma/prisma-image";
 import {redirect} from "next/navigation";
+import {addTagsToPostAction} from "@/action/post-action";
 
 export async function dropImageAction(formData: FormData) {
     console.log("dropImageAction called");
@@ -25,14 +26,14 @@ export async function dropImageAction(formData: FormData) {
 }
 
 
-export async function createPostAction(imagesId: string[], title: string, description: string) {
+export async function createPostAction(imagesId: string[], title: string, description: string, tagsPost: string[]) {
     const userId = await getUserIdFromSession();
     if (!userId) {
         return;
     }
 
     const postId = await createPost(userId, title, description);
-
+    await addTagsToPostAction(postId, tagsPost);
     await updatePostWithImages(postId, imagesId);
 
     redirect(`/posts/${postId}`);
