@@ -1,5 +1,5 @@
 "use client";
-import {Button, Flex, Modal, TextInput, NumberInput, Select, Popover, Text, MultiSelect} from "@mantine/core";
+import {Button, Flex, Modal, TextInput, NumberInput, Select, Popover, Text, MultiSelect, Alert} from "@mantine/core";
 import {IconPlus} from "@tabler/icons-react";
 import {useDisclosure} from '@mantine/hooks';
 import React, {useState} from "react";
@@ -7,6 +7,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {updateImage, updateTechnique, updateTool} from "@/lib/features/post/edit/edit-post-image-slice";
 import {index} from "d3-array";
 import {RootState} from "@/lib/store";
+import ImageTags from "@/components/post/create/image-tags";
 
 
 export default function EditImageCard({imageString, imageIndex, saveChanges}: {
@@ -312,12 +313,26 @@ export default function EditImageCard({imageString, imageIndex, saveChanges}: {
                                 </Flex>
                             ))}
                         </div>
+                        <div
+                            className="p-3 bg-gray-100 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 flex flex-col gap-3">
+
+                            {/*{*/}
+                            {/*    editPostImageState[imageIndex].tags.map((tag, index) => (*/}
+                            {/*        <div key={index}>*/}
+                            {/*            <ImageTags index={index} tagName={tag.name} id={editPostImageState[imageIndex].id}/>*/}
+                            {/*        </div>*/}
+                            {/*    ))*/}
+                            {/*}*/}
+                            <ImageTags imageIndex={imageIndex} />
+                        </div>
                     </div>
+
+
                     <div className="flex w-full flex-col gap-3 sm:w-4/12">
                         <img src={imageString} alt={`Dropped file ${imageIndex + 1}`}/>
                         {formData.prompt && <p>Prompt: {formData.prompt}</p>}
-                        {editPostImageState[imageIndex].prompt && <p>Prompt: {editPostImageState[imageIndex].prompt}</p>}
-
+                        {editPostImageState[imageIndex].prompt &&
+                            <p>Prompt: {editPostImageState[imageIndex].prompt}</p>}
 
 
                         {formData.negativePrompt && <p>Negative Prompt: {formData.negativePrompt}</p>}
@@ -328,6 +343,7 @@ export default function EditImageCard({imageString, imageIndex, saveChanges}: {
                         {formData.sampler && <p>Sampler: {formData.sampler}</p>}
                     </div>
                 </div>
+
             </div>
 
         </>

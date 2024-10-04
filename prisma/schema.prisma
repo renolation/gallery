@@ -53,7 +53,6 @@ model Image {
   post        Post?          @relation(fields: [postId], references: [id], name: "PostImages")
   postId      String?
   tags        ImagesOnTags[]
-  tagId       String?
 
   tools      String[]
   techniques String[]
@@ -95,7 +94,6 @@ model ImagesOnTags {
   tag        Tag      @relation(fields: [tagId], references: [id])
   tagId      String
   assignedAt DateTime @default(now())
-  assignedBy String
 
   @@id([imageId, tagId])
 }

@@ -5,6 +5,7 @@ import CreatePostMain from "@/components/post/create/create-post-main";
 import CreatePostPanel from "@/components/post/create/create-post-panel";
 import {Status} from "@prisma/client";
 import {Image as ImageDB} from "@prisma/client";
+import {ImageWithTags} from "@/lib/features/post/edit/edit-post-image-slice";
 
 
 export default async function EditPostPage({params}: { params: { postId: string } }) {
@@ -17,6 +18,14 @@ export default async function EditPostPage({params}: { params: { postId: string 
     }
 
 
+    if (post && post.images) {
+        post.images.forEach(image => {
+            const tags = image.tags.map(tagRelation => tagRelation.tag.name);
+            // console.log(`Image ID: ${image.id}, Tags: ${tags.join(', ')}`);
+        });
+    }
+
+
     return (
         <div className="container max-w-screen-xl mx-auto">
             <p>Create new post</p>
@@ -26,7 +35,13 @@ export default async function EditPostPage({params}: { params: { postId: string 
                     <NameInputPost initialName={post.title || ''}/>
                     <PostTags tags={post.tags.map((tag) => tag.tag.name)}/>
                     {/*<EditorCreate/>*/}
-                    <CreatePostMain images={post.images}/>
+                    <CreatePostMain images={post.images.map(image => ({
+                        ...image,
+                        tags: image.tags.map(tagRelation => ({
+                            name: tagRelation.tag.name,
+                            description: tagRelation.tag.description
+                        }))
+                    })) as ImageWithTags[]}/>
 
                 </div>
                 <div className="flex flex-col gap-3 sm:w-72">

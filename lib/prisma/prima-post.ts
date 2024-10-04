@@ -1,15 +1,39 @@
 import prisma from "@/lib/prisma/prisma";
 
 export async function getPosts() {
-    return prisma.post.findMany({
+    const posts = await prisma.post.findMany({
         include: {
-            images: true,
+            images: {
+                include: {
+                    tags: {
+                        select: {
+                            tag: {
+                                select: {
+                                    name: true,
+                                    description: true
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             user: true,
         },
         orderBy: {
             createdAt: 'asc'
         }
     });
+
+    return posts.map(post => ({
+        ...post,
+        images: post.images.map(image => ({
+            ...image,
+            tags: image.tags.map(tagRelation => ({
+                name: tagRelation.tag.name,
+                description: tagRelation.tag.description
+            }))
+        }))
+    }));
 }
 
 
@@ -71,7 +95,15 @@ export async function getPostById(postId: string) {
     return prisma.post.findUnique({
         where: { id: postId },
         include: {
-            images: true,
+            images: {
+                include: {
+                    tags: {
+                        include: {
+                            tag: true,
+                        },
+                    }
+                }
+            },
             user: true,
             tags: {
                 include: {
