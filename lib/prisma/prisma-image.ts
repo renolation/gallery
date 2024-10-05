@@ -49,3 +49,20 @@ export async function updateOrder(imageIds: string[]) {
         });
     }
 }
+
+export async function updateImage(imageId: string, prompt: string, negativePrompt: string,
+                                        guidanceScale: number, steps: number, sampler: string, seed: number) {
+    return prisma.image.update({
+        where: {
+            id: imageId
+        },
+        data: {
+            prompt: prompt,
+            nevPrompt: negativePrompt,
+            guidanceScale: guidanceScale,
+            steps: steps,
+            sampler: sampler,
+            seed: seed
+        }
+    });
+}

@@ -8,6 +8,7 @@ import {updateImage, updateTechnique, updateTool} from "@/lib/features/post/edit
 import {index} from "d3-array";
 import {RootState} from "@/lib/store";
 import ImageTags from "@/components/post/create/image-tags";
+import {updateImageAction} from "@/action/edit-image-action";
 
 
 export default function EditImageCard({imageString, imageIndex, saveChanges}: {
@@ -21,19 +22,19 @@ export default function EditImageCard({imageString, imageIndex, saveChanges}: {
     const [formData, setFormData] = useState({
         prompt: '',
         negativePrompt: '',
-        guidanceScale: undefined,
-        steps: undefined,
+        guidanceScale: 0,
+        steps: 0,
         sampler: '',
-        seed: undefined,
+        seed: 0,
     });
 
     const [tempFormData, setTempFormData] = useState({
         prompt: '',
         negativePrompt: '',
-        guidanceScale: undefined,
-        steps: undefined,
+        guidanceScale: 0,
+        steps: 0,
         sampler: '',
-        seed: undefined,
+        seed: 0,
     });
     const editPostImageState = useSelector((state: RootState) => state.editPostImage.images);
 
@@ -97,10 +98,11 @@ export default function EditImageCard({imageString, imageIndex, saveChanges}: {
         setTempFormData((prev) => ({...prev, [field]: value}));
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         setFormData(tempFormData);
         console.log('Form Data:', tempFormData);
         dispatch(updateImage({index: imageIndex, formData: tempFormData}));
+        await updateImageAction(editPostImageState[imageIndex].id, tempFormData.prompt, tempFormData.negativePrompt, tempFormData.guidanceScale, tempFormData.steps, tempFormData.sampler, tempFormData.seed);
         close();
     };
 
@@ -323,24 +325,20 @@ export default function EditImageCard({imageString, imageIndex, saveChanges}: {
                             {/*        </div>*/}
                             {/*    ))*/}
                             {/*}*/}
-                            <ImageTags imageIndex={imageIndex} />
+                            <ImageTags imageIndex={imageIndex}/>
                         </div>
                     </div>
 
 
-                    <div className="flex w-full flex-col gap-3 sm:w-4/12">
+                    <div className="flex w-full flex-col sm:w-4/12">
                         <img src={imageString} alt={`Dropped file ${imageIndex + 1}`}/>
-                        {formData.prompt && <p>Prompt: {formData.prompt}</p>}
-                        {editPostImageState[imageIndex].prompt &&
-                            <p>Prompt: {editPostImageState[imageIndex].prompt}</p>}
-
-
-                        {formData.negativePrompt && <p>Negative Prompt: {formData.negativePrompt}</p>}
+                        {formData.prompt && <Text>Prompt: {formData.prompt}</Text>}
+                        {formData.negativePrompt && <Text>Negative Prompt: {formData.negativePrompt}</Text>}
                         {formData.guidanceScale !== undefined && formData.guidanceScale !== 0 &&
-                            <p>Guidance Scale: {formData.guidanceScale}</p>}
-                        {formData.steps !== undefined && formData.steps !== 0 && <p>Steps: {formData.steps}</p>}
-                        {formData.seed !== undefined && formData.seed !== 0 && <p>Seed: {formData.seed}</p>}
-                        {formData.sampler && <p>Sampler: {formData.sampler}</p>}
+                            <Text>Guidance Scale: {formData.guidanceScale}</Text>}
+                        {formData.steps !== undefined && formData.steps !== 0 && <Text>Steps: {formData.steps}</Text>}
+                        {formData.seed !== undefined && formData.seed !== 0 && <Text>Seed: {formData.seed}</Text>}
+                        {formData.sampler && <Text>Sampler: {formData.sampler}</Text>}
                     </div>
                 </div>
 

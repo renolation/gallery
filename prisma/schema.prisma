@@ -58,12 +58,12 @@ model Image {
   tools      String[]
   techniques String[]
 
-  prompt        String?
-  nevPrompt     String?
-  guidanceScale Int?
-  steps         Int?
-  sampler       String?
-  seed          Int?
+  prompt        String @default("")
+  nevPrompt     String @default("")
+  guidanceScale Int @default(0)
+  steps         Int @default(0)
+  sampler       String @default("")
+  seed          Int @default(0)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
