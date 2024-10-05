@@ -18,12 +18,12 @@ export default async function EditPostPage({params}: { params: { postId: string 
     }
 
 
-    if (post && post.images) {
-        post.images.forEach(image => {
-            const tags = image.tags.map(tagRelation => tagRelation.tag.name);
-            // console.log(`Image ID: ${image.id}, Tags: ${tags.join(', ')}`);
-        });
-    }
+    // if (post && post.images) {
+    //     post.images.forEach(image => {
+    //         const tags = image.tags.map(tagRelation => tagRelation.tag.name);
+    //         // console.log(`Image ID: ${image.id}, Tags: ${tags.join(', ')}`);
+    //     });
+    // }
 
 
     return (

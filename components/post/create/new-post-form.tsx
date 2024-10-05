@@ -39,7 +39,7 @@ export default function NewPostForm({images}: { images: ImageWithTags[] }) {
         <div>
             {editPostImageState.map((image, index) => (
                 <div className="py-4" key={index}>
-                    <EditImageCard key={index} imageString={image.imageUrl} imageIndex={index}
+                    <EditImageCard key={index} imageString={image.imageUrl} image={image} imageIndex={index}
                                    saveChanges={saveChanges}/>
                 </div>
             ))}
