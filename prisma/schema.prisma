@@ -28,16 +28,16 @@ model User {
 }
 
 model Post {
-  id          String   @id @default(uuid())
+  id          String        @id @default(uuid())
   title       String?
   description String?
   userId      String
-  status      Status   @default(PENDING)
-  user        User     @relation(fields: [userId], references: [id], name: "UserPosts")
-  images      Image[]  @relation("PostImages")
+  status      Status        @default(PENDING)
+  user        User          @relation(fields: [userId], references: [id], name: "UserPosts")
+  images      Image[]       @relation("PostImages")
   tags        PostsOnTags[]
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
 }
 
 model Image {
@@ -54,6 +54,7 @@ model Image {
   postId      String?
   tags        ImagesOnTags[]
 
+  order      Int      @default(0)
   tools      String[]
   techniques String[]
 
@@ -79,10 +80,10 @@ model Tag {
 }
 
 model PostsOnTags {
-  post      Post    @relation(fields: [postId], references: [id])
-  postId    String
-  tag       Tag     @relation(fields: [tagId], references: [id])
-  tagId     String
+  post       Post     @relation(fields: [postId], references: [id])
+  postId     String
+  tag        Tag      @relation(fields: [tagId], references: [id])
+  tagId      String
   assignedAt DateTime @default(now())
 
   @@id([postId, tagId])

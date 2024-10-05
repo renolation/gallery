@@ -36,3 +36,16 @@ export async function getImages(){
         }
     });
 }
+
+export async function updateOrder(imageIds: string[]) {
+    for(let i = 0; i < imageIds.length; i++){
+        await prisma.image.update({
+            where: {
+                id: imageIds[i]
+            },
+            data: {
+                order: i
+            }
+        });
+    }
+}

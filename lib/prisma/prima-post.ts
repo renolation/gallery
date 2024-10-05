@@ -96,6 +96,9 @@ export async function getPostById(postId: string) {
         where: { id: postId },
         include: {
             images: {
+                orderBy: {
+                    order: 'asc'
+                },
                 include: {
                     tags: {
                         include: {

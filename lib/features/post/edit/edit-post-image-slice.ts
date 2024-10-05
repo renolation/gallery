@@ -78,6 +78,9 @@ export const EditPostImageSlice = createSlice({
                 state.images[index].tags = state.images[index].tags.filter(tag => tag.name !== tagName);
             }
         },
+        updateIndex: (state, action: PayloadAction<ImageWithTags[]>) => {
+            state.images = action.payload;
+        },
     },
 });
 
@@ -90,5 +93,6 @@ export const {
     updateTool,
     addImageTag,
     removeImageTag,
+    updateIndex,
 } = EditPostImageSlice.actions;
 export default EditPostImageSlice.reducer;

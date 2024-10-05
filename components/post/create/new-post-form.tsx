@@ -13,7 +13,6 @@ import {Image as ImageDB} from "@prisma/client";
 
 export default function NewPostForm({images}: { images: ImageWithTags[] }) {
     const dispatch = useDispatch();
-    const firstRender = useIsFirstRender();
 
     const pathname = usePathname();
 
@@ -24,21 +23,7 @@ export default function NewPostForm({images}: { images: ImageWithTags[] }) {
     }, [pathname, dispatch]);
 
 
-    useEffect(() => {
-        if (images.length > 0) {
-            console.log('Clearing images');
-            dispatch(clearImage());
-            for (const image of images) {
-                const imageWithTags: ImageWithTags = {
-                    ...image,
-                    tags: image.tags,
-                };
-                console.log('Adding image:', imageWithTags);
-                dispatch(addImage(imageWithTags));
 
-            }
-        }
-    }, [images, dispatch]);
 
 
     const editPostImageState = useSelector((state: RootState) => state.editPostImage.images);
