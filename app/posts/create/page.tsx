@@ -15,7 +15,7 @@ export default function PostCreate() {
 
                     <NameInputPost initialName={''}/>
                     <PostTags tags={[]}/>
-                    <EditorCreate/>
+                    <EditorCreate text={''}/>
                     <CreatePostMain images={[]}/>
                 </div>
                 <div className="flex flex-col gap-3 sm:w-72">

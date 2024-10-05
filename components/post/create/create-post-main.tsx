@@ -26,7 +26,7 @@ export default function CreatePostMain({images}: CreatePostMainProps) {
                     ...image,
                     tags: image.tags,
                 };
-                console.log('Adding image:', imageWithTags);
+                // console.log('Adding image:', imageWithTags);
                 dispatch(addImage(imageWithTags));
 
             }

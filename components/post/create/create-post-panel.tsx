@@ -32,9 +32,7 @@ export default function CreatePostPanel() {
     }
 
     const createPost = async () => {
-        console.log(inputPostName);
-        console.log(editorCreate);
-        console.log(editPostImage);
+
         const imageIds = editPostImage.map((image: ImageDB) => image.id);
         await createPostAction(imageIds, inputPostName, editorCreate, tagsPost);
          await updateOrderAction(editPostImage.map((image) => image.id));
@@ -42,13 +40,10 @@ export default function CreatePostPanel() {
     }
 
     const updatePost = async () => {
-        console.log(tagsPost);
         if (postEditRouteMatch && isPostEditRoute) {
              await updateOrderAction(editPostImage.map((image) => image.id));
             await addTagsToPostAction(postEditRouteMatch[1], tagsPost);
             await updatePostAction(postEditRouteMatch[1], inputPostName, editorCreate);
-
-
             dispatch(resetTag());
         }
 
