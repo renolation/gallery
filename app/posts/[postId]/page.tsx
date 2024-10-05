@@ -5,6 +5,7 @@ import TopDetail from "@/components/post/detail/top-detail";
 import TopShare from "@/components/post/detail/top-share";
 import {getUserIdFromSession} from "@/lib/auth";
 import PostTagsDetail from "@/components/post/detail/post-tags-detail";
+import ShareComponent from "@/components/shared/share-component";
 
 
 export default async function PostDetailPage({params}: { params: { postId: string } }) {
@@ -24,7 +25,7 @@ export default async function PostDetailPage({params}: { params: { postId: strin
             {/*name*/}
             <TopDetail title={post.title ?? ""} userId={userId} postId={post.id}/>
 
-            <TopShare/>
+
 
 
 
@@ -36,18 +37,21 @@ export default async function PostDetailPage({params}: { params: { postId: strin
                 align="center"
                 direction="row"
                 wrap="wrap"
+                className={"py-6"}
             >
 
                 <Avatar radius="xl"/>
                 <Text>Renolation</Text>
                 {/* Spacer */}
-                {/*<div style={{flexGrow: 1}}></div>*/}
+
                 <div style={{width: 'md'}}></div>
                 <Badge color="green">Follow</Badge>
+                <div style={{flexGrow: 1}}></div>
+                <ShareComponent />
             </Flex>
 
 
-            <br/>
+
             {post.images.map((image) => (
                 <div key={image.id} className="pb-6 w-full">
                     <ImageCard imageId={image.id} imageUrl={image.imageUrl}/>

@@ -17,7 +17,7 @@ export default function ImageDetail({image}: { image: ImageDB }) {
         <div style={{display: 'flex', height: '88vh'}}>
             <div style={{flex: 1, height: '90vh', display: "flex", flexDirection: "column"}}>
 
-                <ImageDetailTop id={image.id}/>
+                <ImageDetailTop id={image.id} imageUrl={image.imageUrl} postId={image.postId}/>
 
                 {/*//image*/}
                 <div style={{display: 'flex', flexDirection: 'column', flex: "1"}}>
