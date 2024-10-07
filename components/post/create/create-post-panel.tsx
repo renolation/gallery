@@ -6,8 +6,8 @@ import {toggleRearrangingButton} from "@/lib/features/post/shared/button-is-rear
 import {RootState} from "@/lib/store";
 import {IconArrowsSort} from "@tabler/icons-react";
 import {Image as ImageDB} from "@prisma/client";
-import {createPostAction} from "@/action/create-post-action";
-import {updatePostAction} from "@/action/edit-post-action";
+import {createPostAction} from "@/action/post-action";
+import {updatePostAction} from "@/action/post-action";
 import {usePathname} from "next/navigation";
 import {addTagsToPostAction, updateOrderAction} from "@/action/post-action";
 import {resetTag} from "@/lib/features/post/shared/tag-post-slice";

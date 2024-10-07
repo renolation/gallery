@@ -20,7 +20,7 @@ import {updateImage, updateTechnique, updateTool} from "@/lib/features/post/edit
 import {index} from "d3-array";
 import {RootState} from "@/lib/store";
 import ImageTags from "@/components/post/create/image-tags";
-import {updateImageAction} from "@/action/edit-image-action";
+import {updateImageAction} from "@/action/image-action";
 import {Image as ImageDB} from "@prisma/client";
 
 

@@ -1,7 +1,6 @@
 "use server";
 
 
-import {updatePostDesc} from "@/lib/prisma/prima-post";
 import {updateImage} from "@/lib/prisma/prisma-image";
 
 export async function updateImageAction(imageId: string, prompt: string, negativePrompt: string,

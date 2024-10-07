@@ -3,7 +3,7 @@
 
 import React, {useRef, useState} from 'react';
 import classes from './drop-zone.module.css';
-import {dropImageAction} from "@/action/create-post-action";
+import {dropImageAction} from "@/action/post-action";
 import {useDispatch} from "react-redux";
 import {addImage} from "@/lib/features/post/edit/edit-post-image-slice";
 import {Loader, useMantineTheme} from "@mantine/core";
@@ -11,7 +11,7 @@ import {Dropzone, IMAGE_MIME_TYPE, MIME_TYPES} from '@mantine/dropzone';
 import {Text, Group, Button, rem} from '@mantine/core';
 import {IconCloudUpload, IconDownload, IconX} from "@tabler/icons-react";
 import {usePathname} from "next/navigation";
-import { editPostAction } from '@/action/edit-post-action';
+import { editPostAction } from '@/action/post-action';
 
 export default function DropZone() {
 
@@ -35,7 +35,7 @@ export default function DropZone() {
                     formData.append('image', image);
                     const imageObj = await dropImageAction(formData);
                     if (imageObj) {
-                        dispatch(addImage(imageObj));
+                        dispatch(addImage({ ...imageObj, tags: [] }));
                         if (isPostEditRoute && postEditRouteMatch) {
                             await editPostAction(postEditRouteMatch[1], imageObj.id);
                         }
