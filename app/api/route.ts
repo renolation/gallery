@@ -1,4 +1,5 @@
 import { getPosts } from '@/lib/prisma/prima-post';
+import {getImages} from "@/lib/prisma/prisma-image";
 
 
 export async function GET() {
@@ -6,3 +7,4 @@ export async function GET() {
 
   return Response.json({ posts })
 }
+

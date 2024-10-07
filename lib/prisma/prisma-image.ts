@@ -29,8 +29,23 @@ export async function getImageById(imageId: string) {
     });
 }
 
-export async function getImages(){
+export async function getImages() {
     return prisma.image.findMany({
+
+        include: {
+            tags: {
+                select: {
+                    tag: {
+                        select: {
+                            name: true,
+                            description: true
+                        }
+                    }
+                }
+            }
+        },
+
+
         orderBy: {
             createdAt: 'asc'
         }
@@ -38,7 +53,7 @@ export async function getImages(){
 }
 
 export async function updateOrder(imageIds: string[]) {
-    for(let i = 0; i < imageIds.length; i++){
+    for (let i = 0; i < imageIds.length; i++) {
         await prisma.image.update({
             where: {
                 id: imageIds[i]
@@ -51,7 +66,7 @@ export async function updateOrder(imageIds: string[]) {
 }
 
 export async function updateImage(imageId: string, prompt: string, negativePrompt: string,
-                                        guidanceScale: number, steps: number, sampler: string, seed: number) {
+                                  guidanceScale: number, steps: number, sampler: string, seed: number) {
     return prisma.image.update({
         where: {
             id: imageId

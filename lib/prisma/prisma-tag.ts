@@ -30,6 +30,8 @@ export async function getTagsByPosts() {
     });
 }
 
+
+
 export async function getTagsByImages() {
       return prisma.tag.findMany({
         where: {

@@ -3,10 +3,10 @@ import {useRef} from 'react';
 import {ActionIcon, Button} from "@mantine/core";
 import {IconChevronLeft, IconChevronRight} from "@tabler/icons-react";
 import {useDispatch, useSelector} from "react-redux";
-import {removeSelectingTagPostHome, setSelectingTagPostHome} from "@/lib/features/post/home/selecting-tag-post-home";
 import {RootState} from "@/lib/store";
+import { removeSelectingTagImageHome, setSelectingTagImageHome } from '@/lib/features/image/selecting-tag-image-home';
 
-export default function TagList({tags}: { tags: string[] }) {
+export default function TagListImage({tags}: { tags: string[] }) {
 
     const listRef = useRef<HTMLDivElement>(null);
     const dispatch = useDispatch();
@@ -16,7 +16,7 @@ export default function TagList({tags}: { tags: string[] }) {
         }
     };
 
-    const selectingTagPost = useSelector((state: RootState) => state.selectingTagPostHome.value);
+    const selectingTagImage = useSelector((state: RootState) => state.selectingTagImageHome.value);
 
 
     const scrollRight = () => {
@@ -27,11 +27,11 @@ export default function TagList({tags}: { tags: string[] }) {
 
     const selectTag = (tag: string) => {
         console.log(tag);
-        if(selectingTagPost === tag) {
-            dispatch(removeSelectingTagPostHome());
+        if(selectingTagImage === tag) {
+            dispatch(removeSelectingTagImageHome());
             return;
         }
-        dispatch(setSelectingTagPostHome(tag))
+        dispatch(setSelectingTagImageHome(tag))
     };
 
 
