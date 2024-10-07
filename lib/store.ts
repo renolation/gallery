@@ -6,6 +6,7 @@ import EditorPostSlice from "@/lib/features/post/shared/editor-post-slice";
 import TagPostSlice from "@/lib/features/post/shared/tag-post-slice";
 import ButtonIsRearrangingSlice from "@/lib/features/post/shared/button-is-rearranging-slice";
 import InputPostNameSlice from '@/lib/features/post/shared/input-post-name';
+import SelectingTagPostHomeSlice from "@/lib/features/post/home/selecting-tag-post-home";
 
 export const makeStore = () => {
     return configureStore({
@@ -18,6 +19,8 @@ export const makeStore = () => {
             tagPost: TagPostSlice,
             buttonIsRearranging: ButtonIsRearrangingSlice,
             inputPostName: InputPostNameSlice,
+            selectingTagPostHome: SelectingTagPostHomeSlice
+
         }
     })
 }

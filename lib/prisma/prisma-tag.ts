@@ -20,6 +20,26 @@ export async function createTag(tagName: string) {
     return tag;
 }
 
+export async function getTagsByPosts() {
+      return prisma.tag.findMany({
+        where: {
+            posts: {
+                some: {}
+            }
+        }
+    });
+}
+
+export async function getTagsByImages() {
+      return prisma.tag.findMany({
+        where: {
+            images: {
+                some: {}
+            }
+        }
+    });
+}
+
 export async function addTagToPost(postId: string, tagName: string) {
     // Find the tag by its name
     const tag = await prisma.tag.findUnique({

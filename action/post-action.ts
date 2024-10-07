@@ -6,16 +6,18 @@ import {uploadImage} from "@/lib/cloudirary";
 import {createImage, updateOrder} from "@/lib/prisma/prisma-image";
 import {addTagsToPost, addTagToImage, createOrUpdateTagForPost, createTag} from "@/lib/prisma/prisma-tag";
 
-export async function createPostActionOld(formData: FormData) {
-    const image = formData.get('image') as File;
-    if (!image) return;
 
-
-    const userId = await getUserIdFromSession();
-    if (!userId) {
-        return;
-    }
-    const imageUrl = await uploadImage(image);
+//region old post action
+// export async function createPostActionOld(formData: FormData) {
+//     const image = formData.get('image') as File;
+//     if (!image) return;
+//
+//
+//     const userId = await getUserIdFromSession();
+//     if (!userId) {
+//         return;
+//     }
+//     const imageUrl = await uploadImage(image);
 
 
     // Create the posts first
@@ -26,7 +28,8 @@ export async function createPostActionOld(formData: FormData) {
     // Update the posts to connect the images
     // await updatePostWithImage(postId, imageRecord.id);
     // redirect(`/post/${postId}/edit`);
-}
+// }
+//endregion
 
 export async function updatePostDescAction(postId: string, description: string) {
     await new Promise(resolve => setTimeout(resolve, 2000)); // 2-second delay

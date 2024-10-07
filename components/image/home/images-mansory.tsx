@@ -27,7 +27,6 @@ export default function ImageMasonry({images}: { images: ImageDB[] }) {
       <Masonry columns={{ xs: 1, sm: 2, md: 3, lg: 4 }} spacing={2}>
         {images.map((item, index) => (
           <div key={index}>
-            <Label>{index + 1}</Label>
             <ImageCard
                         key={item.id}
                         imageId={item.id}

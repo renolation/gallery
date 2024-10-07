@@ -1,28 +1,47 @@
 import prisma from "@/lib/prisma/prisma";
 
-export async function getPosts() {
-    const posts = await prisma.post.findMany({
-        include: {
-            images: {
-                include: {
-                    tags: {
-                        select: {
-                            tag: {
-                                select: {
-                                    name: true,
-                                    description: true
-                                }
+export async function getPosts(tag?: string) {
+const posts = await prisma.post.findMany({
+    include: {
+        images: {
+            include: {
+                tags: {
+                    select: {
+                        tag: {
+                            select: {
+                                name: true,
+                                description: true
                             }
                         }
                     }
                 }
-            },
-            user: true,
+            }
         },
-        orderBy: {
-            createdAt: 'asc'
+        user: true,
+        tags: {
+            select: {
+                tag: {
+                    select: {
+                        name: true,
+                        description: true
+                    }
+                }
+            }
         }
-    });
+    },
+    where: tag ? {
+        tags: {
+            some: {
+                tag: {
+                    name: tag
+                }
+            }
+        }
+    } : {},
+    orderBy: {
+        createdAt: 'asc'
+    }
+});
 
     return posts.map(post => ({
         ...post,
@@ -51,10 +70,10 @@ export async function createPost(userId: string, title: string, description: str
 
 export async function updatePostWithImage(postId: string, imageId: string) {
     await prisma.post.update({
-        where: { id: postId },
+        where: {id: postId},
         data: {
             images: {
-                connect: { id: imageId }
+                connect: {id: imageId}
             }
         },
     });
@@ -62,18 +81,18 @@ export async function updatePostWithImage(postId: string, imageId: string) {
 
 export async function updatePostWithImages(postId: string, imageIds: string[]) {
     await prisma.post.update({
-        where: { id: postId },
+        where: {id: postId},
         data: {
             images: {
-                connect: imageIds.map(id => ({ id }))
+                connect: imageIds.map(id => ({id}))
             }
         },
     });
 }
 
-export async function updatePostDetail(postId: string,title: string, description: string) {
+export async function updatePostDetail(postId: string, title: string, description: string) {
     await prisma.post.update({
-        where: { id: postId },
+        where: {id: postId},
         data: {
             title: title,
             description: description,
@@ -83,7 +102,7 @@ export async function updatePostDetail(postId: string,title: string, description
 
 export async function updatePostDesc(postId: string, description: string) {
     await prisma.post.update({
-        where: { id: postId },
+        where: {id: postId},
         data: {
             description: description,
         },
@@ -93,7 +112,7 @@ export async function updatePostDesc(postId: string, description: string) {
 
 export async function getPostById(postId: string) {
     return prisma.post.findUnique({
-        where: { id: postId },
+        where: {id: postId},
         include: {
             images: {
                 orderBy: {
