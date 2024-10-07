@@ -41,7 +41,7 @@ export default function TagListImage({tags}: { tags: string[] }) {
                 <IconChevronLeft style={{width: '70%', height: '70%'}} stroke={1.5} onClick={scrollLeft}/>
             </ActionIcon>
 
-            <div className="flex overflow-x-auto scroll-smooth mx-10" ref={listRef}>
+            <div className="flex scroll-smooth mx-10" ref={listRef}>
                 {tags.map((tag, index) => (
                     <Button onClick={() => selectTag(tag)} key={index} variant="light" color="gray"
                             className="mx-2">{tag}</Button>
