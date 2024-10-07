@@ -1,5 +1,4 @@
 import {configureStore} from '@reduxjs/toolkit'
-import CounterSlice from "@/lib/features/CounteState/CounterSlice";
 import ButtonEditPostSlice from "@/lib/features/post/edit/button-edit-post-slice";
 import ToggleRightPanelSlice from "@/lib/features/image/detail/toggle-right-panel";
 import EditPostImageSlice from "@/lib/features/post/edit/edit-post-image-slice";
@@ -11,7 +10,7 @@ import InputPostNameSlice from '@/lib/features/post/shared/input-post-name';
 export const makeStore = () => {
     return configureStore({
         reducer: {
-            counter: CounterSlice,
+
             buttonEditPost: ButtonEditPostSlice,
             toggleRightPanel: ToggleRightPanelSlice,
             editPostImage: EditPostImageSlice,
