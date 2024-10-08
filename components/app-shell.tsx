@@ -16,12 +16,13 @@ export function Headroom({children}: { children: React.ReactNode }) {
               <AppShell.Header>
         <Group h="100%" px="md">
           <Group justify="space-between" style={{ flex: 1 }}>
-            <MantineLogo size={30} />
+
+              <NavLink href={'/'}><MantineLogo size={30} /></NavLink>
             <Group ml="xl" gap={0} visibleFrom="xs">
               <UnstyledButton className={classes.control}><NavLink href={'/posts'}>Posts</NavLink></UnstyledButton>
               <UnstyledButton className={classes.control}><NavLink href={'/images'}>Images</NavLink></UnstyledButton>
-              <UnstyledButton className={classes.control}><NavLink href={'/auth?mode=login'}>Login</NavLink></UnstyledButton>
-              <UnstyledButton className={classes.control}><NavLink href={'/posts/create'}>Create</NavLink></UnstyledButton>
+              {/*<UnstyledButton className={classes.control}><NavLink href={'/auth?mode=login'}>Login</NavLink></UnstyledButton>*/}
+              {/*<UnstyledButton className={classes.control}><NavLink href={'/posts/create'}>Create</NavLink></UnstyledButton>*/}
             </Group>
           </Group>
         </Group>

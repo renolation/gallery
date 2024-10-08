@@ -29,7 +29,7 @@ export async function getImageById(imageId: string) {
     });
 }
 
-export async function getImages() {
+export async function getImages(page: number, limit: number, tag?: string) {
     return prisma.image.findMany({
 
         include: {
@@ -44,11 +44,21 @@ export async function getImages() {
                 }
             }
         },
-
+        where: tag ? {
+            tags: {
+                some: {
+                    tag: {
+                        name: tag
+                    }
+                }
+            }
+        } : {},
 
         orderBy: {
             createdAt: 'asc'
-        }
+        },
+        skip: (page - 1) * limit,
+        take: limit,
     });
 }
 

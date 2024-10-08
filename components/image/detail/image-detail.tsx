@@ -50,7 +50,7 @@ export default function ImageDetail({image}: { image: ImageDB }) {
 
 
             {toggleRightPanelState && (
-                <ImageDetailPanel/>
+                <ImageDetailPanel image={image}/>
             )}
         </div>
     );

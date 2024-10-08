@@ -1,47 +1,49 @@
 import prisma from "@/lib/prisma/prisma";
 
-export async function getPosts(tag?: string) {
-const posts = await prisma.post.findMany({
-    include: {
-        images: {
-            include: {
-                tags: {
-                    select: {
-                        tag: {
-                            select: {
-                                name: true,
-                                description: true
+export async function getPosts(page: number, limit: number, tag?: string) {
+    const posts = await prisma.post.findMany({
+        include: {
+            images: {
+                include: {
+                    tags: {
+                        select: {
+                            tag: {
+                                select: {
+                                    name: true,
+                                    description: true
+                                }
                             }
+                        }
+                    }
+                }
+            },
+            user: true,
+            tags: {
+                select: {
+                    tag: {
+                        select: {
+                            name: true,
+                            description: true
                         }
                     }
                 }
             }
         },
-        user: true,
-        tags: {
-            select: {
-                tag: {
-                    select: {
-                        name: true,
-                        description: true
+        where: tag ? {
+            tags: {
+                some: {
+                    tag: {
+                        name: tag
                     }
                 }
             }
-        }
-    },
-    where: tag ? {
-        tags: {
-            some: {
-                tag: {
-                    name: tag
-                }
-            }
-        }
-    } : {},
-    orderBy: {
-        createdAt: 'asc'
-    }
-});
+        } : {},
+        orderBy: {
+            createdAt: 'asc'
+        },
+        skip: (page - 1) * limit,
+        take: limit,
+    });
 
     return posts.map(post => ({
         ...post,
