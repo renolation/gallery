@@ -10,7 +10,7 @@ import Link from 'next/link';
 import {IconHeart, IconPhoto} from "@tabler/icons-react";
 import {useRouter} from 'next/navigation';
 
-export function PostCard({imageUrl, postId}: { imageUrl: string, postId:string }) {
+export function PostCard({imageUrl, postId, totalImages}: { imageUrl: string, postId:string, totalImages: number }) {
     const router = useRouter();
 
     const handleImageClick = () => {
@@ -44,14 +44,14 @@ export function PostCard({imageUrl, postId}: { imageUrl: string, postId:string }
                             <IconPhoto
                                 size={18}
                                 stroke={1.5}/>
-                            <Text>12</Text>
+                            <Text>{totalImages}</Text>
                         </Group>
-                        <Group gap={3}>
-                            <IconHeart
-                                size={18}
-                                stroke={1.5}/>
-                            <Text>222</Text>
-                        </Group>
+                        {/*<Group gap={3}>*/}
+                        {/*    <IconHeart*/}
+                        {/*        size={18}*/}
+                        {/*        stroke={1.5}/>*/}
+                        {/*    <Text>222</Text>*/}
+                        {/*</Group>*/}
                     </Group>
                 </Flex>
             </div>

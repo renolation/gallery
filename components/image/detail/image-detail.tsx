@@ -29,20 +29,21 @@ export default function ImageDetail({image}: { image: ImageDB }) {
                             objectFit="contain"
                         />
                     </div>
-                    <Flex
-                        className={"mb-4"}
-                        gap={3}
-                        justify="center" align="center" style={{width: '100%'}}>
-                        {Array.from({length: 4}).map((_, index) => (
-                            <Button key={index} leftSection="😢"
-                                    justify = "space-around"
-                                    variant="light"
-                                    size="compact-lg"
-                                    radius="xl">
-                                22
-                            </Button>
-                        ))}
-                    </Flex>
+                    {/*Reaction*/}
+                    {/*<Flex*/}
+                    {/*    className={"mb-4"}*/}
+                    {/*    gap={3}*/}
+                    {/*    justify="center" align="center" style={{width: '100%'}}>*/}
+                    {/*    {Array.from({length: 4}).map((_, index) => (*/}
+                    {/*        <Button key={index} leftSection="😢"*/}
+                    {/*                justify = "space-around"*/}
+                    {/*                variant="light"*/}
+                    {/*                size="compact-lg"*/}
+                    {/*                radius="xl">*/}
+                    {/*            22*/}
+                    {/*        </Button>*/}
+                    {/*    ))}*/}
+                    {/*</Flex>*/}
                 </div>
 
 

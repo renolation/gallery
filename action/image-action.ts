@@ -10,6 +10,6 @@ export async function updateImageAction(imageId: string, prompt: string, negativ
 }
 
 export async function getImagesAction(page: number, limit: number, tag?: string) {
-    await new Promise(resolve => setTimeout(resolve, 2000)); // 2-second delay
+    // await new Promise(resolve => setTimeout(resolve, 2000)); // 2-second delay
     return getImages(page, limit, tag);
 }

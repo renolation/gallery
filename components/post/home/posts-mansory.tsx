@@ -79,12 +79,13 @@ export default function PostMasonry() {
     return (
         <Box>
             <Suspense fallback={<Loading/>}>
-                <Masonry columns={{xs: 1, sm: 2, md: 3, lg: 4}} spacing={2}>
+                <Masonry columns={{xs: 1, sm: 2, md: 3, lg: 4, xl: 5, xxl: 6}} spacing={2}>
                     {filteredPosts.map((post, index) => (
                         <div key={index}>
                             <PostCard
                                 key={post.id}
                                 postId={post.id}
+                                totalImages={post.images.length}
                                 imageUrl={post.images.length > 0 ? post.images[0].imageUrl : 'https://res.cloudinary.com/dlqx1qpfr/image/upload/v1690219876/cld-sample-3.jpg'}
                             />
                         </div>

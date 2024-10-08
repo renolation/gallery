@@ -10,7 +10,7 @@ import {
     updatePostWithImages
 } from "@/lib/prisma/prima-post";
 import {uploadImage} from "@/lib/cloudirary";
-import {createImage, createImageWithoutPostId, getImages, updateOrder} from "@/lib/prisma/prisma-image";
+import {createImage, createImageWithoutPostId, updateOrder} from "@/lib/prisma/prisma-image";
 import {addTagsToPost, addTagToImage, createOrUpdateTagForPost, createTag} from "@/lib/prisma/prisma-tag";
 import {redirect} from "next/navigation";
 
