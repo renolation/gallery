@@ -6,10 +6,10 @@ import {toggleRearrangingButton} from "@/lib/features/post/shared/button-is-rear
 import {RootState} from "@/lib/store";
 import {IconArrowsSort} from "@tabler/icons-react";
 import {Image as ImageDB} from "@prisma/client";
-import {createPostAction} from "@/action/create-post-action";
-import {updatePostAction} from "@/action/edit-post-action";
+import {createPostAction} from "@/action/post-action";
+import {updatePostAction} from "@/action/post-action";
 import {usePathname} from "next/navigation";
-import {addTagsToPostAction} from "@/action/post-action";
+import {addTagsToPostAction, updateOrderAction} from "@/action/post-action";
 import {resetTag} from "@/lib/features/post/shared/tag-post-slice";
 
 export default function CreatePostPanel() {
@@ -32,17 +32,16 @@ export default function CreatePostPanel() {
     }
 
     const createPost = async () => {
-        console.log(inputPostName);
-        console.log(editorCreate);
-        console.log(editPostImage);
+
         const imageIds = editPostImage.map((image: ImageDB) => image.id);
         await createPostAction(imageIds, inputPostName, editorCreate, tagsPost);
+         await updateOrderAction(editPostImage.map((image) => image.id));
         dispatch(resetTag());
     }
 
     const updatePost = async () => {
-        console.log(tagsPost);
         if (postEditRouteMatch && isPostEditRoute) {
+             await updateOrderAction(editPostImage.map((image) => image.id));
             await addTagsToPostAction(postEditRouteMatch[1], tagsPost);
             await updatePostAction(postEditRouteMatch[1], inputPostName, editorCreate);
             dispatch(resetTag());

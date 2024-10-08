@@ -29,10 +29,65 @@ export async function getImageById(imageId: string) {
     });
 }
 
-export async function getImages(){
+export async function getImages(page: number, limit: number, tag?: string) {
     return prisma.image.findMany({
+
+        include: {
+            tags: {
+                select: {
+                    tag: {
+                        select: {
+                            name: true,
+                            description: true
+                        }
+                    }
+                }
+            }
+        },
+        where: tag ? {
+            tags: {
+                some: {
+                    tag: {
+                        name: tag
+                    }
+                }
+            }
+        } : {},
+
         orderBy: {
             createdAt: 'asc'
+        },
+        skip: (page - 1) * limit,
+        take: limit,
+    });
+}
+
+export async function updateOrder(imageIds: string[]) {
+    for (let i = 0; i < imageIds.length; i++) {
+        await prisma.image.update({
+            where: {
+                id: imageIds[i]
+            },
+            data: {
+                order: i
+            }
+        });
+    }
+}
+
+export async function updateImage(imageId: string, prompt: string, negativePrompt: string,
+                                  guidanceScale: number, steps: number, sampler: string, seed: number) {
+    return prisma.image.update({
+        where: {
+            id: imageId
+        },
+        data: {
+            prompt: prompt,
+            nevPrompt: negativePrompt,
+            guidanceScale: guidanceScale,
+            steps: steps,
+            sampler: sampler,
+            seed: seed
         }
     });
 }

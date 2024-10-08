@@ -4,12 +4,10 @@ import {Editor, EditorContent, useEditor} from '@tiptap/react';
 import TextAlign from '@tiptap/extension-text-align'
 import StarterKit from '@tiptap/starter-kit';
 import Highlight from '@tiptap/extension-highlight'
-import Placeholder from '@tiptap/extension-placeholder';
 import {useDebounce} from "use-debounce";
 import {updatePostDescAction} from "@/action/post-action";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "@/lib/store";
-import {decrement} from "@/lib/features/CounteState/CounterSlice";
 import {buttonEditPostSaving, buttonEditPostSaved} from "@/lib/features/post/edit/button-edit-post-slice";
 
 

@@ -1,26 +1,29 @@
 "use client";
 
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "@/lib/store";
 import React, {useState} from "react";
 import {DragDropContext, Droppable, Draggable} from '@hello-pangea/dnd';
 import {Group, Card, Text} from '@mantine/core';
 import {IconArrowsMaximize, IconShare3} from "@tabler/icons-react";
+import {updateIndex} from "@/lib/features/post/edit/edit-post-image-slice";
+import {updateOrderAction} from "@/action/post-action";
 
 
 
 export default function RearrangingImage() {
     const editPostImageState = useSelector((state: RootState) => state.editPostImage.images);
     const [items, setItems] = useState(editPostImageState);
+    const dispatch = useDispatch();
 
 
-    const handleDragEnd = (result: any) => {
+    const handleDragEnd = async (result: any) => {
         if (!result.destination) return;
 
         const reorderedItems = Array.from(items);
         const [removed] = reorderedItems.splice(result.source.index, 1);
         reorderedItems.splice(result.destination.index, 0, removed);
-
+        dispatch(updateIndex(reorderedItems));
         setItems(reorderedItems);
     };
 

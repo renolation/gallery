@@ -1,31 +1,84 @@
 'use server';
 
 import {getUserIdFromSession} from "@/lib/auth";
-import {createPost, updatePostDesc, updatePostWithImage} from "@/lib/prisma/prima-post";
+import {
+    createPost,
+    getPostById, getPosts,
+    updatePostDesc,
+    updatePostDetail,
+    updatePostWithImage,
+    updatePostWithImages
+} from "@/lib/prisma/prima-post";
 import {uploadImage} from "@/lib/cloudirary";
-import {createImage} from "@/lib/prisma/prisma-image";
-import {addTagsToPost, createOrUpdateTagForPost, createTag} from "@/lib/prisma/prisma-tag";
+import {createImage, createImageWithoutPostId, updateOrder} from "@/lib/prisma/prisma-image";
+import {addTagsToPost, addTagToImage, createOrUpdateTagForPost, createTag} from "@/lib/prisma/prisma-tag";
+import {redirect} from "next/navigation";
 
-export async function createPostActionOld(formData: FormData) {
+export async function editPostAction(postId: string, imageId: string) {
+    const userId = await getUserIdFromSession();
+    if (!userId) {
+        return;
+    }
+
+    const post = await getPostById(postId);
+    if(!post) {
+        console.log("Post not found");
+        return;
+    }
+    await updatePostWithImage(post.id, imageId);
+
+    // redirect(`/posts/${post.id}`);
+
+}
+
+export async function updatePostAction(postId: string,  title: string, description: string) {
+    const userId = await getUserIdFromSession();
+    if (!userId) {
+        return;
+    }
+
+    const post = await getPostById(postId);
+    if(!post) {
+        console.log("Post not found");
+        return;
+    }
+
+    await updatePostDetail(postId, title, description);
+
+    redirect(`/posts/${postId}`);
+
+}
+
+export async function createPostAction(imagesId: string[], title: string, description: string, tagsPost: string[]) {
+    const userId = await getUserIdFromSession();
+    if (!userId) {
+        return;
+    }
+
+    const postId = await createPost(userId, title, description);
+    await addTagsToPostAction(postId, tagsPost);
+    await updatePostWithImages(postId, imagesId);
+
+    redirect(`/posts/${postId}`);
+
+}
+
+export async function dropImageAction(formData: FormData) {
+    console.log("dropImageAction called");
     const image = formData.get('image') as File;
-    if (!image) return;
-
+    if (!image) {
+        console.log("No image found in formData");
+        return;
+    }
 
     const userId = await getUserIdFromSession();
     if (!userId) {
         return;
     }
+    console.log(userId);
     const imageUrl = await uploadImage(image);
-
-
-    // Create the posts first
-    // const postId = await createPost(userId);
-
-    // Create the images with the postId
-    // const imageRecord = await createImage(userId, imageUrl, postId);
-    // Update the posts to connect the images
-    // await updatePostWithImage(postId, imageRecord.id);
-    // redirect(`/post/${postId}/edit`);
+    console.log(imageUrl);
+    return await createImageWithoutPostId(userId, imageUrl);
 }
 
 export async function updatePostDescAction(postId: string, description: string) {
@@ -42,4 +95,18 @@ export async function addTagsToPostAction(postId: string, tags: string[]){
 export async function createTagAction(tag: string){
     console.log("create tag");
     await createTag(tag);
+}
+
+export async function imageTagAction(imageId: string, tag: string){
+    console.log("image tag");
+    await addTagToImage(imageId, tag);
+}
+
+export async function updateOrderAction(imageIds: string[]){
+    console.log("update order");
+    await updateOrder(imageIds);
+}
+
+export async function getPostsAction(page: number, limit: number, tag?: string) {
+    return getPosts(page, limit, tag);
 }

@@ -2,7 +2,7 @@ import prisma from "@/lib/prisma/prisma";
 
 
 export async function createTag(tagName: string) {
- let tag = await prisma.tag.findUnique({
+    let tag = await prisma.tag.findUnique({
         where: {
             name: tagName,
         },
@@ -15,7 +15,31 @@ export async function createTag(tagName: string) {
                 name: tagName,
             },
         });
+        return tag;
     }
+    return tag;
+}
+
+export async function getTagsByPosts() {
+      return prisma.tag.findMany({
+        where: {
+            posts: {
+                some: {}
+            }
+        }
+    });
+}
+
+
+
+export async function getTagsByImages() {
+      return prisma.tag.findMany({
+        where: {
+            images: {
+                some: {}
+            }
+        }
+    });
 }
 
 export async function addTagToPost(postId: string, tagName: string) {
@@ -151,5 +175,34 @@ export async function createOrUpdateTagForPost(postId: string, tagName: string) 
             },
         });
         console.log(`Tag ${tagName} added to post ${postId}`);
+    }
+}
+
+export async function addTagToImage(imageId: string, tagName: string) {
+    const tag = await createTag(tagName);
+
+    const existingTag = await prisma.imagesOnTags.findFirst({
+        where: {
+            imageId: imageId,
+            tagId: tag.id,
+        }
+    });
+    if (existingTag) {
+        await prisma.imagesOnTags.delete({
+            where: {
+                imageId_tagId: {
+                    imageId: imageId,
+                    tagId: tag.id,
+                }
+            }
+        });
+    } else {
+        await prisma.imagesOnTags.create({
+            data: {
+                imageId: imageId,
+                tagId: tag.id,
+            }
+        });
+
     }
 }
