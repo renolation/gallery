@@ -4,10 +4,12 @@ import {createSlice} from "@reduxjs/toolkit";
 
 export interface SelectingTagImageHomeState {
     value: string;
+    page: number;
 }
 
 const initialState: SelectingTagImageHomeState = {
     value: '',
+    page: 0,
 }
 
 export const SelectingTagImageHomeSlice = createSlice({
@@ -19,10 +21,13 @@ export const SelectingTagImageHomeSlice = createSlice({
         },
         removeSelectingTagImageHome: (state) => {
             state.value = '';
+        },
+        setImagePage: (state, action) => {
+            state.page = action.payload;
         }
 
     },
 });
 
-export const {setSelectingTagImageHome, removeSelectingTagImageHome} = SelectingTagImageHomeSlice.actions;
+export const {setSelectingTagImageHome, removeSelectingTagImageHome, setImagePage} = SelectingTagImageHomeSlice.actions;
 export default SelectingTagImageHomeSlice.reducer;

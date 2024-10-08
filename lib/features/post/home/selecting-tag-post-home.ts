@@ -4,10 +4,12 @@ import {createSlice} from "@reduxjs/toolkit";
 
 export interface SelectingTagPostHomeState {
     value: string;
+        page: number;
 }
 
 const initialState: SelectingTagPostHomeState = {
     value: '',
+    page: 0,
 }
 
 export const SelectingTagPostHomeSlice = createSlice({
@@ -19,10 +21,13 @@ export const SelectingTagPostHomeSlice = createSlice({
         },
         removeSelectingTagPostHome: (state) => {
             state.value = '';
+        },
+        setPostPage: (state, action) => {
+            state.page = action.payload;
         }
 
     },
 });
 
-export const {setSelectingTagPostHome, removeSelectingTagPostHome} = SelectingTagPostHomeSlice.actions;
+export const {setSelectingTagPostHome, removeSelectingTagPostHome, setPostPage} = SelectingTagPostHomeSlice.actions;
 export default SelectingTagPostHomeSlice.reducer;

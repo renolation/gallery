@@ -10,13 +10,13 @@ import {Suspense} from "react";
 
 export default async function PostsPage() {
 
-    const posts = await getPosts();
+
     const tags = await getTagsByPosts();
     return (
         <>
             <TagListPost tags={tags.map(tag => tag.name)}/>
             <div className="py-3"/>
-            <PostMasonry posts={posts}/>
+            <PostMasonry/>
         </>
     );
 }

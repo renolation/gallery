@@ -10,14 +10,14 @@ import TagListImage from "@/components/image/home/tag-list-image";
 
 export default async function ImagesPage() {
 
-    const images = await getImages();
+
     const tags = await getTagsByImages();
 
     return (
         <>
             <TagListImage tags={tags.map(tag => tag.name)}/>
             <div className="py-3"/>
-            <ImageMasonry images={images}/>
+            <ImageMasonry />
         </>
     );
 }

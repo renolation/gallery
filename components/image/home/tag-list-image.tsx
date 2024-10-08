@@ -4,7 +4,11 @@ import {ActionIcon, Button} from "@mantine/core";
 import {IconChevronLeft, IconChevronRight} from "@tabler/icons-react";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "@/lib/store";
-import { removeSelectingTagImageHome, setSelectingTagImageHome } from '@/lib/features/image/selecting-tag-image-home';
+import {
+    removeSelectingTagImageHome,
+    setImagePage,
+    setSelectingTagImageHome
+} from '@/lib/features/image/selecting-tag-image-home';
 
 export default function TagListImage({tags}: { tags: string[] }) {
 
@@ -29,6 +33,7 @@ export default function TagListImage({tags}: { tags: string[] }) {
         console.log(tag);
         if(selectingTagImage === tag) {
             dispatch(removeSelectingTagImageHome());
+            dispatch(setImagePage(1));
             return;
         }
         dispatch(setSelectingTagImageHome(tag))

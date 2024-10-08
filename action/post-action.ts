@@ -3,14 +3,14 @@
 import {getUserIdFromSession} from "@/lib/auth";
 import {
     createPost,
-    getPostById,
+    getPostById, getPosts,
     updatePostDesc,
     updatePostDetail,
     updatePostWithImage,
     updatePostWithImages
 } from "@/lib/prisma/prima-post";
 import {uploadImage} from "@/lib/cloudirary";
-import {createImage, createImageWithoutPostId, updateOrder} from "@/lib/prisma/prisma-image";
+import {createImage, createImageWithoutPostId, getImages, updateOrder} from "@/lib/prisma/prisma-image";
 import {addTagsToPost, addTagToImage, createOrUpdateTagForPost, createTag} from "@/lib/prisma/prisma-tag";
 import {redirect} from "next/navigation";
 
@@ -105,4 +105,8 @@ export async function imageTagAction(imageId: string, tag: string){
 export async function updateOrderAction(imageIds: string[]){
     console.log("update order");
     await updateOrder(imageIds);
+}
+
+export async function getPostsAction(page: number, limit: number, tag?: string) {
+    return getPosts(page, limit, tag);
 }
