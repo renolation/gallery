@@ -26,9 +26,6 @@ export default async function PostDetailPage({params}: { params: { postId: strin
             <TopDetail title={post.title ?? ""} userId={userId} postId={post.id}/>
 
 
-
-
-
             <Flex
                 mih={50}
                 w="100%"
@@ -47,20 +44,21 @@ export default async function PostDetailPage({params}: { params: { postId: strin
                 <div style={{width: 'md'}}></div>
                 <Badge color="green">Follow</Badge>
                 <div style={{flexGrow: 1}}></div>
-                <ShareComponent />
+                <ShareComponent/>
             </Flex>
 
 
-
-            {post.images.map((image) => (
+            {post.images.map((image: { id: string; imageUrl: string }) => (
                 <div key={image.id} className="pb-6 w-full">
                     <ImageCard imageId={image.id} imageUrl={image.imageUrl}/>
                 </div>
             ))}
 
-            <PostTagsDetail tags={post.tags.map(tag => ({id: tag.tagId, name: tag.tag.name}))}/>
 
-
+            <PostTagsDetail tags={post.tags.map((tag: { tagId: string; tag: { name: string } }) => ({
+                id: tag.tagId,
+                name: tag.tag.name
+            }))}/>
 
             <div className="mt-4 mb-24" dangerouslySetInnerHTML={{__html: post.description}}></div>
 

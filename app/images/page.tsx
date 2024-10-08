@@ -12,9 +12,9 @@ export default async function ImagesPage() {
 
     return (
         <>
-            <TagListImage tags={tags.map(tag => tag.name)}/>
+            <TagListImage tags={tags.map((tag: { name: string }) => tag.name)}/>
             <div className="py-3"/>
-            <ImageMasonry />
+            <ImageMasonry/>
         </>
     );
 }

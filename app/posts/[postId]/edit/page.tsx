@@ -3,8 +3,6 @@ import NameInputPost from "@/components/post/create/name-input-post";
 import PostTags from "@/components/post/create/post-tags";
 import CreatePostMain from "@/components/post/create/create-post-main";
 import CreatePostPanel from "@/components/post/create/create-post-panel";
-import {Status} from "@prisma/client";
-import {Image as ImageDB} from "@prisma/client";
 import {ImageWithTags} from "@/lib/features/post/edit/edit-post-image-slice";
 import EditorCreate from "@/components/post/create/editor-create";
 
@@ -34,13 +32,27 @@ export default async function EditPostPage({params}: { params: { postId: string 
                 <div className="flex min-w-0 flex-1 flex-col gap-6">
 
                     <NameInputPost initialName={post.title}/>
-                    <PostTags tags={post.tags.map((tag) => tag.tag.name)}/>
+                    <PostTags tags={post.tags.map((tag: { tag: { name: string } }) => tag.tag.name)}/>
                     <EditorCreate text={post.description}/>
-                    <CreatePostMain images={post.images.map(image => ({
+                   <CreatePostMain images={post.images.map((image: {
+                        id: string;
+                        tags: {
+                            tag: {
+                                id: string;
+                                name: string;
+                                description: string | null;
+                                createdAt: Date;
+                                updatedAt: Date;
+                            };
+                            imageId: string;
+                            tagId: string;
+                            assignedAt: Date;
+                        }[];
+                    }) => ({
                         ...image,
                         tags: image.tags.map(tagRelation => ({
                             name: tagRelation.tag.name,
-                            description: tagRelation.tag.description
+                            description: tagRelation.tag.description ?? ''
                         }))
                     })) as ImageWithTags[]}/>
 

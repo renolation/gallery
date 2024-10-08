@@ -13,7 +13,7 @@ export default async function PostsPage() {
     const tags = await getTagsByPosts();
     return (
         <>
-            <TagListPost tags={tags.map(tag => tag.name)}/>
+            <TagListPost tags={tags.map((tag: { name: string }) => tag.name)} />
             <div className="py-3"/>
             <PostMasonry/>
         </>
