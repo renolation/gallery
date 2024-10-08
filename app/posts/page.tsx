@@ -1,7 +1,6 @@
 import {getPostById, getPosts} from "@/lib/prisma/prima-post";
 import Image from "next/image";
 import Link from "next/link";
-import PostGrid from "@/components/post/home/post-grid";
 import PostMasonry from "@/components/post/home/posts-mansory";
 import {getTagsByPosts} from "@/lib/prisma/prisma-tag";
 import TagListPost from "@/components/post/home/tag-list-post";
