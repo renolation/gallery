@@ -14,7 +14,7 @@ import {getImagesAction} from "@/action/image-action";
 import {Suspense, useEffect} from "react";
 import {Button} from "@mantine/core";
 import {setImagePage} from "@/lib/features/image/selecting-tag-image-home";
-import { LIMIT_PER_PAGE } from '@/lib/constants';
+import {LIMIT_PER_PAGE} from '@/lib/constants';
 import Loading from '@/app/images/loading';
 
 type ImagesWithTags = ImageDB & {
@@ -38,7 +38,7 @@ export default function ImageMasonry() {
             setImages(fetchedImages);
         }
 
-        fetchImages().then(r => console.log('Loaded more images'));
+        fetchImages().then(r => console.log('Loaded images'));
     }, [selectingTagImage]);
 
     const loadMore = () => {
@@ -46,9 +46,19 @@ export default function ImageMasonry() {
         async function fetchImages() {
             const nextPage = currentPage + 1;
             const fetchedImages = selectingTagImage ? await getImagesAction(nextPage, LIMIT_PER_PAGE, selectingTagImage) : await getImagesAction(nextPage, LIMIT_PER_PAGE);
-            setImages(prevImages => [...prevImages, ...fetchedImages]);
-            dispatch(setImagePage(nextPage));
+
+
+            if (fetchedImages.some(image => image.id === images[images.length - 1].id)) {
+                console.log('No more images');
+                return;
+            } else {
+                setImages(prevImages => [...prevImages, ...fetchedImages]);
+                dispatch(setImagePage(nextPage));
+            }
+
+
         }
+
         fetchImages().then(r => console.log('Loaded more images'));
     }
 
@@ -61,8 +71,8 @@ export default function ImageMasonry() {
 
     return (
         <Box>
-            <Suspense fallback={<Loading />}>
-                <Masonry columns={{xs: 1, sm: 2, md: 3, lg: 4, xl:5, xxl: 6}} spacing={2}>
+            <Suspense fallback={<Loading/>}>
+                <Masonry columns={{xs: 1, sm: 2, md: 3, lg: 4, xl: 5, xxl: 6}} spacing={2}>
                     {filteredImages.map((item, index) => (
                         <div key={index}>
                             <ImageCard

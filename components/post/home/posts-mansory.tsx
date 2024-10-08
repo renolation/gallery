@@ -56,7 +56,7 @@ export default function PostMasonry() {
             setPosts(fetchedPosts);
         }
 
-        fetchPosts().then(r => console.log('Loaded more posts'));
+        fetchPosts().then(r => console.log('Loaded posts'));
     }, [selectingTagPost]);
 
 
@@ -64,8 +64,17 @@ export default function PostMasonry() {
         async function fetchPosts() {
             const nextPage = currentPage + 1;
             const fetchedPosts = selectingTagPost ? await getPostsAction(nextPage, LIMIT_PER_PAGE, selectingTagPost) : await getPostsAction(nextPage, LIMIT_PER_PAGE);
-            setPosts(prevPosts => [...prevPosts, ...fetchedPosts]);
-            dispatch(setPostPage(nextPage));
+
+
+            if (fetchedPosts.some(post => post.id === posts[posts.length - 1].id)) {
+                console.log('No more posts');
+                return;
+            } else {
+                setPosts(prevPosts => [...prevPosts, ...fetchedPosts]);
+                dispatch(setPostPage(nextPage));
+            }
+
+
         }
 
         fetchPosts().then(r => console.log('Loaded more posts'));
