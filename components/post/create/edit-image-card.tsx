@@ -10,17 +10,17 @@ import {
     Text,
     MultiSelect,
     Alert,
-    Divider
+    Divider, Checkbox
 } from "@mantine/core";
 import {IconPlus} from "@tabler/icons-react";
 import {useDisclosure} from '@mantine/hooks';
 import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {updateImage, updateTechnique, updateTool} from "@/lib/features/post/edit/edit-post-image-slice";
+import {updateFeatured, updateImage, updateTechnique, updateTool} from "@/lib/features/post/edit/edit-post-image-slice";
 import {index} from "d3-array";
 import {RootState} from "@/lib/store";
 import ImageTags from "@/components/post/create/image-tags";
-import {updateImageAction} from "@/action/image-action";
+import {changeFeaturedImageAction, updateImageAction} from "@/action/image-action";
 import {Image as ImageDB} from "@prisma/client";
 
 
@@ -54,6 +54,8 @@ export default function EditImageCard({imageString, imageIndex, image, saveChang
 
     const [popoverOpened, setPopoverOpened] = useState(false);
     const [popoverTechniquesOpened, setPopoverTechniquesOpened] = useState(false);
+
+    const [checked, setChecked] = useState(image.isFeatured);
 
     const [selectedTools, setSelectedTools] = useState<string[]>([]);
     const [tempSelectedTools, setTempSelectedTools] = useState<string[]>([]);
@@ -99,7 +101,15 @@ export default function EditImageCard({imageString, imageIndex, image, saveChang
         dispatch(updateTechnique({index: imageIndex, techniques: tempSelectedTechniques}));
 
     }
+
+
     //endregion
+    const handleFeatured = async () => {
+        await changeFeaturedImageAction(image.id, !checked);
+        setChecked(!checked);
+        dispatch(updateFeatured({index: imageIndex, featured: !checked}));
+
+    }
 
     const handleChange = (field: string, value: any) => {
         setTempFormData((prev) => ({...prev, [field]: value}));
@@ -188,7 +198,7 @@ export default function EditImageCard({imageString, imageIndex, image, saveChang
                                 <p>Prompt</p>
                                 <Button variant="filled" onClick={open}>Edit</Button>
                             </Flex>
-                            <Divider />
+                            <Divider/>
                             {formData.prompt && <Text>Prompt: {formData.prompt}</Text>}
                             {formData.negativePrompt && <Text>Negative Prompt: {formData.negativePrompt}</Text>}
                             {formData.guidanceScale !== undefined && formData.guidanceScale !== 0 &&
@@ -345,6 +355,11 @@ export default function EditImageCard({imageString, imageIndex, image, saveChang
                             {/*}*/}
                             <ImageTags imageIndex={imageIndex}/>
                         </div>
+                        <p>Is Featured: {image.isFeatured}</p>
+                        <Checkbox
+                            checked={checked}
+                            onChange={handleFeatured}
+                        />
                     </div>
 
 

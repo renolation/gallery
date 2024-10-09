@@ -91,3 +91,28 @@ export async function updateImage(imageId: string, prompt: string, negativePromp
         }
     });
 }
+
+export async function changeFeaturedImage(imageId: string, featured: boolean) {
+    return prisma.image.update({
+        where: {
+            id: imageId
+        },
+        data: {
+            isFeatured: featured
+        },
+
+    })
+}
+
+export async function getFeaturedImages(page: number, limit: number) {
+    return prisma.image.findMany({
+        where: {
+            isFeatured: true
+        },
+        orderBy: {
+            updatedAt: 'asc'
+        },
+        skip: (page - 1) * limit,
+        take: limit,
+    });
+}

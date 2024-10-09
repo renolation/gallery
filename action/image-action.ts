@@ -1,7 +1,7 @@
 "use server";
 
 
-import {getImages, updateImage} from "@/lib/prisma/prisma-image";
+import {changeFeaturedImage, getFeaturedImages, getImages, updateImage} from "@/lib/prisma/prisma-image";
 
 export async function updateImageAction(imageId: string, prompt: string, negativePrompt: string,
                                         guidanceScale: number, steps: number, sampler: string, seed: number) {
@@ -12,4 +12,12 @@ export async function updateImageAction(imageId: string, prompt: string, negativ
 export async function getImagesAction(page: number, limit: number, tag?: string) {
     // await new Promise(resolve => setTimeout(resolve, 2000)); // 2-second delay
     return getImages(page, limit, tag);
+}
+
+export async function changeFeaturedImageAction(imageId: string, featured: boolean) {
+    return changeFeaturedImage(imageId, featured);
+}
+
+export async function getFeaturedImagesAction(page: number, limit: number){
+    return getFeaturedImages(page, limit);
 }

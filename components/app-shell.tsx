@@ -23,8 +23,10 @@ export function Headroom({children}: { children: React.ReactNode }) {
                 <Group h="100%" px="md">
                     <Burger opened={opened} onClick={toggle} hiddenFrom="xs" size="sm"/>
                     <Group justify="space-between" style={{flex: 1}}>
-                        <MantineLogo size={30}/>
+                        <NavLink
+                                href={'/'}><MantineLogo size={30}/></NavLink>
                         <Group ml="xl" gap={0} visibleFrom="xs">
+
                             <UnstyledButton className={classes.control}><NavLink
                                 href={'/posts'}>Posts</NavLink></UnstyledButton>
                             <UnstyledButton className={classes.control}><NavLink
