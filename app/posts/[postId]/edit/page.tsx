@@ -35,17 +35,17 @@ export default async function EditPostPage({params}: { params: { postId: string 
                     <PostTags tags={post.tags.map((tag: { tag: { name: string } }) => tag.tag.name)}/>
                     <EditorCreate text={post.description}/>
                    <CreatePostMain images={post.images.map((image: {
-                        id: string;
+                        id: number;
                         tags: {
                             tag: {
-                                id: string;
+                                id: number;
                                 name: string;
                                 description: string | null;
                                 createdAt: Date;
                                 updatedAt: Date;
                             };
-                            imageId: string;
-                            tagId: string;
+                            imageId: number;
+                            tagId: number;
                             assignedAt: Date;
                         }[];
                     }) => ({
