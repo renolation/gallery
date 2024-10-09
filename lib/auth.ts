@@ -1,7 +1,8 @@
-import { Lucia } from 'lucia';
-import { cookies } from "next/headers";
-import { PrismaAdapter } from "@lucia-auth/adapter-prisma";
+import {Lucia} from 'lucia';
+import {cookies} from "next/headers";
+import {PrismaAdapter} from "@lucia-auth/adapter-prisma";
 import prisma from "@/lib/prisma/prisma";
+
 
 const adapter = new PrismaAdapter(prisma.session, prisma.user);
 export const lucia = new Lucia(adapter, {
@@ -13,8 +14,10 @@ export const lucia = new Lucia(adapter, {
 });
 
 
+
 export async function createAuthSession(userId: string) {
     console.log('createAuthSession: ', userId);
+
     const session = await lucia.createSession(userId, {});
 
     const sessionCookie = lucia.createSessionCookie(session.id);
@@ -68,7 +71,7 @@ export async function verifyAuth() {
 }
 
 export async function destroySession() {
-    const { session } = await verifyAuth();
+    const {session} = await verifyAuth();
     if (!session) {
         return {
             error: 'Unauthorized'
@@ -95,7 +98,7 @@ export async function getUserIdFromSession() {
     }
 
     try {
-        const { session } = await lucia.validateSession(sessionId);
+        const {session} = await lucia.validateSession(sessionId);
         return session?.userId || null;
     } catch (e) {
         // Handle error

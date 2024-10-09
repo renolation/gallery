@@ -11,7 +11,7 @@ import ShareImage from "@/components/image/shared/share-image";
 import Link from 'next/link';
 import {useRouter} from 'next/navigation';
 
-export function ImageCard({imageId, imageUrl}: { imageId: string, imageUrl: string }) {
+export function ImageCard({imageId, imageUrl}: { imageId: number, imageUrl: string }) {
     const router = useRouter();
 
 

@@ -1,7 +1,7 @@
 import prisma from "@/lib/prisma/prisma";
 
 
-export async function createImage(userId: string, imageUrl: string, postId: string) {
+export async function createImage(userId: string, imageUrl: string, postId: number) {
     return prisma.image.create({
         data: {
             userId: userId,
@@ -21,7 +21,8 @@ export async function createImageWithoutPostId(userId: string, imageUrl: string)
 }
 
 
-export async function getImageById(imageId: string) {
+export async function getImageById(imageId: number) {
+    console.log(imageId);
     return prisma.image.findUnique({
         where: {
             id: imageId,
@@ -62,7 +63,7 @@ export async function getImages(page: number, limit: number, tag?: string) {
     });
 }
 
-export async function updateOrder(imageIds: string[]) {
+export async function updateOrder(imageIds: number[]) {
     for (let i = 0; i < imageIds.length; i++) {
         await prisma.image.update({
             where: {
@@ -75,7 +76,7 @@ export async function updateOrder(imageIds: string[]) {
     }
 }
 
-export async function updateImage(imageId: string, prompt: string, negativePrompt: string,
+export async function updateImage(imageId: number, prompt: string, negativePrompt: string,
                                   guidanceScale: number, steps: number, sampler: string, seed: number) {
     return prisma.image.update({
         where: {
@@ -92,7 +93,7 @@ export async function updateImage(imageId: string, prompt: string, negativePromp
     });
 }
 
-export async function changeFeaturedImage(imageId: string, featured: boolean) {
+export async function changeFeaturedImage(imageId: number, featured: boolean) {
     return prisma.image.update({
         where: {
             id: imageId

@@ -9,7 +9,7 @@ import EditorCreate from "@/components/post/create/editor-create";
 
 export default async function EditPostPage({params}: { params: { postId: string } }) {
 
-    const post = await getPostById(params.postId);
+    const post = await getPostById(parseInt(params.postId, 10));
 
 
     if (!post) {

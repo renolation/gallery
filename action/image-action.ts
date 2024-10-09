@@ -3,7 +3,7 @@
 
 import {changeFeaturedImage, getFeaturedImages, getImages, updateImage} from "@/lib/prisma/prisma-image";
 
-export async function updateImageAction(imageId: string, prompt: string, negativePrompt: string,
+export async function updateImageAction(imageId: number, prompt: string, negativePrompt: string,
                                         guidanceScale: number, steps: number, sampler: string, seed: number) {
 
     return updateImage(imageId, prompt, negativePrompt, guidanceScale, steps, sampler, seed);
@@ -14,7 +14,7 @@ export async function getImagesAction(page: number, limit: number, tag?: string)
     return getImages(page, limit, tag);
 }
 
-export async function changeFeaturedImageAction(imageId: string, featured: boolean) {
+export async function changeFeaturedImageAction(imageId: number, featured: boolean) {
     return changeFeaturedImage(imageId, featured);
 }
 

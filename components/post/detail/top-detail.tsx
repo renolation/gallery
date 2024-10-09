@@ -7,7 +7,7 @@ import {useEffect, useState} from 'react';
 import {IconPencil} from "@tabler/icons-react";
 
 
-export default function TopDetail({title, userId, postId}: { title: string, userId: string | null, postId: string }) {
+export default function TopDetail({title, userId, postId}: { title: string, userId: string | null, postId: number }) {
 
     const router = useRouter();
 

@@ -9,7 +9,7 @@ import ShareComponent from "@/components/shared/share-component";
 
 
 export default async function PostDetailPage({params}: { params: { postId: string } }) {
-    const post = await getPostById(params.postId);
+    const post = await getPostById(parseInt(params.postId, 10));
 
     if (!post) {
         return <div>Post not found</div>;
@@ -48,14 +48,14 @@ export default async function PostDetailPage({params}: { params: { postId: strin
             </Flex>
 
 
-            {post.images.map((image: { id: string; imageUrl: string }) => (
+            {post.images.map((image: { id: number; imageUrl: string }) => (
                 <div key={image.id} className="pb-6 w-full">
                     <ImageCard imageId={image.id} imageUrl={image.imageUrl}/>
                 </div>
             ))}
 
 
-            <PostTagsDetail tags={post.tags.map((tag: { tagId: string; tag: { name: string } }) => ({
+            <PostTagsDetail tags={post.tags.map((tag: { tagId: number; tag: { name: string } }) => ({
                 id: tag.tagId,
                 name: tag.tag.name
             }))}/>

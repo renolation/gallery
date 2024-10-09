@@ -42,7 +42,7 @@ export async function getTagsByImages() {
     });
 }
 
-export async function addTagToPost(postId: string, tagName: string) {
+export async function addTagToPost(postId: number, tagName: string) {
     // Find the tag by its name
     const tag = await prisma.tag.findUnique({
         where: {
@@ -80,7 +80,7 @@ export async function addTagToPost(postId: string, tagName: string) {
     }
 }
 
-export async function addTagsToPost(postId: string, tagNames: string[]) {
+export async function addTagsToPost(postId: number, tagNames: string[]) {
     for (const tagName of tagNames) {
         // Find the tag by its name
         let tag = await prisma.tag.findUnique({
@@ -130,7 +130,7 @@ export async function addTagsToPost(postId: string, tagNames: string[]) {
     }
 }
 
-export async function createOrUpdateTagForPost(postId: string, tagName: string) {
+export async function createOrUpdateTagForPost(postId: number, tagName: string) {
     // Check if the tag with the given name exists
     let tag = await prisma.tag.findUnique({
         where: {
@@ -178,7 +178,7 @@ export async function createOrUpdateTagForPost(postId: string, tagName: string) 
     }
 }
 
-export async function addTagToImage(imageId: string, tagName: string) {
+export async function addTagToImage(imageId: number, tagName: string) {
     const tag = await createTag(tagName);
 
     const existingTag = await prisma.imagesOnTags.findFirst({

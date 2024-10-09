@@ -18,7 +18,7 @@ model User {
   username  String    @unique
   email     String    @unique
   password  String
-  roleId    String
+  roleId    Int
   role      Role      @relation(fields: [roleId], references: [id])
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
@@ -28,7 +28,7 @@ model User {
 }
 
 model Post {
-  id          String        @id @default(uuid())
+  id          Int           @id @default(autoincrement())
   title       String?
   description String?
   userId      String
@@ -41,7 +41,7 @@ model Post {
 }
 
 model Image {
-  id          String         @id @default(uuid())
+  id          Int            @id @default(autoincrement())
   title       String?
   description String?
   imageUrl    String
@@ -51,7 +51,7 @@ model Image {
   uploadedBy  User           @relation(fields: [userId], references: [id], name: "UserImages")
   userId      String
   post        Post?          @relation(fields: [postId], references: [id], name: "PostImages")
-  postId      String?
+  postId      Int?
   tags        ImagesOnTags[]
 
   order      Int      @default(0)
@@ -72,7 +72,7 @@ model Image {
 }
 
 model Tag {
-  id          String         @id @default(uuid())
+  id          Int            @id @default(autoincrement())
   name        String         @unique
   description String?
   images      ImagesOnTags[]
@@ -83,9 +83,9 @@ model Tag {
 
 model PostsOnTags {
   post       Post     @relation(fields: [postId], references: [id])
-  postId     String
+  postId     Int
   tag        Tag      @relation(fields: [tagId], references: [id])
-  tagId      String
+  tagId      Int
   assignedAt DateTime @default(now())
 
   @@id([postId, tagId])
@@ -93,9 +93,9 @@ model PostsOnTags {
 
 model ImagesOnTags {
   image      Image    @relation(fields: [imageId], references: [id])
-  imageId    String
+  imageId    Int
   tag        Tag      @relation(fields: [tagId], references: [id])
-  tagId      String
+  tagId      Int
   assignedAt DateTime @default(now())
 
   @@id([imageId, tagId])
@@ -111,17 +111,17 @@ model Session {
 }
 
 model Role {
-  id          String       @id @default(uuid())
+  id          Int          @id @default(autoincrement())
   name        String       @unique
   permissions Permission[] @relation("RolePermission")
   users       User[]
-  parentId    String? // Self-referencing field for hierarchy
+  parentId    Int? // Self-referencing field for hierarchy
   parent      Role?        @relation("RoleHierarchy", fields: [parentId], references: [id])
   children    Role[]       @relation("RoleHierarchy")
 }
 
 model Permission {
-  id    String @id @default(uuid())
+  id    Int    @id @default(autoincrement())
   name  String @unique
   roles Role[] @relation("RolePermission")
 }

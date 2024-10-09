@@ -70,7 +70,7 @@ export async function createPost(userId: string, title: string, description: str
 }
 
 
-export async function updatePostWithImage(postId: string, imageId: string) {
+export async function updatePostWithImage(postId: number, imageId: number) {
     await prisma.post.update({
         where: {id: postId},
         data: {
@@ -81,7 +81,7 @@ export async function updatePostWithImage(postId: string, imageId: string) {
     });
 }
 
-export async function updatePostWithImages(postId: string, imageIds: string[]) {
+export async function updatePostWithImages(postId: number, imageIds: number[]) {
     await prisma.post.update({
         where: {id: postId},
         data: {
@@ -92,7 +92,7 @@ export async function updatePostWithImages(postId: string, imageIds: string[]) {
     });
 }
 
-export async function updatePostDetail(postId: string, title: string, description: string) {
+export async function updatePostDetail(postId: number, title: string, description: string) {
     await prisma.post.update({
         where: {id: postId},
         data: {
@@ -102,7 +102,7 @@ export async function updatePostDetail(postId: string, title: string, descriptio
     });
 }
 
-export async function updatePostDesc(postId: string, description: string) {
+export async function updatePostDesc(postId: number, description: string) {
     await prisma.post.update({
         where: {id: postId},
         data: {
@@ -112,7 +112,7 @@ export async function updatePostDesc(postId: string, description: string) {
 }
 
 
-export async function getPostById(postId: string) {
+export async function getPostById(postId: number) {
     return prisma.post.findUnique({
         where: {id: postId},
         include: {

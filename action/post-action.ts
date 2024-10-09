@@ -14,7 +14,7 @@ import {createImage, createImageWithoutPostId, updateOrder} from "@/lib/prisma/p
 import {addTagsToPost, addTagToImage, createOrUpdateTagForPost, createTag} from "@/lib/prisma/prisma-tag";
 import {redirect} from "next/navigation";
 
-export async function editPostAction(postId: string, imageId: string) {
+export async function editPostAction(postId: number, imageId: number) {
     const userId = await getUserIdFromSession();
     if (!userId) {
         return;
@@ -31,7 +31,7 @@ export async function editPostAction(postId: string, imageId: string) {
 
 }
 
-export async function updatePostAction(postId: string,  title: string, description: string) {
+export async function updatePostAction(postId: number,  title: string, description: string) {
     const userId = await getUserIdFromSession();
     if (!userId) {
         return;
@@ -49,7 +49,7 @@ export async function updatePostAction(postId: string,  title: string, descripti
 
 }
 
-export async function createPostAction(imagesId: string[], title: string, description: string, tagsPost: string[]) {
+export async function createPostAction(imagesId: number[], title: string, description: string, tagsPost: string[]) {
     const userId = await getUserIdFromSession();
     if (!userId) {
         return;
@@ -81,13 +81,13 @@ export async function dropImageAction(formData: FormData) {
     return await createImageWithoutPostId(userId, imageUrl);
 }
 
-export async function updatePostDescAction(postId: string, description: string) {
+export async function updatePostDescAction(postId: number, description: string) {
     await new Promise(resolve => setTimeout(resolve, 2000)); // 2-second delay
     console.log("aaa");
     return updatePostDesc(postId, description);
 }
 
-export async function addTagsToPostAction(postId: string, tags: string[]){
+export async function addTagsToPostAction(postId: number, tags: string[]){
     console.log("add tag to post");
     await addTagsToPost(postId, tags);
 }
@@ -97,12 +97,12 @@ export async function createTagAction(tag: string){
     await createTag(tag);
 }
 
-export async function imageTagAction(imageId: string, tag: string){
+export async function imageTagAction(imageId: number, tag: string){
     console.log("image tag");
     await addTagToImage(imageId, tag);
 }
 
-export async function updateOrderAction(imageIds: string[]){
+export async function updateOrderAction(imageIds: number[]){
     console.log("update order");
     await updateOrder(imageIds);
 }

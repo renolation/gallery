@@ -1,8 +1,12 @@
 import { PrismaClient } from '@prisma/client'
+import {lucia} from "@/lib/auth";
 
 const prismaClientSingleton = () => {
   return new PrismaClient()
 }
+
+
+
 
 declare const globalThis: {
   prismaGlobal: ReturnType<typeof prismaClientSingleton>;

@@ -11,6 +11,8 @@ export async function createUser(email: string, username: string, password: stri
         throw new Error("Role 'member' not found");
     }
 
+    console.log(role);
+
     const user = await prisma.user.create({
         data: {
             email: email,

@@ -1,4 +1,4 @@
-export default function PostTagsDetail({tags}: { tags: { id: string, name: string }[] }) {
+export default function PostTagsDetail({tags}: { tags: { id: number, name: string }[] }) {
     return (
         <div id="tags" className="flex flex-wrap gap-2 justify-start">
             {tags.map(tag => (
