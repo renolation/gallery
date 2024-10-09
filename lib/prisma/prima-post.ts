@@ -17,7 +17,6 @@ export async function getPosts(page: number, limit: number, tag?: string) {
                     }
                 }
             },
-            user: true,
             tags: {
                 select: {
                     tag: {
@@ -58,10 +57,10 @@ export async function getPosts(page: number, limit: number, tag?: string) {
 }
 
 
-export async function createPost(userId: string, title: string, description: string) {
+export async function createPost(email: string, title: string, description: string) {
     const newPost = await prisma.post.create({
         data: {
-            userId: userId,
+            email: email,
             title: title,
             description: description,
         },
@@ -128,7 +127,6 @@ export async function getPostById(postId: number) {
                     }
                 }
             },
-            user: true,
             tags: {
                 include: {
                     tag: true,

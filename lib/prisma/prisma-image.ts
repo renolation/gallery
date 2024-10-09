@@ -1,20 +1,20 @@
 import prisma from "@/lib/prisma/prisma";
 
 
-export async function createImage(userId: string, imageUrl: string, postId: number) {
+export async function createImage(email: string, imageUrl: string, postId: number) {
     return prisma.image.create({
         data: {
-            userId: userId,
+            email: email,
             imageUrl: imageUrl,
             postId: postId
         },
     });
 }
 
-export async function createImageWithoutPostId(userId: string, imageUrl: string) {
+export async function createImageWithoutPostId(email: string, imageUrl: string) {
     return prisma.image.create({
         data: {
-            userId: userId,
+            email: email,
             imageUrl: imageUrl,
         },
     });

@@ -13,15 +13,18 @@ import {uploadImage} from "@/lib/cloudirary";
 import {createImage, createImageWithoutPostId, updateOrder} from "@/lib/prisma/prisma-image";
 import {addTagsToPost, addTagToImage, createOrUpdateTagForPost, createTag} from "@/lib/prisma/prisma-tag";
 import {redirect} from "next/navigation";
+import {createClient} from '@/utils/supabase/server';
 
 export async function editPostAction(postId: number, imageId: number) {
-    const userId = await getUserIdFromSession();
-    if (!userId) {
+    const supabase = createClient()
+    const {data, error} = await supabase.auth.getUser()
+    if(!data.user?.email) {
+        console.log("No user found");
         return;
     }
 
     const post = await getPostById(postId);
-    if(!post) {
+    if (!post) {
         console.log("Post not found");
         return;
     }
@@ -31,14 +34,16 @@ export async function editPostAction(postId: number, imageId: number) {
 
 }
 
-export async function updatePostAction(postId: number,  title: string, description: string) {
-    const userId = await getUserIdFromSession();
-    if (!userId) {
+export async function updatePostAction(postId: number, title: string, description: string) {
+    const supabase = createClient()
+    const {data, error} = await supabase.auth.getUser()
+    if(!data.user?.email) {
+        console.log("No user found");
         return;
     }
 
     const post = await getPostById(postId);
-    if(!post) {
+    if (!post) {
         console.log("Post not found");
         return;
     }
@@ -50,12 +55,14 @@ export async function updatePostAction(postId: number,  title: string, descripti
 }
 
 export async function createPostAction(imagesId: number[], title: string, description: string, tagsPost: string[]) {
-    const userId = await getUserIdFromSession();
-    if (!userId) {
+    const supabase = createClient()
+    const {data, error} = await supabase.auth.getUser()
+    if(!data.user?.email) {
+        console.log("No user found");
         return;
     }
 
-    const postId = await createPost(userId, title, description);
+    const postId = await createPost(data.user?.email, title, description);
     await addTagsToPostAction(postId, tagsPost);
     await updatePostWithImages(postId, imagesId);
 
@@ -64,21 +71,24 @@ export async function createPostAction(imagesId: number[], title: string, descri
 }
 
 export async function dropImageAction(formData: FormData) {
+
+
     console.log("dropImageAction called");
     const image = formData.get('image') as File;
     if (!image) {
         console.log("No image found in formData");
         return;
     }
-
-    const userId = await getUserIdFromSession();
-    if (!userId) {
+    const supabase = createClient()
+    const {data, error} = await supabase.auth.getUser()
+    if(!data.user?.email) {
+        console.log("No user found");
         return;
     }
-    console.log(userId);
+
     const imageUrl = await uploadImage(image);
     console.log(imageUrl);
-    return await createImageWithoutPostId(userId, imageUrl);
+    return await createImageWithoutPostId(data.user?.email, imageUrl);
 }
 
 export async function updatePostDescAction(postId: number, description: string) {
@@ -87,22 +97,22 @@ export async function updatePostDescAction(postId: number, description: string) 
     return updatePostDesc(postId, description);
 }
 
-export async function addTagsToPostAction(postId: number, tags: string[]){
+export async function addTagsToPostAction(postId: number, tags: string[]) {
     console.log("add tag to post");
     await addTagsToPost(postId, tags);
 }
 
-export async function createTagAction(tag: string){
+export async function createTagAction(tag: string) {
     console.log("create tag");
     await createTag(tag);
 }
 
-export async function imageTagAction(imageId: number, tag: string){
+export async function imageTagAction(imageId: number, tag: string) {
     console.log("image tag");
     await addTagToImage(imageId, tag);
 }
 
-export async function updateOrderAction(imageIds: number[]){
+export async function updateOrderAction(imageIds: number[]) {
     console.log("update order");
     await updateOrder(imageIds);
 }

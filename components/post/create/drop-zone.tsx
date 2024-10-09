@@ -20,8 +20,8 @@ export default function DropZone() {
     const pathname = usePathname();
     const theme = useMantineTheme();
     const openRef = useRef<() => void>(null);
-    const isPostEditRoute = /^\/posts\/[0-9a-fA-F-]{36}\/edit$/.test(pathname);
-    const postEditRouteMatch = pathname.match(/^\/posts\/([0-9a-fA-F-]{36})\/edit$/);
+    const isPostEditRoute = /^\/posts\/\d+\/edit$/.test(pathname);
+    const postEditRouteMatch = pathname.match(/^\/posts\/(\d+)\/edit$/);
 
 
 
@@ -37,7 +37,7 @@ export default function DropZone() {
                     if (imageObj) {
                         dispatch(addImage({ ...imageObj, tags: [] }));
                         if (isPostEditRoute && postEditRouteMatch) {
-                            await editPostAction(postEditRouteMatch[1], imageObj.id);
+                            await editPostAction(parseInt(postEditRouteMatch[1], 10), imageObj.id);
                         }
                     }
                 }

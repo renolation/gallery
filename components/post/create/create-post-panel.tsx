@@ -23,9 +23,9 @@ export default function CreatePostPanel() {
 
     const pathname = usePathname();
 
-    const postEditRouteMatch = pathname.match(/^\/posts\/([0-9a-fA-F-]{36})\/edit$/);
-    const isPostEditRoute = /^\/posts\/[0-9a-fA-F-]{36}\/edit$/.test(pathname);
-
+    const postEditRouteMatch = pathname.match(/^\/posts\/(\d+)\/edit$/);
+    // const isPostEditRoute = /^\/posts\/\d+\/edit$/.test(pathname);
+    const isPostEditRoute = /^\/posts\/\d+\/edit$/.test(pathname);
 
     function toggleRearranging() {
         dispatch(toggleRearrangingButton());
@@ -35,15 +35,16 @@ export default function CreatePostPanel() {
 
         const imageIds = editPostImage.map((image: ImageDB) => image.id);
         await createPostAction(imageIds, inputPostName, editorCreate, tagsPost);
-         await updateOrderAction(editPostImage.map((image) => image.id));
+        await updateOrderAction(editPostImage.map((image) => image.id));
         dispatch(resetTag());
     }
 
     const updatePost = async () => {
+        console.log('hello')
         if (postEditRouteMatch && isPostEditRoute) {
-             await updateOrderAction(editPostImage.map((image) => image.id));
-            await addTagsToPostAction(postEditRouteMatch[1], tagsPost);
-            await updatePostAction(postEditRouteMatch[1], inputPostName, editorCreate);
+            await updateOrderAction(editPostImage.map((image) => image.id));
+            await addTagsToPostAction(parseInt(postEditRouteMatch[1], 10), tagsPost);
+            await updatePostAction(parseInt(postEditRouteMatch[1], 10), inputPostName, editorCreate);
             dispatch(resetTag());
         }
 

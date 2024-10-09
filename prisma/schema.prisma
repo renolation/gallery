@@ -13,27 +13,13 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id        String    @id @default(uuid())
-  username  String    @unique
-  email     String    @unique
-  password  String
-  roleId    Int
-  role      Role      @relation(fields: [roleId], references: [id])
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  sessions  Session[]
-  images    Image[]   @relation("UserImages")
-  posts     Post[]    @relation("UserPosts")
-}
 
 model Post {
   id          Int           @id @default(autoincrement())
   title       String?
   description String?
-  userId      String
   status      Status        @default(PENDING)
-  user        User          @relation(fields: [userId], references: [id], name: "UserPosts")
+  email  String
   images      Image[]       @relation("PostImages")
   tags        PostsOnTags[]
   createdAt   DateTime      @default(now())
@@ -48,8 +34,7 @@ model Image {
   width       Int            @default(0)
   height      Int            @default(0)
   status      Status         @default(PENDING)
-  uploadedBy  User           @relation(fields: [userId], references: [id], name: "UserImages")
-  userId      String
+  email String
   post        Post?          @relation(fields: [postId], references: [id], name: "PostImages")
   postId      Int?
   tags        ImagesOnTags[]
@@ -101,30 +86,6 @@ model ImagesOnTags {
   @@id([imageId, tagId])
 }
 
-// region Role based access control
-model Session {
-  id        String   @id
-  userId    String
-  expiresAt DateTime
-
-  user User @relation(references: [id], fields: [userId], onDelete: Cascade)
-}
-
-model Role {
-  id          Int          @id @default(autoincrement())
-  name        String       @unique
-  permissions Permission[] @relation("RolePermission")
-  users       User[]
-  parentId    Int? // Self-referencing field for hierarchy
-  parent      Role?        @relation("RoleHierarchy", fields: [parentId], references: [id])
-  children    Role[]       @relation("RoleHierarchy")
-}
-
-model Permission {
-  id    Int    @id @default(autoincrement())
-  name  String @unique
-  roles Role[] @relation("RolePermission")
-}
 
 // endregion
 

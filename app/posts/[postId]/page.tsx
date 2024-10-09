@@ -6,6 +6,7 @@ import TopShare from "@/components/post/detail/top-share";
 import {getUserIdFromSession} from "@/lib/auth";
 import PostTagsDetail from "@/components/post/detail/post-tags-detail";
 import ShareComponent from "@/components/shared/share-component";
+import {createClient} from "@/utils/supabase/server";
 
 
 export default async function PostDetailPage({params}: { params: { postId: string } }) {
@@ -16,14 +17,21 @@ export default async function PostDetailPage({params}: { params: { postId: strin
     }
 
     post.description = post.description!.replace(/\n/g, '<br/>');
-    const userId = await getUserIdFromSession();
+    const supabase = createClient()
 
-    console.log(post.tags);
+
+    const {data, error} = await supabase.auth.getUser()
+    if(!data.user?.email) {
+        console.log("No user found");
+    } else {
+        console.log("User found");
+    }
+
 
     return (
         <div className="flex flex-col xs:w-9/10 sm:w-4/5 md:w-3/5 lg:w-1/2 mx-auto m-4">
             {/*name*/}
-            <TopDetail title={post.title ?? ""} userId={userId} postId={post.id}/>
+            <TopDetail title={post.title ?? ""} userId={data.user?.email} postId={post.id}/>
 
 
             <Flex
