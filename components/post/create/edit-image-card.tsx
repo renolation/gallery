@@ -19,7 +19,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {updateFeatured, updateImage, updateTechnique, updateTool} from "@/lib/features/post/edit/edit-post-image-slice";
 import {index} from "d3-array";
 import {RootState} from "@/lib/store";
-import ImageTags from "@/components/post/create/image-tags";
+import ImageTags from "@/components/post/shared/image-tags";
 import {changeFeaturedImageAction, updateImageAction} from "@/action/image-action";
 import {Image as ImageDB} from "@prisma/client";
 

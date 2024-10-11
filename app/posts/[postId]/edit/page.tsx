@@ -1,10 +1,10 @@
 import {getPostById} from "@/lib/prisma/prima-post";
 import NameInputPost from "@/components/post/create/name-input-post";
-import PostTags from "@/components/post/create/post-tags";
-import CreatePostMain from "@/components/post/create/create-post-main";
-import CreatePostPanel from "@/components/post/create/create-post-panel";
+import PostTags from "@/components/post/shared/post-tags";
+import ListImagePost from "@/components/post/create/list-image-post";
+import PostPanel from "@/components/post/create/post-panel";
 import {ImageWithTags} from "@/lib/features/post/edit/edit-post-image-slice";
-import EditorCreate from "@/components/post/create/editor-create";
+import EditorDescription from "@/components/post/shared/editor-description";
 
 
 export default async function EditPostPage({params}: { params: { postId: string } }) {
@@ -33,8 +33,8 @@ export default async function EditPostPage({params}: { params: { postId: string 
 
                     <NameInputPost initialName={post.title}/>
                     <PostTags tags={post.tags.map((tag: { tag: { name: string } }) => tag.tag.name)}/>
-                    <EditorCreate text={post.description}/>
-                   <CreatePostMain images={post.images.map((image: {
+                    <EditorDescription text={post.description}/>
+                   <ListImagePost images={post.images.map((image: {
                         id: number;
                         tags: {
                             tag: {
@@ -58,7 +58,7 @@ export default async function EditPostPage({params}: { params: { postId: string 
 
                 </div>
                 <div className="flex flex-col gap-3 sm:w-72">
-                    <CreatePostPanel/>
+                    <PostPanel/>
                 </div>
             </div>
         </div>

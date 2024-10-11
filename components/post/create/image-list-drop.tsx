@@ -1,17 +1,14 @@
 "use client";
 
-import DropZoneButton from "@/components/post/create/drop-zone";
+import DropZoneButton from "@/components/post/create/drop-zone-button";
 import EditImageCard from "@/components/post/create/edit-image-card";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "@/lib/store";
-import {CreatePostForm} from "@/components/post/create/create-post-form";
 import {useEffect} from "react";
 import {addImage, clearImage, ImageWithTags} from "@/lib/features/post/edit/edit-post-image-slice";
-import {useIsFirstRender} from "@mantine/hooks";
 import {usePathname} from "next/navigation";
-import {Image as ImageDB} from "@prisma/client";
 
-export default function NewPostForm({images}: { images: ImageWithTags[] }) {
+export default function ImageListDrop() {
     const dispatch = useDispatch();
 
     const pathname = usePathname();

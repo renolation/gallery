@@ -13,7 +13,7 @@ import {IconCloudUpload, IconDownload, IconX} from "@tabler/icons-react";
 import {usePathname} from "next/navigation";
 import { editPostAction } from '@/action/post-action';
 
-export default function DropZone() {
+export default function DropZoneButton() {
 
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(false);

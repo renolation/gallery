@@ -15,7 +15,7 @@ import {useEffect} from "react";
 
 
 
-export default function EditorCreate({text}: { text: string | null }) {
+export default function EditorDescription({text}: { text: string | null }) {
     const dispatch = useDispatch();
 
 

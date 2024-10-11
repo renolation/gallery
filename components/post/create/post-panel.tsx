@@ -12,7 +12,7 @@ import {usePathname} from "next/navigation";
 import {addTagsToPostAction, updateOrderAction} from "@/action/post-action";
 import {resetTag} from "@/lib/features/post/shared/tag-post-slice";
 
-export default function CreatePostPanel() {
+export default function PostPanel() {
 
 
     const dispatch = useDispatch();

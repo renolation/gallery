@@ -2,7 +2,7 @@
 
 import {RootState} from "@/lib/store";
 import {useDispatch, useSelector} from "react-redux";
-import NewPostForm from "@/components/post/create/new-post-form";
+import ImageListDrop from "@/components/post/create/image-list-drop";
 import RearrangingImage from "@/components/post/create/rearranging-image";
 import {Image as ImageDB} from "@prisma/client";
 import {addImage, clearImage, ImageWithTags} from "@/lib/features/post/edit/edit-post-image-slice";
@@ -12,7 +12,7 @@ import {useEffect} from "react";
 interface CreatePostMainProps {
     images: ImageWithTags[];
 }
-export default function CreatePostMain({images}: CreatePostMainProps) {
+export default function ListImagePost({images}: CreatePostMainProps) {
     const dispatch = useDispatch();
 
     const buttonIsRearrangingState = useSelector((state: RootState) => state.buttonIsRearranging.value);
@@ -34,6 +34,6 @@ export default function CreatePostMain({images}: CreatePostMainProps) {
     }, [images, dispatch]);
 
     return (
-        buttonIsRearrangingState ? <RearrangingImage/> : <NewPostForm images={images}/>
+        buttonIsRearrangingState ? <RearrangingImage/> : <ImageListDrop/>
     );
 }
