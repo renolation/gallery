@@ -42,8 +42,8 @@ export default function CreatePostPanel() {
     const updatePost = async () => {
         if (postEditRouteMatch && isPostEditRoute) {
              await updateOrderAction(editPostImage.map((image) => image.id));
-            await addTagsToPostAction(postEditRouteMatch[1], tagsPost);
-            await updatePostAction(postEditRouteMatch[1], inputPostName, editorCreate);
+            await addTagsToPostAction(parseInt(postEditRouteMatch[1], 10), tagsPost);
+            await updatePostAction(parseInt(postEditRouteMatch[1], 10), inputPostName, editorCreate);
             dispatch(resetTag());
         }
 

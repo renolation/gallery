@@ -19,9 +19,9 @@ import ShareComponent from "@/components/shared/share-component";
 
 
 export default function ImageDetailTop({id, imageUrl, postId}: {
-    id: string,
+    id: number,
     imageUrl: string,
-    postId: string | null
+    postId: number | null
 }) {
     const router = useRouter();
     const dispatch = useDispatch();
