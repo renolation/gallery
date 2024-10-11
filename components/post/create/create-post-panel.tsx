@@ -23,8 +23,8 @@ export default function CreatePostPanel() {
 
     const pathname = usePathname();
 
-    const postEditRouteMatch = pathname.match(/^\/posts\/([0-9a-fA-F-]{36})\/edit$/);
-    const isPostEditRoute = /^\/posts\/[0-9a-fA-F-]{36}\/edit$/.test(pathname);
+    const postEditRouteMatch = pathname.match(/^\/posts\/(\d+)\/edit$/);
+    const isPostEditRoute = /^\/posts\/\d+\/edit$/.test(pathname);
 
 
     function toggleRearranging() {

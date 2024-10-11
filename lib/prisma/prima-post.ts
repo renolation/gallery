@@ -58,7 +58,7 @@ export async function getPosts(page: number, limit: number, tag?: string) {
 }
 
 
-export async function createPost(userId: string, title: string, description: string) {
+export async function createPost(userId: number, title: string, description: string) {
     const newPost = await prisma.post.create({
         data: {
             userId: userId,

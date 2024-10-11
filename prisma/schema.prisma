@@ -14,7 +14,7 @@ datasource db {
 }
 
 model User {
-  id        String    @id @default(uuid())
+  id        Int           @id @default(autoincrement())
   username  String    @unique
   email     String    @unique
   password  String
@@ -31,7 +31,7 @@ model Post {
   id          Int           @id @default(autoincrement())
   title       String?
   description String?
-  userId      String
+  userId      Int
   status      Status        @default(PENDING)
   user        User          @relation(fields: [userId], references: [id], name: "UserPosts")
   images      Image[]       @relation("PostImages")
@@ -49,7 +49,7 @@ model Image {
   height      Int            @default(0)
   status      Status         @default(PENDING)
   uploadedBy  User           @relation(fields: [userId], references: [id], name: "UserImages")
-  userId      String
+  userId      Int
   post        Post?          @relation(fields: [postId], references: [id], name: "PostImages")
   postId      Int?
   tags        ImagesOnTags[]
@@ -104,7 +104,7 @@ model ImagesOnTags {
 // region Role based access control
 model Session {
   id        String   @id
-  userId    String
+  userId    Int
   expiresAt DateTime
 
   user User @relation(references: [id], fields: [userId], onDelete: Cascade)

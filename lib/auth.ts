@@ -13,9 +13,15 @@ export const lucia = new Lucia(adapter, {
     }
 });
 
+declare module "lucia" {
+	interface Register {
+		Lucia: typeof lucia;
+		UserId: number;
+	}
+}
 
 
-export async function createAuthSession(userId: string) {
+export async function createAuthSession(userId: number) {
     console.log('createAuthSession: ', userId);
 
     const session = await lucia.createSession(userId, {});
@@ -105,3 +111,4 @@ export async function getUserIdFromSession() {
         return null;
     }
 }
+
